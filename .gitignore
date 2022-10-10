@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Configuration files
+**/appsettings.Development.json
+**/aws-lambda-tools-defaults.Development.json
+**/nlog.Development.config
+
 # User-specific files
 *.rsuser
 *.suo

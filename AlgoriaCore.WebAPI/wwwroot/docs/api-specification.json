@@ -1,0 +1,1872 @@
+﻿{
+  "x-generator": "NSwag v12.0.6.0 (NJsonSchema v9.13.2.0 (Newtonsoft.Json v11.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "Algoria Core",
+    "version": "0.0.1"
+  },
+  "consumes": [
+    "application/json-patch+json",
+    "application/json",
+    "text/json",
+    "application/*+json"
+  ],
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Auth_Login",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLoginQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SessionLoginResponseController"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/resetp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Auth_ResetPassword",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserResetPasswordCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/confirmresetp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Auth_ConfirmResetPassword",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfirmPasswordCommandReset"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguageList": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguageList",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageGetListQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PagedResultDtoOfLanguageForListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguage/{id}": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguage",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LanguageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguageForEdit": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguageForEdit",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageGetForEditQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LanguageForEditResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/CreateLanguage": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_CreateLanguage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageCreateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/UpdateLanguage": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_UpdateLanguage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageUpdateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguageTextList": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguageTextList",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageTextGetListQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PagedResultDtoOfLanguageTextForListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguageText/{id}": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguageText",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LanguageTextResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/GetLanguageTextForEdit": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_GetLanguageTextForEdit",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageTextGetForEditQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LanguageTextForEditResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/CreateLanguageText": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_CreateLanguageText",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageTextCreateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/api/Language/UpdateLanguageText": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "operationId": "Language_UpdateLanguageText",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LanguageTextUpdateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/api/register/create": {
+      "post": {
+        "tags": [
+          "Register"
+        ],
+        "operationId": "Register_Login",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCreate"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rol/GetRolList": {
+      "post": {
+        "tags": [
+          "Rol"
+        ],
+        "operationId": "Rol_GetRolList",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RolGetListQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PagedResultDtoOfRolForListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rol/Get": {
+      "post": {
+        "tags": [
+          "Rol"
+        ],
+        "operationId": "Rol_Get",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RolGetByIdQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RolResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rol/Create": {
+      "post": {
+        "tags": [
+          "Rol"
+        ],
+        "operationId": "Rol_Create",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RolCreateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rol/Update": {
+      "post": {
+        "tags": [
+          "Rol"
+        ],
+        "operationId": "Rol_Update",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RolUpdateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rol/Delete": {
+      "post": {
+        "tags": [
+          "Rol"
+        ],
+        "operationId": "Rol_Delete",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RolDeleteCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/SampleData/WeatherForecasts/{id}": {
+      "get": {
+        "tags": [
+          "SampleData"
+        ],
+        "operationId": "SampleData_WeatherForecasts",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WeatherForecast"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tenant/GetTenantById/{id}": {
+      "get": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "Tenant_GetTenantById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TenantResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/Tenant/UpdateTenant/UpdateTenant": {
+      "post": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "Tenant_UpdateTenant",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "command",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTenantCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetUserList": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetUserList",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserGetListQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PagedResultDtoOfUserListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/CreateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_CreateUser",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCreateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/UpdateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_UpdateUser",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserUpdateCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetUserForEdit": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetUserForEdit",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserGetForEditQuery"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserForEditResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SessionLoginResponseController": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SessionLoginResponse"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SessionLoginResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "userId"
+      ],
+      "properties": {
+        "tenantId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenancyName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "eMail": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLoginQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "tenancyName": {
+          "type": "string"
+        }
+      }
+    },
+    "UserResetPasswordCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "tenancyName": {
+          "type": "string"
+        }
+      }
+    },
+    "ConfirmPasswordCommandReset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confirmationCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "PagedResultDtoOfLanguageForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totalCount"
+      ],
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LanguageForListResponse"
+          }
+        }
+      }
+    },
+    "LanguageForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isActive"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LanguageGetListQuery": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PageListByDto"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "PageListByDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pageSize",
+        "pageNumber"
+      ],
+      "properties": {
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sorting": {
+          "type": "string"
+        },
+        "filter": {
+          "type": "string"
+        }
+      }
+    },
+    "LanguageResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isActive"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LanguageForEditResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isActive"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LanguageGetForEditQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LanguageCreateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isActive"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LanguageUpdateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "isActive"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PagedResultDtoOfLanguageTextForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totalCount"
+      ],
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LanguageTextForListResponse"
+          }
+        }
+      }
+    },
+    "LanguageTextForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "LanguageTextGetListQuery": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PageListByDto"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "languageId": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      ]
+    },
+    "LanguageTextResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "LanguageTextForEditResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "LanguageTextGetForEditQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LanguageTextCreateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "languageId"
+      ],
+      "properties": {
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "LanguageTextUpdateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "languageId"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "languageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "UserCreate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tenancyName": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "PagedResultDtoOfRolForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totalCount"
+      ],
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RolForListResponse"
+          }
+        }
+      }
+    },
+    "RolForListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RolGetListQuery": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PageListByDto"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "RolResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tenantId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RolGetByIdQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "RolCreateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RolUpdateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RolDeleteCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "WeatherForecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temperatureC",
+        "temperatureF"
+      ],
+      "properties": {
+        "dateFormatted": {
+          "type": "string"
+        },
+        "temperatureC": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "temperatureF": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "TenantResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "isActive",
+        "isDeleted"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenancyName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateTenantCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "isActive"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenancyName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PagedResultDtoOfUserListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "totalCount"
+      ],
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserListResponse"
+          }
+        }
+      }
+    },
+    "UserListResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "secondLastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "isEmailConfirmed": {
+          "type": "boolean"
+        },
+        "userLocked": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "creationTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "UserGetListQuery": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PageListByDto"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "UserCreateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordRepeat": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "secondLastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "setRandomPassword": {
+          "type": "boolean"
+        },
+        "shouldChangePasswordOnNextLogin": {
+          "type": "boolean"
+        },
+        "sendActivationEmail": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserUpdateCommand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordRepeat": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "secondLastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "setRandomPassword": {
+          "type": "boolean"
+        },
+        "shouldChangePasswordOnNextLogin": {
+          "type": "boolean"
+        },
+        "sendActivationEmail": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserForEditResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "secondLastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "setRandomPassword": {
+          "type": "boolean"
+        },
+        "shouldChangePasswordOnNextLogin": {
+          "type": "boolean"
+        },
+        "sendActivationEmail": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserGetForEditQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

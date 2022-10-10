@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace AlgoriaCore.Application.QueriesAndCommands.SampleDateData
+{
+    public class SampleDateDataResponse
+    {
+        public long? Id { get; set; }
+        public string Name { get; set; }
+        public DateTime? DateTimeData { get; set; }
+        public DateTime? DateData { get; set; }
+        public TimeSpan? TimeData { get; set; }
+    }
+}

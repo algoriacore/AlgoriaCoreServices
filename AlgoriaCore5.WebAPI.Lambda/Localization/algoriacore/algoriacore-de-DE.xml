@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="de-DE">
+    <texts>
+
+      <text name="Pages" value="Webseite" />
+      <text name="InvalidField" value="Der Bereich {0} ist nicht gültig" />
+      <text name="RequiredField" value="Der Bereich {0} ist obligatorisch" />
+      <text name="RequiredFieldWithoutParameters" value="Der Bereich ist obligatorisch" />
+      <text name="RequiredTrueField" value="Der Bereich {0} soll aktivieren sind" />
+      <text name="FieldMaxLength">Der Bereich {0} soll eine höchste Länge von {1} haben</text>
+      <text name="FieldMinLength">Der Bereich {0} soll eine mindeste Länge von {1} haben</text>
+      <text name="FieldMinimumValue">Der Bereich {0} soll eine mindeste Wert von{1} haben</text>
+      <text name="FieldMaximumValue">Der Bereich {0} soll eine mindeste Länge von {1} haben</text>
+      <text name="FieldGreaterThan">Der Bereich {0} soll grösser als {1} sind</text>
+      <text name="FieldGreaterOrEqualThan">Der Bereich {0} soll grösser als oder so gross wie {1} sind</text>
+      <text name="FieldGreaterOrEqualThanOrEmpty">Der Bereich {0} soll grösser als oder so gross wie {1} oder leeren sind</text>
+      <text name="FieldInvalidEmailAddress" value="Der Bereich {0} hat eine ungültige E-Mail-Addresse" />
+      <text name="FieldInvalidFormat" value="Der Bereich {0} hat ein richtig Format" />
+      <text name="FieldNotNull" value="Der Bereich {0} soll nich nichtig sind" />
+      <text name="Status" value="Status" />
+      <text name="IsActive" value="Aktiv" />
+      <text name="Active" value="Aktiv" />
+      <text name="Inactive" value="Inaktiv" />
+      <text name="Activate" value="Aktiv" />
+      <text name="Deactivate" value="Deaktivieren" />
+      <text name="RecordDeleted" value="Physikalisch beseitigen Registrierung" />
+      <text name="RecordCreated" value="Registrierung hervorruft" />
+      <text name="RecordUpdated" value="Registrierung aktualisiert" />
+      <text name="RecordSoftDeleted" value="Logische beseitigen Registrierung" />
+      <text name="New" value="Neue" />
+      <text name="Create" value="Erstellen" />
+      <text name="Edit" value="Bearbeiten" />
+      <text name="Delete" value="Beseitigen" />
+      <text name="Copy" value="Kopieren" />
+      <text name="Impersonate" value="Unpersönlich machen" />
+      <text name="Add" value="Zugeben" />
+      <text name="SearchDots" value="Suche..." />
+      <text name="Actions" value="Aktions" />
+      <text name="Yes" value="Ja" />
+      <text name="No" value="Nein" />
+      <text name="ShowingRecordsRange" value="Hier zeigt registrierung {0} von {1} bis {2}" />
+      <text name="RecordsNotFound" value="Die Registrierung gefunden nicht" />
+      <text name="Id" value="Id" />
+      <text name="Return" value="Retour" />
+      <text name="Save" value="Retten" />
+      <text name="SaveAll" value="Rette alle" />
+      <text name="Close" value="Schliessen" />
+      <text name="Cancel" value="Stornieren" />
+      <text name="GeneralData" value="allgemeine Daten" />
+      <text name="Body" value="Body" />
+      <text name="Success" value="Erfolg" />
+      <text name="RecordDeletedSuccessful" value="Die Registrerung wurde erfolgreich beseitigt" />
+      <text name="Confirmation" value="Confirmation" />
+      <text name="ConfirmationDeleteRecordMessage" value="Wöllen Sie diese Registrerung bleibend beseitigen?" />
+      <text name="ConfirmationSoftDeleteRecordMessage" value="Wöllen Sie diese Registrerung als beseitigt markieren?" />
+      <text name="ShowChangeHistory" value="Die Registrierung sehe" />
+      <text name="SavedSuccessfully" value="Erfolgreich retten" />
+      <text name="Send" value="Senden" />
+      <text name="Test" value="Testen" />
+      <text name="TestEmailSentSuccessfully" value="Der Test E-mail war erfolgreich senden." />
+      <text name="Select" value="Auswählen" />
+      <text name="Selected" value="Ausgewählt" />
+      <text name="ShowAdvancedFilters" value="Zeigt erweiterter Filters" />
+      <text name="HideAdvancedFilters" value="Verstecken erweiterter Filters" />
+      <text name="ExportToExcel" value="Export nach excel" />
+      <text name="Refresh" value="Aktualisierung" />
+      <text name="None" value="Keiner" />
+      <text name="TestEmail_Subject">Test E-mail</text>
+      <text name="TestEmail_Body">Dieses ist ein test E-mail.</text>
+      <text name="Clear" value="Klären" />
+      <text name="ClearAll" value="Klären alles" />
+      <text name="DownloadAll" value="Herunterladen alles" />
+      <text name="Today" value="Heute" />
+      <text name="RequestedFileDoesNotExists" value="Die angefordert Datei existert nicht!" />
+      <text name="Default" value="Default" />
+      <text name="DuplicatedPermissionName" value=" '{0}' hat ein Duplikat Berechtigungsname" />
+      <text name="EntityNotFoundExceptionMessage" value="{0}: {1}" />
+      <text name="EntityDuplicatedExceptionMessage" value="{0}: {1}" />
+      <text name="HelpNotAvailable" value="Die Hilfe ist nicht vorhanden" />
+      <text name="NewestFirst" value="Erste neueste" />
+      <text name="OldestFirst" value="Letzter älteste" />
+      <text name="User" value="Nutzer" />
+      <text name="Impersonalized" value="Unpersönlich gemacht" />
+      <text name="LogLevelTrace" value="Spur" />
+      <text name="LogLevelDebug" value="Debuggen" />
+      <text name="LogLevelInformation" value="Information" />
+      <text name="LogLevelWarning" value="Warnung" />
+      <text name="LogLevelError" value="Fehler" />
+      <text name="LogLevelCritical" value="Kritisch" />
+      
+      <text name="SettingClient" value="Client-Einstellungen" />
+      <text name="SettingClient.ClientType" value="Art Klient" />
+      <text name="SettingClient.Name" value="Name" />
+      <text name="SettingClient.Value" value="Wert" />
+
+      <text name="Login.SessionLogin" value="Login" />
+      <text name="Login.Instance" value="Instance" />
+      <text name="Login.UserName" value="Nutzername oder E-mail" />
+      <text name="Login.Password" value="Passwort" />
+      <text name="Login.Login" value="Login" />
+      <text name="Login.ForgotPassword" value="Haben Sie das Passwort vergessen?" />
+      <text name="Login.AreYouNew" value="Sind Sie neu? Registrieren " />
+      <text name="Login.AreYouNewHere" value="Hier " />
+      <text name="Login.Welcome" value="Wilkommen!" />
+      <text name="Login.FailLogin" value="Der Login hat scheiternen" />
+      <text name="Login.FailLoginMessage" value="Nutzername oder Passwort sind falsch" />
+      <text name="Login.AskForPaswordChange" value="Sie sollen das Passwort wechseln" />
+      <text name="Login.PasswordExpired" value="Das passwort von dem Nutzer {0} hat abgelaufen. Sie sollen das Passwort wechseln." />
+      <text name="Login.UserLocked" value="Die Darstellung von dem Nutzer {0} ist verboten" />
+      <text name="Login.UserMustChangePassword" value="Der Nutzer {0} soll das Passwort wechseln." />
+
+      <text name="Impersonalize" value="unpersönlich machen" />
+      <text name="Impersonalize.User" value="Nutzer" />
+      <text name="Impersonalize.UserNotFound" value="Das Benutzerkonto war nicht gefunden" />
+      <text name="Impersonalize.UserInactivated" value="Das Benutzerkonto ist inaktiv" />
+      <text name="Impersonalize.NotPermited" value="Operation ist nicht erlaub" />
+
+      <text name="ChangePassword" value="Wechseln passwort" />
+      <text name="ChangePassword.Instance" value="Instance" />
+      <text name="ChangePassword.UserName" value="Nutzername oder E-mail" />
+      <text name="ChangePassword.Password" value="Passwort" />
+      <text name="ChangePassword.NewPassword" value="Neu passwort" />
+      <text name="ChangePassword.ConfirmPassword" value="Wiederholen passwort" />
+      <text name="ChangePassword.ChangePassword" value="Akseptieren" />
+      <text name="ChangePassword.Welcome" value="Wilkommen!" />
+      <text name="ChangePassword.FailLogin" value="Der Login hat scheiternen" />
+      <text name="ChangePassword.FailLoginMessage" value="Es hat das Passwort oder der Benutzer nicht gefunden" />
+      <text name="ChangePassword.AskForPaswordChange" value="Sie sollen das Passwort wechseln" />
+      <text name="ChangePassword.Error" value="Ein Ausfall hat passieren während wechseln das Passwort" />
+      <text name="ChangePassword.ErrorMessage" value="Das Passwort hat nicht gewechselt" />
+      <text name="ChangePassword.Back" value="Gehen zum login" />
+      <text name="ChangePassword.PasswordHasAlreadyUsed" value=" Dieses Passwort hat schon benutzt. Sie versuchen mit einem andere Passwort." />
+
+      <text name="Register.User.Registry" value="Benutzerregistry" />
+      <text name="Register.User.Instance" value="Instance" />
+      <text name="Register.User.InstanceName" value="Instances vollständiger Name" />
+      <text name="Register.User.Name" value="Name" />
+      <text name="Register.User.LastName" value="Vorname" />
+      <text name="Register.User.SecondLastName" value="Zweiter Nachname" />
+      <text name="Register.User.Password" value="Passwort" />
+      <text name="Register.User.ConfirmPassword" value="Bestätigen Passwort" />
+      <text name="Register.User.PasswordsDontMatch" value="Die Passworts nicht entsprechen" />
+      <text name="Register.User.Email" value="E-mail" />
+      <text name="Register.User.Back" value="Gehen züruck zum Login" />
+      <text name="Register.User.Register" value="Registrieren für Nutzer" />
+      <text name="Register.User.NewRegistred" value="Neuer Benutzer" />
+      <text name="Register.User.Successfully" value="Das Register war erfolgreich. Gehen zu ihrem E-mail-Konto und ihrem Konto aktivieren Sie" />
+      <text name="Register.User.Error" value="Das Login ist gescheitert" />
+      <text name="Register.User.ErrorMessage" value="Es hat das Passwort oder der Benutzer nicht gefunden" />
+      <text name="Register.User.DuplicatedUserName" value="Nutzer {0} schon existiert" />
+      <text name="Register.User.NotAvailableUserName" value="El nombre de usuario &quot;{0}&quot; no se puede utilizar porque anteriormente fue registrado y después fue eliminado." />
+      <text name="Register.User.TenantInfo" value="Instanceinformation" />
+      <text name="Register.User.UserInfo" value="Nutzerinformation" />
+      <text name="Register.User.AccountInfo" value="Kontoinformationen" />
+      <text name="Register.User.Username" value="Nutzername" />
+      
+      <text name="Register.Tenant.ConfirmationCode" value="Bestätigungscode" />
+      <text name="Register.Tenant.ConfirmationCodeNotFound" value="Es hat den Bestätigungscode für der Registrierung nicht gefunden" />
+      <text name="Register.Tenant.TenantDuplicatedTenancyName"><![CDATA[Das Tenantname "{0}" schon registriert steiert]]></text>
+      <text name="Register.Tenant.SettingsFileNotFound" value="Die Datei mit tenant Erstkonfigurationen nicht existiert." />
+      <text name="Register.Tenant.NoSettingsFound" value="Für das neue Tenant ist keine Konfiguration vorhanden"/>
+            
+      <text name="Register.Confirm.ActivatingAccount" value="Aktivieren das Konto..." />
+      <text name="Register.Confirm.AccountCreatedSuccessfully" value="Ihr Konto hat erfolgreich erstellt" />
+      <text name="Register.Confirm.Login" value="Login" />
+      <text name="Register.Confirm.Error" value="Das Login ist gescheitert" />
+      <text name="Register.Confirm.ErrorMessage" value="Fehler während Veränderung das Passwort" />
+
+      <text name="ForgotPasswrod.Recovery" value="Genesen das Passwort" />
+      <text name="ForgotPasswrod.Instance" value="Instance" />
+      <text name="ForgotPasswrod.UserName" value="Nutzername oder E-mail" />
+      <text name="ForgotPasswrod.Back" value="Gehen züruck zum login" />
+      <text name="ForgotPasswrod.RecoverPassword" value="Genesen das Passwort" />
+      <text name="ForgotPasswrod.Successfully" value="Gehen zu ihrem E-mail-Konto und wiederherstellen ihrem Passwort Sie" />
+      <text name="ForgotPasswrod.Error" value="Fehler" />
+      <text name="ForgotPasswrod.ErrorMessage" value="Es hat nicht möglich ein Passwortänderung angefordert." />
+
+      <text name="ResetPasswrod.Recovery" value="Genesen das Passwort" />
+      <text name="ResetPasswrod.UserName" value="Nutzer" />
+      <text name="ResetPasswrod.TenancyName" value="Instance" />
+      <text name="ResetPasswrod.Password" value="Passwort" />
+      <text name="ResetPasswrod.ConfirmPassword" value="Bestätigen password" />
+      <text name="ResetPasswrod.Back" value="Gehen züruck zum login" />
+      <text name="ResetPasswrod.RecoverPassword" value="Genesen das Passwort" />
+      <text name="ResetPasswrod.Successfully" value="Your password was changed succesfully" />
+      <text name="ResetPasswrod.Error" value="Fehler während zurücksetzen das Passwort" />
+      <text name="ResetPasswrod.ErrorMessage" value="Fehler während veränderung das Passwort" />
+
+      <text name="App.TopBar.Profile" value="Profil" />
+      <text name="App.TopBar.Settings" value="Einstellungen" />
+      <text name="App.TopBar.Messages" value="Mitteilungen" />
+      <text name="App.TopBar.Notifications" value="Benachrichtigung" />
+      <text name="App.TopBar.LogoutImpersonalization" value="Gehen züruck zu meinem Konto" />
+      <text name="App.TopBar.Logout" value="Ausloggen" />
+
+      <text name="Dashboard" value="Instrumententafel" />
+      <text name="Instances" value="Instances" />
+      <text name="Administration" value="Administration" />
+
+      <text name="Roles" value="Rollen" />
+      <text name="Roles.NameColGrid" value="Name" />
+      <text name="Roles.DisplayNameColGrid" value="Sichtbarer Name" />
+      <text name="Roles.PropertiesForm" value="Eigenschaften von Rolle" />
+      <text name="Roles.PermissionForm" value="Zustimmung" />
+      <text name="Roles.NameForm" value="Name" />
+      <text name="Roles.DisplayNameForm" value="Sichtbarer Name" />
+      <text name="Roles.NotDefinedFound" value="{0} Rollen sind nicht definiert" />
+
+      <text name="Languages" value="Sprachen" />
+      <text name="Languages.ChangeTexts" value="Text wechseln" />
+      <text name="Languages.SetAsDefaultLanguage" value="Diese festsetzen als default" />
+      <text name="Languages.Language.Name" value="Name" />
+      <text name="Languages.Language.DisplayName" value="Sichtbarer Name" />
+      <text name="Languages.Language.SuccessfulCreate" value="Die Sprache hat erfolgreich erstellt" />
+      <text name="Languages.Language.SuccessfulUpdate" value="Die Sprache hat erfolgreich aktualisieren" />
+      <text name="Languages.Language.DuplicatedName" value="Die Name für die Sprache, den Sie erstellen/bearbeiten möchte, ist besetzt" />
+
+      <text name="Languages.Texts" value="Texte für die Sprache" />
+      <text name="Languages.Texts.Info" value="Die Webseite soll aktualisieren, zwecks werde anwenden die geänderter Texte" />
+      <text name="Languages.Texts.Text.Edit" value="Text wechseln" />
+      <text name="Languages.Texts.Text.Language" value="Sprache" />
+      <text name="Languages.Texts.Text.Key" value="Schlüssel" />
+      <text name="Languages.Texts.Text.Value" value="Wert" />
+      <text name="Languages.Texts.Text.SuccessfulUpdate" value="Der Text hat erfolgreich aktualisieren" />
+      <text name="Languages.Texts.Text.DuplicatedKey" value="Die Name für der Text ist besetzt" />
+
+      <text name="ChangeLogs.ChangeLog.Consult" value="Änderungsprotokoll" />
+      <text name="ChangeLogs.ChangeLog.Datetime" value="Datum und Uhr" />
+      <text name="ChangeLogs.ChangeLog.User" value="Nutzer" />
+      <text name="ChangeLogs.ChangeLog.Detail" value="Detail" />
+
+      <text name="Tenants" value="Intance" />
+      <text name="Tenants.DeletePermanently" value="Permanent löschen" />
+      <text name="Tenants.NameColGrid" value="Vollname" />
+      <text name="Tenants.TenancyNameColGrid" value="Name" />
+      <text name="Tenants.NameForm" value="Vollname" />
+      <text name="Tenants.TenancyNameForm" value="Name" />
+      <text name="Tenants.Tenant.Instance" value="Instance" />
+      <text name="Tenants.Tenant.InstanceName" value="Instance vollname" />
+      <text name="Tenants.Tenant.Name" value="Nutzername" />
+      <text name="Tenants.Tenant.LastName" value="Vorname" />
+      <text name="Tenants.Tenant.SecondLastName" value="Zweiter nachname" />
+      <text name="Tenants.Tenant.Password" value="Passwort" />
+      <text name="Tenants.Tenant.ConfirmPassword" value="Bestätigen passwort" />
+      <text name="Tenants.Tenant.Email" value="E-mail" />
+      <text name="Tenants.Tenant.NewUser" value="Neuer Benutzer" />
+      <text name="Tenants.Tenant.SuccessfulCreate" value="Das Register war erfolgreich. Gehen zu ihrem E-mail-Konto und ihrem Konto aktivieren Sie." />
+      <text name="Tenants.Tenant.Error" value="Das Login ist gescheitert" />
+      <text name="Tenants.Tenant.ErrorMessage" value="Es hat das Passwort oder der Benutzer nicht gefunden" />
+  
+      <text name="Users" value="Benutzer" />
+      <text name="Users.EditPermissions" value="Bearbeiten die Benutzerberechtigung" />
+      <text name="Users.Impersonate" value="unpersönlich machen" />
+      <text name="Users.UserNameColGrid" value="Login" />
+      <text name="Users.NameColGrid" value="Name" />
+      <text name="Users.EmailAddressColGrid" value="E-mail" />
+      <text name="Users.UserInfoForm" value="Nutzerinformation" />
+      <text name="Users.NameForm" value="Name" />
+      <text name="Users.LastNameForm" value="Vorname" />
+      <text name="Users.SecondLastNameForm" value="Zweite Nachname" />
+      <text name="Users.EmailAddressForm" value="E-mail" />
+      <text name="Users.PhoneNumberForm" value="Telefonnummer" />
+      <text name="Users.UserNameForm" value="Nutzername" />
+      <text name="Users.SetRandomPasswordForm" value="Zuordnen ein zufällig Passwort" />
+      <text name="Users.PasswordForm" value="Passwort" />
+      <text name="Users.PasswordRepeatForm" value="Wiederholen password" />
+      <text name="Users.ShouldChangePasswordOnNextLoginForm" value="Sie sollen ihr Passwort die nächster login wechseln." />
+      <text name="Users.SendActivationEmailForm" value="Senden die Aktivierungs-E-Mail" />
+      <text name="Users.CurrentPasswordForm" value="Aktuell Passwort" />
+      <text name="Users.NewPasswordForm" value="Neuer Passwort" />
+      <text name="Users.PasswordsDontMatchForm" value="Die Passworts nicht entsprechen" />
+      <text name="Users.Profile.Title" value="Mein Profil" />
+      <text name="Users.Profile.ChangeAvatar" value="Wechseln Benutzerbild" />
+      <text name="Users.Profile.ChangePassword" value="Wechseln PassworT" />
+      <text name="Users.Profile.ReloadMessage" value="Die Webseite soll aktualisieren, zwecks werde anwenden der Änderungen. Wollen Sie die Webseite aktualisieren?" />
+      <text name="Users.Preferences" value="Vorlieben" />
+      <text name="Users.Preferences.Localization" value="Lokalisierungseinstellungen" />
+      <text name="Users.Preferences.Localization.Language" value="Sprache" />
+      <text name="Users.Preferences.Localization.TimeZone" value="Zeitzone" />
+      <text name="Users.Preferences.Design" value="Design-Vorlieben" />
+      <text name="Users.Preferences.Design.MenuLayout" value="Menü-Design" />
+      <text name="Users.Preferences.Design.MenuLayout.Static" value="Statisch" />
+      <text name="Users.Preferences.Design.MenuLayout.Overlay" value="Verbergen automatisch" />
+      <text name="Users.Preferences.Design.MenuLayout.Slim" value="schmales Design" />
+      <text name="Users.Preferences.Design.MenuLayout.Horizontal" value="Horizontale" />
+      <text name="Users.Preferences.Design.MenuTheme" value="Menü Thema" />
+      <text name="Users.Preferences.Design.MenuTheme.Light" value="Hell" />
+      <text name="Users.Preferences.Design.MenuTheme.Dark" value="Dunkel" />
+      <text name="Users.Preferences.Design.AppTheme" value="App Thema" />
+      <text name="Users.Preferences.Design.AppTheme.BlueGreyTeal" value="Blaugrau" />
+      <text name="Users.Preferences.Design.AppTheme.GreenYellow" value="Grüngelb" />
+      <text name="Users.Preferences.Design.AppTheme.PurpleBlue" value="Lila" />
+      <text name="Users.Preferences.Design.AppTheme.BlueOrange" value="Blau orange" />
+      <text name="Users.Preferences.Design.AppTheme.IndigoYellow" value="Indigogelb" />
+      <text name="Users.Preferences.Design.AppTheme.AmberTeal" value="Bernstein" />
+      <text name="Users.Preferences.Design.AppTheme.CyanAmber" value="Cyan" />
+      <text name="Users.Preferences.Design.AppTheme.BrownCyan" value="Braun" />
+      <text name="Users.Preferences.Design.AppTheme.LimePurple" value="Limette" />
+      <text name="Users.Preferences.Design.AppTheme.DeepOrangeBlue" value="Starkes orange" />
+      <text name="Users.Preferences.Design.TopBarColor" value="Höher Bar Farbe" />
+      <text name="Users.Preferences.Design.TopBarColor.Light" value="Hell" />
+      <text name="Users.Preferences.Design.TopBarColor.Dark" value="Dunkel" />
+      <text name="Users.Preferences.Design.TopBarColor.BlueGray" value="Blaugrau" />
+      <text name="Users.Preferences.Design.TopBarColor.Purple" value="Lila" />
+      <text name="Users.Preferences.Design.TopBarColor.Cyan" value="Cyan" />
+      <text name="Users.Preferences.Design.TopBarColor.Pink" value="Rosa" />
+      <text name="Users.Preferences.Design.TopBarColor.Teal" value="Grünblau" />
+      <text name="Users.Preferences.Design.TopBarColor.Yellow" value="Gelb" />
+      <text name="Users.Preferences.Design.TopBarColor.Lime" value="Limette" />
+      <text name="Users.Preferences.Design.TopBarColor.Green" value="Grün" />
+      <text name="Users.NotFound" value="Es hat das Nutzer nicht gefunden" />
+      <text name="Users.NotValidExceptionMessage"><![CDATA[Der Nutzer "{0}" ist ungültig]]></text>
+      <text name="Users.UnauthorizedExceptionMessage"><![CDATA[Der Nutzer "{0}" habe keinen Zugriff auf die angeforderte Ressource]]></text>
+      <text name="Users.DuplicatedEmail" value="Das E-Mail-Konto ist besetzt" />
+      <text name="Users.PasswordValidation.MinumumLength" value="Das Passwort soll eine mindest Länge von {0} Zeichen" />
+      <text name="Users.PasswordValidation.MaximumLength" value="Das Passwort soll eine höchste Länge von {0} Zeichen" />
+      <text name="Users.PasswordValidation.UseNumbers" value="Das Passwort soll wenigstens eine Zahl haben" />
+      <text name="Users.PasswordValidation.UseUppercase" value="Das Passwort soll wenigstens eine Großbuchstabe haben" />
+      <text name="Users.PasswordValidation.UseLowercase" value="Das Passwort soll wenigstens eine Kleinbuchstaben haben" />
+      <text name="Users.PasswordValidation.UsePunctuationSymbols" value="Das Passwort soll wenigstens eine Interpunktionszeichen haben" />
+      <text name="Users.Confimation.NotFound" value="Es hat den Bestätigungscode für wiederherstellen das Passwort nicht gefunden" />
+      <text name="Users.Confimation.Expired" value="Der Bestätigungscode für wiederherstellen das Passwort abgelaufen. Versuchen Sie es nochmal" />
+
+      <text name="Host.Settings" value="Vorlieben" />
+      <text name="Host.Settings.General" value="Allgemeines" />
+      <text name="Host.Settings.General.WebSiteRootAddress" value="Root-Adresse der Website" />
+      <text name="Host.Settings.General.TimeZone" value="Zeitzone" />      
+      <text name="Host.Settings.Security" value="Sicherheit" />
+      <text name="Host.Settings.Security.PasswordComplexity" value="Passwort komplexität" />
+      <text name="Host.Settings.Security.PasswordUseDefaultConfiguration" value="Standardkonfiguration benutzt" />
+      <text name="Host.Settings.Security.PasswordMinimumLength" value="Mindest Passwort Größe" />
+      <text name="Host.Settings.Security.PasswordMaximumLength" value="Maximal Passwort Größe" />
+      <text name="Host.Settings.Security.PasswordUseNumbers" value="Sie sollen Zahlen in Passwort benützen" />
+      <text name="Host.Settings.Security.PasswordUseUppercase" value="Sie sollen Großbuchstabe in Passwort benützen" />
+      <text name="Host.Settings.Security.PasswordUseLowercase" value="Sie sollen Kleinbuchstaben in Passwort benützen" />
+      <text name="Host.Settings.Security.PasswordUsePunctuationSymbols" value="Sie sollen Interpunktionszeichen in Passwort benützen" />
+      <text name="Host.Settings.Security.UserBlocked" value="Blockierter Benutzer" />
+      <text name="Host.Settings.Security.EnableUserBlocking" value="Aktivieren Benutzer blockieren gemäss gescheitert Anmeldeversuche" />
+      <text name="Host.Settings.Security.FailedAttemptsToBlockUser" value="Maximal gescheitert Anmeldeversuche vor Benutzer blockieren" />
+      <text name="Host.Settings.Security.UserBlockingDuration" value="Maximal Blockade Dauer (Sekunden)" />
+      <text name="Host.Settings.Security.TwoFactorLogin" value="Zwei Faktor Login" />
+      <text name="Host.Settings.Security.EnableTwoFactorLogin" value="Aktivieren Zwei Faktor Login" />
+      <text name="Host.Settings.Security.EnableMailVerification" value="Aktivieren E-mail Nachprüfung" />
+      <text name="Host.Settings.Security.EnableSMSVerification" value="Aktivieren SMS Nachprüfung" />
+      <text name="Host.Settings.Security.EnableBrowserRemenberMe" value="Es ermöglicht Browser merken mich. Wenn diese Option ist aktivieren, die Benutzer kann für merken die Browser wählen um zu vermeiden zwei Factor Login zweites Mal im dieselbe Browser." />
+      <text name="Host.Settings.Mail" value="E-mail (SMTP)" />
+      <text name="Host.Settings.Mail.SenderDefault" value="Standard-E-mail 'von' (Absender)" />
+      <text name="Host.Settings.Mail.SenderDefaultDisplayName" value="Standard-E-mail 'von' (Absender) Angezeigter Name" />
+      <text name="Host.Settings.Mail.Host" value="SMTP Wirt" />
+      <text name="Host.Settings.Mail.Port" value="SMTP Hafen" />
+      <text name="Host.Settings.Mail.EnableSSL" value="Benutze SSL" />
+      <text name="Host.Settings.Mail.UseDefaultCredentials" value="Benutze Standard-Ausweis" />
+      <text name="Host.Settings.Mail.DomainName" value="Domain Name" />
+      <text name="Host.Settings.Mail.UserName" value="Nutzername" />
+      <text name="Host.Settings.Mail.UserPassword" value="Passwort" />
+      <text name="Host.Settings.Mail.Try" value="Test E-mail Einstellungen" />
+      <text name="Host.Settings.Mail.TrySentTo" value="E-mail" />
+      <text name="Host.Settings.Mail.SendTestMail" value="Senden" />
+      <text name="Host.Settings.SuccessfulUpdate" value="Die Einstellungen haben erfolgreich aktualisieren." />
+
+      <text name="Tenant.Settings" value="Vorlieben" />
+      <text name="Tenant.Settings.General" value="Allgemeines" />
+      <text name="Tenant.Settings.General.TimeZone" value="Zeitzone" />
+      <text name="Tenant.Settings.General.NotFound" value="Konfiguration nicht gefunden" />
+      <text name="Tenant.Settings.General.NotFoundForUser" value="Konfiguration für aktuellen Benutzer nicht gefunden" />
+      <text name="Tenant.Settings.Security" value="Sicherheit" />
+      <text name="Tenant.Settings.Security.PasswordComplexity" value="Passwort komplexität" />
+      <text name="Tenant.Settings.Security.PasswordUseDefaultConfiguration" value="Benutzten Sie die Standardeinstellungen" />
+      <text name="Tenant.Settings.Security.PasswordMinimumLength" value="Passwort mindest Länge" />
+      <text name="Tenant.Settings.Security.PasswordMaximumLength" value="Passwort höchste Länge" />
+      <text name="Tenant.Settings.Security.PasswordUseNumbers" value="Benutzten Sie Zahlen in Passwort" />
+      <text name="Tenant.Settings.Security.PasswordUseUppercase" value="Benutzten Sie Großbuchstabe in Passwort" />
+      <text name="Tenant.Settings.Security.PasswordUseLowercase" value="Benutzten Sie Kleinbuchstaben in Passwort" />
+      <text name="Tenant.Settings.Security.PasswordUsePunctuationSymbols" value="Benutzten Sie Interpunktionszeichen in Passwort" />
+
+      <text name="Tenant.Settings.Security.EnablePasswordReuseValidation" value="Aktivieren Passwort Wiederverwendung" />
+      <text name="Tenant.Settings.Security.EnablePasswordPeriod" value="Aktivieren Gültig Periode für Passwort" />
+      <text name="Tenant.Settings.Security.PasswordValidDays" value="Gültig Tage" />
+
+      <text name="Tenant.Settings.Security.UserBlocked" value="Blockierter Benutzer" />
+      <text name="Tenant.Settings.Security.EnableUserBlocking" value="Aktivieren Benutzer blockieren gemäss gescheitert Anmeldeversuche" />
+      <text name="Tenant.Settings.Security.FailedAttemptsToBlockUser" value="Maximal gescheitert Anmeldeversuche vor Benutzer blockieren" />
+      <text name="Tenant.Settings.Security.UserBlockingDuration" value="Maximal Blockade Dauer (Sekunden)" />
+
+      <text name="Tenant.Settings.Security.ConcurrentSesions" value="Gleichzeitige Sitzungen" />
+      <text name="Tenant.Settings.Security.PreventConcurrentSesions" value="Verhindern Gleichzeitige Sitzungen" />
+
+      <text name="Tenant.Settings.Mail" value="E-mail (SMTP)" />
+      <text name="Tenant.Settings.Mail.SenderDefault" value="Standard-E-mail 'von' (Absender)" />
+      <text name="Tenant.Settings.Mail.SenderDefaultDisplayName" value="Standard-E-mail 'von' (Absender) Angezeigter Name" />
+      <text name="Tenant.Settings.Mail.Host" value="SMTP Wirt" />
+      <text name="Tenant.Settings.Mail.Port" value="SMTP Hafen" />
+      <text name="Tenant.Settings.Mail.EnableSSL" value="Benutze SSL" />
+      <text name="Tenant.Settings.Mail.UseDefaultCredentials" value="Benutze Standard-Ausweis" />
+      <text name="Tenant.Settings.Mail.DomainName" value="Domain Name" />
+      <text name="Tenant.Settings.Mail.UserName" value="Nutzername" />
+      <text name="Tenant.Settings.Mail.UserPassword" value="Passwort" />
+      <text name="Tenant.Settings.Mail.Try" value="Test E-mail Einstellungen" />
+      <text name="Tenant.Settings.Mail.TrySentTo" value="E-mail" />
+      <text name="Tenant.Settings.Mail.SendTestMail" value="Senden" />
+      <text name="Tenant.Settings.SuccessfulUpdate" value="Die Einstellungen haben erfolgreich aktualisieren" />
+
+      <text name="EmailGroups" value="E-mail-Themen" />
+      <text name="EmailGroups.DisplayNameColGrid" value="Angezeigter Name" />
+      <text name="EmailGroups.Copy" value="Kopieren Theme" />
+      <text name="EmailGroups.Templates" value="Vorlagen" />
+      <text name="EmailGroups.Select" value="Wählen" />
+      <text name="EmailGroups.Unselect" value="Abwählen" />
+      <text name="EmailGroups.DisplayNameForm" value="Angezeigter Name" />
+      <text name="EmailGroups.InfoForm" value="Alles E-Mail-Vorlage erben die Überschrift und die Fußnote informationen." />
+      <text name="EmailGroups.HeaderForm" value="Themenüberschrift" />
+      <text name="EmailGroups.FootForm" value="ThemenFußnote" />
+      <text name="EmailGroups.Copy.SelectedForm" value="Ausgewähltes Thema" />
+      <text name="EmailGroups.Copy.DisplayNameForm" value="Angezeigter Name" />
+      <text name="EmailGroups.SelectMessage" value="Wollen sie {0} Theme als wählen markieren?" />
+      <text name="EmailGroups.UnSelectMessage" value="Wollen sie {0} Theme als wählen unmarkieren?" />
+
+      <text name="EmailTemplates" value="E-Mail-Vorlagen" />
+      <text name="EmailTemplates.MailKeyColGrid" value="Intern Schlüssel" />
+      <text name="EmailTemplates.DisplayNameColGrid" value="Angezeigter Name" />
+      <text name="EmailTemplates.MailGroupForm" value="E-mail-Themen" />
+      <text name="EmailTemplates.MailKeyForm" value="Intern Schlüssel" />
+      <text name="EmailTemplates.DisplayNameForm" value="Angezeigter Name" />
+      <text name="EmailTemplates.SendToForm" value="Senden an" />
+      <text name="EmailTemplates.CopyToForm" value="Kopieren für" />
+      <text name="EmailTemplates.BlindCopyToForm" value="Versteckt kopieren für" />
+      <text name="EmailTemplates.SubjectForm" value="Betreff" />
+      <text name="EmailTemplates.BodyForm" value="Inhalt" />
+      <text name="EmailTemplates.BodyParamsForm" value="Verfügbare Parameter" />
+      <text name="EmailTemplates.Test" value="Test E-mail" />
+      <text name="EmailTemplates.Test.EmailForm" value="E-mail" />
+
+      <text name="MailKey.NewUser" value="Neuer Benutzer" />
+      <text name="MailKey.UserReset" value="Zurücksetzen Benutzer-Passwort" />
+      <text name="MailKey.UserUnblock" value="Nutzer entblockieren" />
+      <text name="MailKey.UserModification" value="Der administrator hat die Benutzer-Passwort ändern" />
+      <text name="MailKey.TenantRegistration" value="Registrieren neuer Tenant" />
+
+      <text name="ExceptionFilter.ValidationException.Title" value="Validierungsfehler" />
+      <text name="ExceptionFilter.ValidationException.Message" value="Die nächste Validierungsfehler passieren: " />
+      <text name="ExceptionFilter.UserUnauthorizedException.Title" value="kein Zugang" />
+      <text name="ExceptionFilter.UserUnauthorizedException.Message" value="Sie habe keinen Zugriff auf die angeforderte Ressource" />
+      <text name="ExceptionFilter.UserMustChangePasswordException.Title" value="Login" />
+      <text name="ExceptionFilter.UserMustChangePasswordException.Message" value="Sie sollen Passwort wechseln " />
+      <text name="ExceptionFilter.AlgoriaCoreException.Title" value="Fehler in der im Anfordern" />
+      <text name="ExceptionFilter.AlgoriaCoreException.Message" value="Ein Fehler passiert während senden Sie Anfordern" />
+      <text name="ExceptionFilter.InternalServerError.Title" value="Nicht kontrollierter Fehler" />
+      <text name="ExceptionFilter.InternalServerError.Message" value="Fehler: " />
+
+      <text name="AuditLogs" value="Überwachungsprotokolle" />
+      <text name="AuditLogs.DateRange" value="Datumsbereich" />
+      <text name="AuditLogs.UserName" value="Nutzername" />
+      <text name="AuditLogs.Service" value="Bedienung" />
+      <text name="AuditLogs.Duration" value="Dauer" />
+      <text name="AuditLogs.Action" value="Aktion" />
+      <text name="AuditLogs.ErrorState" value="Fehlerzustand" />
+      <text name="AuditLogs.All" value="Alles" />
+      <text name="AuditLogs.Success" value="Erfolg" />
+      <text name="AuditLogs.HasError" value="Mit Fehler" />
+      <text name="AuditLogs.Browser" value="Browser" />
+      <text name="AuditLogs.Tenant" value="Instance" />
+      <text name="AuditLogs.ExceptionColGrid" value="Ausnahme" />
+      <text name="AuditLogs.ExecutionTimeColGrid" value="Zeit" />
+      <text name="AuditLogs.TenantColGrid" value="Instance" />
+      <text name="AuditLogs.UserNameColGrid" value="Nutzername" />
+      <text name="AuditLogs.ImpersonalizerUserNameColGrid" value="Unpersönlich machen" />
+      <text name="AuditLogs.ServiceColGrid" value="Bedienung" />
+      <text name="AuditLogs.MethodColGrid" value="Methode" />
+      <text name="AuditLogs.ExecutionDurationColGrid" value="Dauer" />
+      <text name="AuditLogs.ClientIpAddressColGrid" value="IP Addresse" />
+      <text name="AuditLogs.ClientNameColGrid" value="Klient" />
+      <text name="AuditLogs.BrowserColGrid" value="Browser" />
+      <text name="AuditLogs.ParametersColGrid" value="Parameter" />
+      <text name="AuditLogs.ErrorStateColGrid" value="Fehlerzustand" />
+
+      <text name="AuditLogDetail" value="Überwachungsprotokolle Details" />
+      <text name="AuditLogDetail.UserInformations" value="Benutzerinformation" />
+      <text name="AuditLogDetail.Tenant" value="Instance" />
+      <text name="AuditLogDetail.UserName" value="Nutzername" />
+      <text name="AuditLogDetail.ImpersonalizerUserName" value="Unpersönlich machen" />
+      <text name="AuditLogDetail.ClientIpAddress" value="IP Addresse" />
+      <text name="AuditLogDetail.ClientName" value="Klient" />
+      <text name="AuditLogDetail.Browser" value="Browser" />
+      <text name="AuditLogDetail.ActionInformations" value="Aktioninformationen" />
+      <text name="AuditLogDetail.Service" value="Bedienung" />
+      <text name="AuditLogDetail.Method" value="Aktion" />
+      <text name="AuditLogDetail.ExecutionTime" value="Zeit" />
+      <text name="AuditLogDetail.ExecutionDuration" value="Dauer" />
+      <text name="AuditLogDetail.Parameters" value="Parameter" />
+      <text name="AuditLogDetail.CustomData" value="Personalisierte Daten" />
+      <text name="AuditLogDetail.ErrorState" value="Fehlerzustand" />
+      <text name="AuditLogs.OnlyHost" value="nur Host" />
+      
+      <text name="Maintenance" value="Instandhaltung" />
+      <text name="Maintenance.Caches" value="Zwischenspeicher" />
+      <text name="Maintenance.CachesHeaderInfo" value="Sie können die App Zwischenspeicher im dieses Webseite löschen." />
+      <text name="Maintenance.WebSiteLogs" value="Website-Protokolle" />
+      <text name="Maintenance.WebSiteLogsHeaderInfo" value="Sie können die zuletzt Logs in dieser Webseite sehen oder Sie können herunterladen sie im eine zip-Datei." />
+      <text name="Maintenance.CacheSuccessfullyCleared" value="Zwischenspeicher wurde erfolgreich löschen." />
+      <text name="Maintenance.AllCachesSuccessfullyCleared" value="Alle Zwischenspeicher wurden löschen." />
+
+      <text name="Examples" value="Beispiele" />
+      <text name="Examples.DateTimes" value="Datum und zeit" />
+      <text name="Examples.DateTimes.Name" value="Name" />
+      <text name="Examples.DateTimes.DateTime" value="Datum und zeit" />
+      <text name="Examples.DateTimes.Date" value="Datum" />
+      <text name="Examples.DateTimes.Time" value="Zeit" />
+      <text name="Examples.DateTimes.DataToSave" value="Daten zum Speichern" />
+      <text name="Examples.DateTimes.TimeZone" value="Zeitzone" />
+      <text name="Examples.DateTimes.DateTimeDataISO" value="Datum und Zeit JJJJ-MM-TT" />
+      <text name="Examples.DateTimes.DateTimeDataAmPm" value="Datum und Zeit TT-MM-JJJJ AM/PM" />
+      <text name="Examples.DateTimes.DateDataEnWithoutButtons" value="Datum MM/TT/JJJJ ohne Tasten" />
+      <text name="Examples.DateTimes.TimeDataAmPm" value="Zeit AM/PM" />
+      <text name="Examples.DateTimes.TimeDataWithSeconds" value="Zeit in Sekunden" />
+      <text name="Examples.DateTimes.timeDataStep15Min" value="Zeit erhöht 15 Minuten." />
+      <text name="Examples.DateTimes.DataToJustDisplay" value="Daten zum Speichern" />
+      <text name="Examples.DateTimes.SuccessfulCreate" value="Datum und Zeit haben erfolgreich speichern" />
+      <text name="Examples.DateTimes.SuccessfulUpdate" value="Datum und Zeit haben erfolgreich aktualisieren" />
+      <text name="Examples.DateTimes.DataToConvert" value="Daten für die Konvertierung (im Server)" />
+      <text name="Examples.DateTimes.TimeZoneFrom" value="Ursprung Zeitzone" />
+      <text name="Examples.DateTimes.TimeZoneTo" value="Ziel Zeitzone" />
+      <text name="Examples.DateTimes.DateTimeDataToConvert" value="Datum und Zeit" />
+      <text name="Examples.DateTimes.TimeZoneConvert" value="Konvertieren" />
+      <text name="Examples.DateTimes.DateTimeDataConverted" value="Datum und zeit haben würden Konvertieren" />
+
+      <text name="Friendship.AlreadyFriendshipExists" value="Sie haben diese Nutzer schon hinzufügen." />
+      <text name="Friendship.YouCannotBeFriendWithYourself" value="Sie können kein Freund von ihr sind." />
+      <text name="Friendship.NotFound" value="Es wurde keine Freundschaftsanfrage gefunden." />
+      <text name="Friendship.FriendshipRequestAccepted" value="Freundschaftsanfrage angenommen." />
+      <text name="Friendship.UserIsBlocked" value="Blockierter Benutzer." />
+      <text name="Friendship.TargetUserNotFoundProbablyDeleted" value="Ziel Nutzter wurde nicht gefunden. Es wurde wahrscheinlich beseitigt." />
+      <text name="Friendship.UserSendYouAFriendshipRequest" value="{0} hat Sie als Freund hinzufügen." />
+      <text name="Friendship.UserBlocked" value="Erfolgreich blockierter Benutzer." />
+      <text name="Friendship.UserUnblocked" value="Erfolgreich entsperrter Benutzer." />
+
+      <text name="Chat" value="Plaudern" />
+      <text name="Chat.BlockUser" value="Benutzer blockieren" />
+      <text name="Chat.UnblockUser" value="Entblockieren" />
+      <text name="Chat.Friends" value="Freunde" />
+      <text name="Chat.BlockedUsers" value="Blockierter Benutzers" />
+      <text name="Chat.TypeAMessageHere" value="Type here your message..." />
+      <text name="Chat.YouDontHaveAnyFriend" value="Sie haben keine Freunde. Sie schreiben dass Benutzername im oberer Kasten und klicken Sie die 'Freunde' Taste." />
+      <text name="Chat.YouDontHaveAnyBlockedFriend" value="Sie haben keine Blockierter Benutzers. Wenn Sie will ein Freund Blockieren, wählen Sie ein freund und klicken Sie die 'Benutzer blockieren' Taste im Aktionsliste." />
+
+      <text name="Helps" value="Hilfen" />
+      <text name="Helps.Help" value="Hilfe" />
+      <text name="Helps.Help.DuplicatedKey" value="Der Hilfe Schlüssel, den Sie erstellen/bearbeiten möchte, ist besetzt" />
+      <text name="Helps.Help.Language" value="Sprache" />
+      <text name="Helps.Help.Key" value="Schlüssel" />
+      <text name="Helps.Help.DisplayName" value="Angezeigter Name" />
+      <text name="Helps.Help.SuccessfulCreate" value="Die Hilfe wurde erfolgreich erstellt" />
+      <text name="Helps.Help.SuccessfulUpdate" value="Die Hilfe wurde erfolgreich bearbeitet" />
+
+      <text name="Component.DataGridView.TableDesign.Table" value="Tabelle" />
+      <text name="Component.DataGridView.TableDesign.List" value="Liste" />
+      <text name="Component.DataGridView.TableDesign.Card" value="Ausweis" />
+
+      <text name="Examples.Log" value="Log" />
+      <text name="Examples.Log.Message" value="Mitteilung" />
+      <text name="Examples.Log.CriticalEmail" value="kritisch E-mail" />
+      <text name="Examples.Log.CriticalExceptionMessage" value="Kritische Ausnahme Beispiel." />
+      <text name="Examples.Log.CriticalEmailBody" value="Administrador, ein schwerwiegender Fehler ist aufgetreten: {0}" />
+    </texts>
+</localizationDictionary>

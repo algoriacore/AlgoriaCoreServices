@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlgoriaCore.Grpc";
+
+package security;
+
+service SecurityGrpc {
+  rpc GetSessionToken (SessionTokenGrpcRequest) returns (SessionTokenGrpcReply);
+}
+
+message SessionTokenGrpcRequest {
+  string userName = 1;
+  string password = 2;
+  string tenancyName = 3;
+}
+
+message SessionTokenGrpcReply {
+  int32 tenantId = 1;
+  string tenancyName = 2;
+  int64 userId = 3;
+  string userName = 4;
+  string firstName = 5;
+  string lastName = 6;
+  string secondLastName = 7;
+  string email = 8;
+  string token = 9;
+}

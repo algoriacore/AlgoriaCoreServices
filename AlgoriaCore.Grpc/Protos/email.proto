@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlgoriaCore.Grpc";
+
+package email;
+
+service EmailGrpc {
+  rpc Send (EmailGrpcRequest) returns (EmailGrpcReply);
+}
+
+message EmailGrpcRequest {
+  repeated EmailGrpcAddressRequest toAddresses = 1;
+  repeated EmailGrpcAddressRequest ccAddresses = 2;
+  repeated EmailGrpcAddressRequest bccAddresses = 3;
+  string subject = 4;
+  string content = 5;
+  repeated EmailGrpcAttachmentRequest attachments = 6;
+  bool hasOwnConfig = 7;
+  EmailGrpcConfigRequest config = 8;
+}
+
+message EmailGrpcAddressRequest {
+  string name = 1;
+  string address = 2;
+}
+
+message EmailGrpcAttachmentRequest {
+  string fileName = 1;
+  string contentType = 2;
+  bytes fileArray = 3;
+}
+
+message EmailGrpcReply {
+  bool isSend = 1;
+  string message = 2;
+}
+
+message EmailGrpcConfigRequest {
+  string sender = 1;
+  string senderDisplay = 2;
+  string smtpHost = 3;
+  int32 smtpPort = 4;
+  bool isSsl = 5;
+  bool useDefaultCredential = 6;
+  string domain = 7;
+  string mailUser = 8;
+  string mailPassword = 9;
+}

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	
+	<!-- SonarCloud needs this -->
+	<ProjectGuid>{7ED7356E-4EE8-4409-8395-00E86C4C0347}</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlgoriaCore.Domain.Interfaces\AlgoriaCore.Domain.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
