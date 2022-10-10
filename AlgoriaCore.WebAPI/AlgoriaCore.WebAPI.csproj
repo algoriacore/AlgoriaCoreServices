@@ -15,6 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="[appPath]\**" />
+    <Content Remove="[appPath]\**" />
+    <EmbeddedResource Remove="[appPath]\**" />
+    <None Remove="[appPath]\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.1" />
     <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="8.0.1" />
