@@ -245,7 +245,7 @@ namespace AlgoriaCore.WebUI
             {
                 document.PostProcess = v1 =>
                 {
-                    v1.Info.Title = "Algoria Core 221010.1";
+                    v1.Info.Title = "Algoria Core 221010.2";
                     v1.Info.Version = "1.0.0";
                     v1.Info.Description = "DatabaseType: " + (appSettings.DatabaseType == DatabaseType.MySql ? "MySql" : "SQL Server");
                 };
