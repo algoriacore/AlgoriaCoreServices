@@ -323,32 +323,22 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
                     case QuestionnaireFieldType.CatalogCustom:
                     case QuestionnaireFieldType.User:
                         existsBsonValue = bsonDocument.TryGetValue(field.FieldName + PrefixObj, out bsonValue);
-
-                        if (existsBsonValue)
-                        {
-                            bsonDocumentAux.Add(field.FieldName, bsonValue);
-                        }
                         break;
                     default:
                         if (field.MustHaveOptions)
                         {
                             existsBsonValue = bsonDocument.TryGetValue(field.FieldName + PrefixObj, out bsonValue);
-
-                            if (existsBsonValue)
-                            {
-                                bsonDocumentAux.Add(field.FieldName, bsonValue);
-                            }
                         }
                         else
                         {
                             existsBsonValue = bsonDocument.TryGetValue(field.FieldName, out bsonValue);
-
-                            if (existsBsonValue)
-                            {
-                                bsonDocumentAux.Add(field.FieldName, bsonValue);
-                            }
                         }
                         break;
+                }
+
+                if (existsBsonValue)
+                {
+                    bsonDocumentAux.Add(field.FieldName, bsonValue);
                 }
             }
 
