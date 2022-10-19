@@ -25,8 +25,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
         private readonly IRepositoryMongoDb<Questionnaire> _repositoryQuestionnaire;
         private readonly IRepository<User, long> _repositoryUser;
 
-        private readonly QuestionnaireManager _managerQuestionnaire;
-
         private readonly IMongoDBContext _context;
         private readonly IMongoUnitOfWork _mongoUnitOfWork;
 
@@ -34,7 +32,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
             IRepositoryMongoDb<CatalogCustom> repository,
             IRepositoryMongoDb<Questionnaire> repositoryQuestionnaire,
             IRepository<User, long> repositoryUser,
-            QuestionnaireManager managerQuestionnaire,
             IMongoDBContext context,
             IMongoUnitOfWork mongoUnitOfWork
         )
@@ -42,8 +39,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
             _repository = repository;
             _repositoryQuestionnaire = repositoryQuestionnaire;
             _repositoryUser = repositoryUser;
-
-            _managerQuestionnaire = managerQuestionnaire;
 
             _context = context;
             _mongoUnitOfWork = mongoUnitOfWork;
@@ -177,7 +172,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
         public async Task GenerateDbCollectionAsync(string catalog)
         {
             CatalogCustomDto dto = await GetCatalogCustomAsync(catalog);
-            // QuestionnaireDto questionnaireDto = await _managerQuestionnaire.GetQuestionnaireAsync(dto.Questionnaire);
 
             bool exists = await (await _context.Database.ListCollectionNamesAsync(new ListCollectionNamesOptions
             {
@@ -190,11 +184,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
                     Collation = new Collation(locale: "es", strength: CollationStrength.Primary, numericOrdering: true),
                 });
             }
-
-            //var cmdStr = "{ collMod: dto.CollectionName, validator: {} }";
-            //var cmd = BsonDocument.Parse(cmdStr);
-
-            //await _context.Database.RunCommandAsync<BsonDocument>(cmd);
         }
 
         #region Private Methods

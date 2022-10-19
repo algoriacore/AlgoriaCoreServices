@@ -32,9 +32,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
 {
     public class CatalogCustomImplManager : BaseManager
     {
-        private readonly IRepositoryMongoDb<Questionnaire> _repositoryQuestionnaire;
-        private readonly IRepository<User, long> _repositoryUser;
-
         private readonly CatalogCustomManager _managerCatalogCustom;
         private readonly QuestionnaireManager _managerQuestionnaire;
 
@@ -49,17 +46,12 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
         private string PrefixObj = "_obj";
 
         public CatalogCustomImplManager(
-            IRepositoryMongoDb<Questionnaire> repositoryQuestionnaire,
-            IRepository<User, long> repositoryUser,
             CatalogCustomManager managerCatalogCustom,
             QuestionnaireManager managerQuestionnaire,
             IMongoDBContext context,
             IMongoUnitOfWork mongoUnitOfWork
         )
         {
-            _repositoryQuestionnaire = repositoryQuestionnaire;
-            _repositoryUser = repositoryUser;
-
             _managerQuestionnaire = managerQuestionnaire;
             _managerCatalogCustom = managerCatalogCustom;
 

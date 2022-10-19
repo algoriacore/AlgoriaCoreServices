@@ -16,7 +16,6 @@ namespace AlgoriaCore.Application.Managers.BinaryObjects
     public class BinaryObjectManager : BaseManager
     {
         private readonly IRepository<AlgoriaCore.Domain.Entities.BinaryObjects, Guid> _repository;
-        private readonly IConfiguration _configuration;
         private readonly IAppFolders _appFolders;
         private readonly IFileStorageService _fileStorageService;
 
@@ -26,7 +25,6 @@ namespace AlgoriaCore.Application.Managers.BinaryObjects
                         IFileStorageService fileStorageService)
         {
             _repository = repository;
-            _configuration = configuration;
             _appFolders = appFolders;
             _fileStorageService = fileStorageService;
         }

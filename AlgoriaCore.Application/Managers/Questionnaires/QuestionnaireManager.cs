@@ -30,7 +30,6 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
     public class QuestionnaireManager : BaseManager
     {
         private readonly IRepositoryMongoDb<Questionnaire> _repository;
-        private readonly IRepositoryMongoDb<CatalogCustom> _repositoryCatalogCustom;
         private readonly IRepository<User, long> _repositoryUser;
 
         private readonly ILifetimeScope _lifetimeScope;
@@ -39,13 +38,11 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
 
         public QuestionnaireManager(
             IRepositoryMongoDb<Questionnaire> repository,
-            IRepositoryMongoDb<CatalogCustom> repositoryCatalogCustom,
             IRepository<User, long> repositoryUser,
             ILifetimeScope lifetimeScope)
         {
             _repository = repository;
             _repositoryUser = repositoryUser;
-            _repositoryCatalogCustom = repositoryCatalogCustom;
 
             _lifetimeScope = lifetimeScope;
         }
@@ -222,40 +219,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
 
                 catalogoCustomImplLizzieContext.SetDocument(dto);
 
-                var customValidation = LambdaCompiler.Compile(catalogoCustomImplLizzieContext, customCode);
-                var resultCustomValidation = customValidation();
-                //var resultCustomValidationType = resultCustomValidation.GetType();
-                //decimal decimalValue;
-
-                //if (resultCustomValidationType == typeof(string) && !resultCustomValidation.ToString().IsNullOrWhiteSpace())
-                //{
-                //    throw new AlgoriaCoreGeneralException(resultCustomValidation.ToString());
-                //} 
-                //else if (resultCustomValidationType.IsGenericType && resultCustomValidationType.GetGenericTypeDefinition() == typeof(Dictionary<,>))
-                //{
-                //    Dictionary<string, object> dic = (Dictionary<string, object>)resultCustomValidation;
-
-                //    foreach (KeyValuePair<string, object> kvp in dic)
-                //    {
-                //        failures.Add(new ValidationFailure(kvp.Key, kvp.Value == null ? null : kvp.Value.ToString()));
-                //    }
-                //}
-                //else if (resultCustomValidationType.IsGenericType && resultCustomValidation is IEnumerable)
-                //{
-                //    List<object> list = (List<object>)resultCustomValidation;
-
-                //    if (list.Count > 0)
-                //    {
-                //        throw new AlgoriaCoreGeneralException(string.Join(Environment.NewLine, list));
-                //    }
-                //}
-                //else if (decimal.TryParse(resultCustomValidation.ToString(), out decimalValue))
-                //{
-                //    if (decimalValue == 0)
-                //    {
-                //        throw new AlgoriaCoreGeneralException(L("CatalogsCustomImpl.FailedValidationMessage"));
-                //    }
-                //}
+                var customValidation = LambdaCompiler.Compile(catalogoCustomImplLizzieContext, customCode);                
             }
 
             if (failures.Count > 0)
@@ -344,7 +308,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
                             UserCreator = entity.UserCreator,
                             CustomCode = entity.CustomCode,
                             IsActive = entity.IsActive,
-                            IsActiveDesc = entity.IsActive == true ? yesLabel : noLabel,
+                            IsActiveDesc = entity.IsActive ? yesLabel : noLabel,
                             Sections = (List<QuestionnaireSectionDto>)entity.Sections.Select(p => new QuestionnaireSectionDto {
                                 IconAF = p.IconAF,
                                 Name = p.Name,

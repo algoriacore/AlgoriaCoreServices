@@ -26,17 +26,15 @@ namespace AlgoriaCore.Application.Managers.ChatRooms
     {
         private readonly IRepository<ChatRoom, long> _repository;
         private readonly IRepository<ChatRoomChat, long> _repositoryChatRoomChat;
-        private readonly IRepository<ChatRoomChatFile, long> _repositoryChatRoomChatFile;
 
         private readonly BinaryObjectManager _managerBinaryObject;
         private readonly MailTemplateManager _mailTemplateManager;
 
         public ChatRoomManager(IRepository<ChatRoom, long> repository, IRepository<ChatRoomChat, long> repositoryChatRoomChat, 
-            IRepository<ChatRoomChatFile, long> repositoryChatRoomChatFile, BinaryObjectManager managerBinaryObject, MailTemplateManager mailTemplateManager)
+            BinaryObjectManager managerBinaryObject, MailTemplateManager mailTemplateManager)
         {
             _repository = repository;
             _repositoryChatRoomChat = repositoryChatRoomChat;
-            _repositoryChatRoomChatFile = repositoryChatRoomChatFile;
 
             _managerBinaryObject = managerBinaryObject;
             _mailTemplateManager = mailTemplateManager;

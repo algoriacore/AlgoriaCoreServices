@@ -17,20 +17,14 @@ namespace AlgoriaCore.Application.QueriesAndCommands.CatalogsCustomImpl
     {
         private readonly IMediator _mediator;
         private readonly CatalogCustomImplManager _manager;
-        private readonly CatalogCustomManager _managerCatalogCustom;
-        private readonly QuestionnaireManager _managerQuestionnaire;
 
         public CatalogCustomImplGetForEditQueryHandler(
             ICoreServices coreServices,
             IMediator mediator,
-            CatalogCustomImplManager manager,
-            CatalogCustomManager managerCatalogCustom,
-            QuestionnaireManager managerQuestionnaire) : base(coreServices)
+            CatalogCustomImplManager manager) : base(coreServices)
         {
             _mediator = mediator;
             _manager = manager;
-            _managerCatalogCustom = managerCatalogCustom;
-            _managerQuestionnaire = managerQuestionnaire;
         }
 
         public async Task<CatalogCustomImplForEditResponse> Handle(CatalogCustomImplGetForEditQuery request, CancellationToken cancellationToken)

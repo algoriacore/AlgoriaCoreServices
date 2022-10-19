@@ -63,9 +63,9 @@ namespace AlgoriaInfrastructure.FileStorage
             return tempFileName;
         }
 
-        public async Task<IFileStorageDto> GetTempFileAsync(string tmpFileName, string tempPath)
+        public async Task<IFileStorageDto> GetTempFileAsync(string tempFileName, string tempPath)
         {
-            string keyName = tmpFileName;
+            string keyName = tempFileName;
             FileStorageDto fResp = await ReadObjectDataAsync(keyName);
             return fResp;
         }

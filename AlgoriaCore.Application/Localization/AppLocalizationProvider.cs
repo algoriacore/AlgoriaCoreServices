@@ -40,23 +40,28 @@ namespace AlgoriaCore.Application.Localization
                     LanguageTextDto dtoText;
                     var manager = GetLanguageManager();
 
-                    if (languageDefaultDto != null && languageDefaultDto.TenantId.HasValue)
+                    if (languageDefaultDto != null)
                     {
-                        dtoText = AsyncUtil.RunSync(() => manager.GetLanguageTextByLanguageAndKeyOrFromXMLAsync(languageId.Value, key));
-                    } else 
-                    {
-                        dtoText = AsyncUtil.RunSync(() => manager.GetLanguageTextByLanguageAndKeyOrFromXMLByHostAsync(languageId.Value, key));
-                    }
+                        if (languageDefaultDto.TenantId.HasValue)
+                        {
+                            dtoText = AsyncUtil.RunSync(() => manager.GetLanguageTextByLanguageAndKeyOrFromXMLAsync(languageId.Value, key));
+                        }
+                        else
+                        {
+                            dtoText = AsyncUtil.RunSync(() => manager.GetLanguageTextByLanguageAndKeyOrFromXMLByHostAsync(languageId.Value, key));
+                        }
 
-                    if (languageDefaultDto != null && (dtoText == null || dtoText.Value.IsNullOrWhiteSpace()))
-                    {
-                        label = _cacheLanguageXMLService.GetEntry(languageDefaultDto.Name, key);
-                    } else 
-                    {
-                        label = dtoText.Value;
+                        if (dtoText == null || dtoText.Value.IsNullOrEmpty())
+                        {
+                            label = _cacheLanguageXMLService.GetEntry(languageDefaultDto.Name, key);
+                        }
+                        else
+                        {
+                            label = dtoText.Value;
+                        }
                     }
                 }
-            } 
+            }
 
             if (label.IsNullOrWhiteSpace())
             {
