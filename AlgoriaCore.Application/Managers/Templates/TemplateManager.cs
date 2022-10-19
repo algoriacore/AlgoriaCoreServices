@@ -1536,13 +1536,6 @@ namespace AlgoriaCore.Application.Managers.Templates
             return query;
         }
 
-        private async Task<List<TemplateFieldOptionDto>> GetTemplateFieldOptionByTemplateField(long templateField)
-        {
-            var query = GetTemplateFieldOptionQuery();
-
-            return await query.Where(p => p.TemplateField == templateField).OrderBy(p => p.Value).ToListAsync();
-        }
-
         #endregion
 
         #endregion
@@ -1654,12 +1647,9 @@ namespace AlgoriaCore.Application.Managers.Templates
             var query = GetTemplateToDoStatusQuery();
             TemplateToDoStatusDto dto = await query.FirstOrDefaultAsync(p => p.Id == id);
 
-            if (dto == null)
+            if (dto == null && throwExceptionIfNotFound)
             {
-                if (throwExceptionIfNotFound)
-                {
-                    throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateToDoStatus.TemplateToDoStatus"), id));
-                }
+                throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateToDoStatus.TemplateToDoStatus"), id));
             }
 
             return dto;
@@ -1888,12 +1878,9 @@ namespace AlgoriaCore.Application.Managers.Templates
             var query = GetTemplateSecurityMemberQuery(type, level);
             TemplateSecurityMemberDto dto = await query.FirstOrDefaultAsync(p => p.Id == id);
 
-            if (dto == null)
+            if (dto == null && throwExceptionIfNotFound)
             {
-                if (throwExceptionIfNotFound)
-                {
-                    throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateSecurityMember.TemplateSecurityMember"), id));
-                }
+                throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateSecurityMember.TemplateSecurityMember"), id));
             }
 
             return dto;

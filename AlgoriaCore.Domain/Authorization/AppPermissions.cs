@@ -24,7 +24,6 @@ namespace AlgoriaCore.Domain.Authorization
         public const string Pages_Administration_Users_Create = "Pages.Administration.Users.Create";
         public const string Pages_Administration_Users_Edit = "Pages.Administration.Users.Edit";
         public const string Pages_Administration_Users_Delete = "Pages.Administration.Users.Delete";
-        // public const string Pages_Administration_Users_ChangePermissions = "Pages.Administration.Users.ChangePermissions";
         public const string Pages_Administration_Users_Impersonation = "Pages.Administration.Users.Impersonation";
 
         public const string Pages_Administration_Languages = "Pages.Administration.Languages";

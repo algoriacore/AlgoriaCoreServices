@@ -2,7 +2,8 @@
 
 namespace AlgoriaCore.Domain.Entities
 {
-    public partial class helptxt : Entity<long>
+    #nullable enable
+	public partial class helptxt : Entity<long>
     {
         public long help { get; set; }
         public string? body { get; set; }

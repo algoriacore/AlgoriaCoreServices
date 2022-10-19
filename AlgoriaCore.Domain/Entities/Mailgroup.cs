@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
+    #nullable enable
     public partial class mailgroup : Entity<long>, IMayHaveTenant
     {
         public mailgroup()

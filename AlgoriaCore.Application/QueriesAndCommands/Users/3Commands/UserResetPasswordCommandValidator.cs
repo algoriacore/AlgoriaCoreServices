@@ -13,12 +13,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._3Commands
             _coreServices = coreServices;
 
             string labelRequiredField = L("RequiredField");
-
-            string labelTenancyName = L("ResetPasswrod.TenancyName");
             string labelUserName = L("ResetPasswrod.UserName");
 
             // Todas las reglas de validación del Login
-            // RuleFor(x => x.TenancyName).NotEmpty().When(p => multiTenancyConfig.IsEnabled()).WithMessage(string.Format(labelRequiredField, labelTenancyName));
             RuleFor(x => x.UserName).NotEmpty().WithMessage(string.Format(labelRequiredField, labelUserName));
         }
 

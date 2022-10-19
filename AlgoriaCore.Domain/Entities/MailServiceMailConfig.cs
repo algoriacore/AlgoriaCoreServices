@@ -2,6 +2,7 @@
 
 namespace AlgoriaCore.Domain.Entities
 {
+    #nullable enable
     public partial class MailServiceMailConfig : Entity<long>
     {
         public long MailServiceMail { get; set; }

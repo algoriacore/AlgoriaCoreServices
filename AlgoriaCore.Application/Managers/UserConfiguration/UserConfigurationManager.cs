@@ -27,12 +27,11 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
         private readonly SettingClientManager _settingClientManagerManager;
         private readonly TenantManager _managerTenant;
         private readonly TemplateManager _managerTemplate;
-        private CatalogCustomManager _managerCatalogCustom;
         private readonly SettingManager _managerSetting;
         
         private readonly IMultiTenancyConfig _multiTenancyConfig;
-        private IMongoDBContext _context;
-        private ILifetimeScope _lifetimeScope;
+        private readonly IMongoDBContext _context;
+		private readonly ILifetimeScope _lifetimeScope;
 
         public UserConfigurationManager(
             LanguageManager managerLanguage,
@@ -40,7 +39,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
             SettingClientManager settingClientManagerManager,
             TenantManager managerTenant,
             TemplateManager managerTemplate,
-            //CatalogCustomManager managerCatalogCustom,
             SettingManager managerSetting,
             IMultiTenancyConfig multiTenancyConfig,
             IMongoDBContext context,
@@ -52,7 +50,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
             _settingClientManagerManager = settingClientManagerManager;
             _managerTenant = managerTenant;
             _managerTemplate = managerTemplate;
-            // _managerCatalogCustom = managerCatalogCustom;
             _managerSetting = managerSetting;
             _multiTenancyConfig = multiTenancyConfig;
             _context = context;
@@ -105,7 +102,7 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
 
                 if (tenantId.HasValue && _context.IsEnabled && _context.IsActive)
                 {
-                    _managerCatalogCustom = _lifetimeScope.Resolve<CatalogCustomManager>();
+                    var _managerCatalogCustom = _lifetimeScope.Resolve<CatalogCustomManager>();
                     dto.CatalogsCustom = _managerCatalogCustom.GetCatalogCustomActiveListAsync();
                 }
 

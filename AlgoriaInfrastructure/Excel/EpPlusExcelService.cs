@@ -222,22 +222,6 @@ namespace AlgoriaInfrastructure.Excel
             }
         }
 
-        private void AddObjects<T>(ExcelWorksheet sheet, int startRowIndex, int startColIndex, IList<T> items, params Func<T, object>[] propertySelectors)
-        {
-            if (items.IsNullOrEmpty() || propertySelectors.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            for (var i = 0; i < items.Count; i++)
-            {
-                for (var j = 0; j < propertySelectors.Length; j++)
-                {
-                    sheet.Cells[i + startRowIndex, j + startColIndex].Value = propertySelectors[j](items[i]);
-                }
-            }
-        }
-
         private void AddObjects<T>(ExcelWorksheet sheet, int startRowIndex, IList<T> items, params Func<T, object>[] propertySelectors)
         {
             if (items.IsNullOrEmpty() || propertySelectors.IsNullOrEmpty())

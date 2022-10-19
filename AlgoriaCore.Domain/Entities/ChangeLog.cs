@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
-    public partial class ChangeLog : Entity<long>, IMayHaveTenant
+    #nullable enable
+	public partial class ChangeLog : Entity<long>, IMayHaveTenant
     {
         public ChangeLog()
         {

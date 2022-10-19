@@ -61,7 +61,6 @@ namespace AlgoriaPersistence.Repositories
             var parameter = Expression.Parameter(typeof(TEntity), "item");
 
             AddConditionHaveTenant(ref query, parameter);
-            // AddConditionSoftDelete(ref query, parameter);
 
             return query;
         }
@@ -158,18 +157,6 @@ namespace AlgoriaPersistence.Repositories
             return _collection;
         }
 
-        //protected virtual Expression<Func<TEntity, bool>> CreateEqualityExpressionForId(string id)
-        //{
-        //    var lambdaParam = Expression.Parameter(typeof(T));
-
-        //    var lambdaBody = Expression.Equal(
-        //        Expression.PropertyOrField(lambdaParam, "Id"),
-        //        Expression.Constant(id, typeof(string))
-        //        );
-
-        //    return Expression.Lambda<Func<TEntity, bool>>(lambdaBody, lambdaParam);
-        //}
-
         private bool MustHaveTenant()
         {
             return typeof(TEntity).GetInterface("imusthavetenant", true) != null;
@@ -232,27 +219,6 @@ namespace AlgoriaPersistence.Repositories
                 if (predicateTenant != null)
                 {
                     query = query.Where(predicateTenant);
-                }
-            }
-        }
-
-        private void AddConditionSoftDelete(ref IMongoQueryable<TEntity> query, ParameterExpression parameter)
-        {
-            bool softDelete = SoftDelete() && _unitOfWork.HasFilter(AlgoriaCoreDataFilters.SoftDelete);
-            if (softDelete)
-            {
-                var member = Expression.Property(parameter, "IsDeleted");
-                var filter1 =
-                        Expression.Constant(
-                            Convert.ChangeType(true, member.Type.GetGenericArguments()[0]));
-
-                Expression typeFilter = Expression.Convert(filter1, member.Type);
-                var body = Expression.NotEqual(member, typeFilter);
-                var predicateDelete = Expression.Lambda<Func<TEntity, bool>>(body, parameter);
-
-                if (predicateDelete != null)
-                {
-                    query = query.Where(predicateDelete);
                 }
             }
         }

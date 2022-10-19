@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
+#nullable enable
     public partial class OrgUnit : Entity<long>, IMayHaveTenant, ISoftDelete
     {
         public OrgUnit()

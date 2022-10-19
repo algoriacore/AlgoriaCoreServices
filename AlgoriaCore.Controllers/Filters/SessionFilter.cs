@@ -21,14 +21,14 @@ namespace AlgoriaCore.WebUI.Filters
             {
                 try
                 {
-                    var tenantId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenantId").Value;
-                    var tenancyName = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenancyName").Value;
-                    var userId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId").Value;
+                    var tenantId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenantId")?.Value;
+                    var tenancyName = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenancyName")?.Value;
+                    var userId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
                     var userName = context.HttpContext.User.Identity.Name;
-                    var isImpersonalized = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "IsImpersonalized").Value;
-                    var impersonalizerUserId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "ImpersonalizerUserId").Value;
+                    var isImpersonalized = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "IsImpersonalized")?.Value;
+                    var impersonalizerUserId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "ImpersonalizerUserId")?.Value;
 
-                    session.TenantId = !string.IsNullOrEmpty(tenantId) ? int.Parse(tenantId) : (int?)null;
+					session.TenantId = !string.IsNullOrEmpty(tenantId) ? int.Parse(tenantId) : (int?)null;
                     session.TenancyName = tenancyName;
                     session.UserId = !string.IsNullOrEmpty(userId) ? long.Parse(userId) : (long?)null;
                     session.UserName = userName;

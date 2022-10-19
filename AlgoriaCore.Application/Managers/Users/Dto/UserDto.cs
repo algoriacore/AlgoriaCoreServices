@@ -1,5 +1,7 @@
 ﻿using AlgoriaCore.Extensions;
 using System;
+using System.Security.Permissions;
+using System.Text;
 
 namespace AlgoriaCore.Application.Managers.Users.Dto
 {
@@ -15,13 +17,35 @@ namespace AlgoriaCore.Application.Managers.Users.Dto
 
         private string fullName;
 
-        public string FullName
+		public string FullName
         {
             get
             {
-                return fullName != null ? fullName : string.Format("{0}{1}{2}", !Name.IsNullOrEmpty() ? Name.Trim() + " " : string.Empty,
-                                                    !LastName.IsNullOrEmpty() ? LastName.Trim() + " " : string.Empty,
-                                                    !SecondLastName.IsNullOrEmpty() ? SecondLastName.Trim() + " " : string.Empty).Trim();
+                if (!fullName.IsNullOrEmpty())
+                {
+                    return fullName;
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    if (!Name.IsNullOrEmpty())
+                    {
+                        sb.Append(Name);
+                    }
+
+                    if (!LastName.IsNullOrEmpty())
+                    {
+                        sb.AppendFormat(" {0}", LastName);
+                    }
+
+                    if (!SecondLastName.IsNullOrEmpty())
+                    {
+                        sb.AppendFormat(" {0}", SecondLastName);
+                    }
+
+                    fullName = sb.ToString();
+                    return fullName;
+                }
             }
             set
             {

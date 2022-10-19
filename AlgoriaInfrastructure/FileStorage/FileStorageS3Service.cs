@@ -19,10 +19,9 @@ namespace AlgoriaInfrastructure.FileStorage
     {
         public IAppLocalizationProvider AppLocalizationProvider { get; set; }
 
-        private string _bucketName = "";
+        private readonly string _bucketName;
         private readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2;
         private readonly IAmazonS3 _client;
-
 
         public FileStorageS3Service(
             ILifetimeScope lifeTimeScope,
@@ -87,11 +86,10 @@ namespace AlgoriaInfrastructure.FileStorage
         }
         public byte[] GetFileFromStream(Stream inputStream)
         {
-            byte[] result;
             using (var streamReader = new MemoryStream())
             {
                 inputStream.CopyTo(streamReader);
-                return result = streamReader.ToArray();
+                return streamReader.ToArray();
             }
         }
 

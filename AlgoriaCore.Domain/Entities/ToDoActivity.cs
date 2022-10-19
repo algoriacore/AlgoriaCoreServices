@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
+#nullable enable
     public partial class ToDoActivity : Entity<long>, IMayHaveTenant
     {
         public ToDoActivity()

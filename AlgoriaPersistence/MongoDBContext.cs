@@ -14,7 +14,7 @@ namespace AlgoriaPersistence
         private readonly MongoClient _client;
         private readonly IMongoDatabase _database;
         private readonly MongoDbOptions _dbOptions;
-        private IAppLocalizationProvider _appLocalizationProvider;
+        private readonly IAppLocalizationProvider _appLocalizationProvider;
         private bool _isActive;
 
         public MongoDBContext(IOptions<MongoDbOptions> dbOptions, IAppLocalizationProvider appLocalizationProvider)

@@ -74,20 +74,20 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Processes
             response.Template = await _mediator.Send(new TemplateGetByIdQuery() { Id = request.Template });
             response.TemplateFields = await _mediator.Send(new TemplateFieldGetListByTemplateQuery() { Template = request.Template, OnlyProcessed = true });
 
-            if (response.Template.IsActivity) {
+            if (response.Template.IsActivity)
+            {
                 response.ActivityStatusCombo = await _managerTemplate.GetTemplateToDoStatusComboAsync(new TemplateToDoStatusComboFilterDto()
                 {
                     Template = request.Template,
                     IsActive = true
                 });
 
-                if (response.Data != null)
+                if (response.Data != null &&
+                    response.ActivityStatusCombo != null &&
+                    !response.ActivityStatusCombo.Exists(p => p.Value == response.Activity.Status.ToString()))
                 {
-                    if (response.ActivityStatusCombo != null && !response.ActivityStatusCombo.Exists(p => p.Value == response.Activity.Status.ToString()))
-                    {
-                        response.ActivityStatusCombo.Add(new ComboboxItemDto(response.Activity.Status.ToString(), response.Activity.StatusDesc));
-                        response.ActivityStatusCombo = response.ActivityStatusCombo.OrderBy(p => p.Label).ToList();
-                    }
+                    response.ActivityStatusCombo.Add(new ComboboxItemDto(response.Activity.Status.ToString(), response.Activity.StatusDesc));
+                    response.ActivityStatusCombo = response.ActivityStatusCombo.OrderBy(p => p.Label).ToList();
                 }
             }
 

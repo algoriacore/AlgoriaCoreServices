@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
+#nullable enable
     public partial class Template : Entity<long>, IMayHaveTenant, ISoftDelete
     {
         public Template()

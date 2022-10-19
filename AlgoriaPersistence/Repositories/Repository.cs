@@ -12,7 +12,6 @@ namespace AlgoriaPersistence.Repositories
 {
     public class BaseRepository<TEntity, TType> : IRepository<TEntity, TType>
         where TEntity : class, IEntity<TType>
-        //where TType : struct
     {
         internal AlgoriaCoreDbContext Context;
         private readonly DbSet<TEntity> Table;

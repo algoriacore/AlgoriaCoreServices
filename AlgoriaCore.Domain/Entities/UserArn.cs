@@ -2,6 +2,7 @@
 
 namespace AlgoriaCore.Domain.Entities
 {
+#nullable enable
     public partial class UserARN : Entity<long>
     {
         public long? UserId { get; set; }

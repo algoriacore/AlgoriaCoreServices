@@ -3,6 +3,7 @@ using AlgoriaCore.Domain.Interfaces;
 
 namespace AlgoriaCore.Domain.Entities
 {
+    #nullable enable
     public partial class help : Entity<long>, IMayHaveTenant
     {
         public int? TenantId { get; set; }

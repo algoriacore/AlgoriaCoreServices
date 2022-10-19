@@ -34,11 +34,10 @@ namespace AlgoriaCore.Application.QueriesAndCommands.MailGRPCService.MailService
         }
         public async Task<MailServiceMailForEditResponse> Handle(MailServiceMailGetForEditQuery request, CancellationToken cancellationToken)
         {
-
-            MailServiceMailForEditResponse response = null;
-            MailServiceMailDto dto = null;
-            MailServiceMailStatusDto statusDto = null;
-            MailServiceMailBodyDto bodyDto = null;
+            MailServiceMailForEditResponse response;
+            MailServiceMailDto dto;
+            MailServiceMailStatusDto statusDto;
+            MailServiceMailBodyDto bodyDto;
 
             if (SessionContext.TenantId.HasValue)
             {
@@ -53,23 +52,20 @@ namespace AlgoriaCore.Application.QueriesAndCommands.MailGRPCService.MailService
                 bodyDto = await _managerBody.GetMailServiceMailBodyByHostAsync(dto.Id);
             }
 
-            if (dto != null)
+            response = new MailServiceMailForEditResponse()
             {
-                response = new MailServiceMailForEditResponse()
-                {
-                    Id = dto.Id,
-                    MailServiceRequest = dto.MailServiceRequest,
-                    MailServiceRequestDate = dto.MailServiceRequestDate,
-                    IsLocalConfig = dto.IsLocalConfig,
-                    IsLocalConfigDesc = dto.IsLocalConfigDesc,
-                    Sendto = dto.Sendto,
-                    CopyTo = dto.CopyTo,
-                    BlindCopyTo = dto.BlindCopyTo,
-                    Subject = dto.Subject,
-                    MailServiceMailStatus = statusDto,
-                    MailServiceMailBody = bodyDto
-                };
-            }
+                Id = dto.Id,
+                MailServiceRequest = dto.MailServiceRequest,
+                MailServiceRequestDate = dto.MailServiceRequestDate,
+                IsLocalConfig = dto.IsLocalConfig,
+                IsLocalConfigDesc = dto.IsLocalConfigDesc,
+                Sendto = dto.Sendto,
+                CopyTo = dto.CopyTo,
+                BlindCopyTo = dto.BlindCopyTo,
+                Subject = dto.Subject,
+                MailServiceMailStatus = statusDto,
+                MailServiceMailBody = bodyDto
+            };
 
             return response;
         }

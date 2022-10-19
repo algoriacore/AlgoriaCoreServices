@@ -39,7 +39,12 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
 
             await _rolManager.UpdateRolAsync(rolDto, pNames.Select(m => m.DisplayName).ToList());
 
-            var permisoDtoList = permisoList.Select(s => new PermissionDto { Name = s, DisplayName = pNames.FirstOrDefault(a=>a.Name == s).DisplayName }).ToList();
+            var permisoDtoList = permisoList.Select(s => new PermissionDto
+            {
+                Name = s,
+                DisplayName = pNames.Any(a => a.Name == s) ? pNames.FirstOrDefault(a => a.Name == s).DisplayName : null
+            }).ToList();
+
             await _rolManager.ReplacePermissionAsync(rolDto.Id.Value, permisoDtoList);
 
             return request.Id;

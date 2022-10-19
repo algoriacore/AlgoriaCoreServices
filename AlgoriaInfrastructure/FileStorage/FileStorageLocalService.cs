@@ -80,7 +80,7 @@ namespace AlgoriaInfrastructure.FileStorage
                 fResp = new FileStorageDto();
                 fResp.FileName = fileName;
                 fResp.Length = (int)fInfo.Length;
-                fResp.FileArray = File.ReadAllBytes(filePath);
+                fResp.FileArray = await File.ReadAllBytesAsync(filePath);
                 fResp.ContentType = fileType;
 
                 File.Delete(filePath);

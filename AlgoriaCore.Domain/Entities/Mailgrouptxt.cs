@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
+    #nullable enable
     public partial class mailgrouptxt : Entity<long>
     {
         public long? mailgroup { get; set; }
