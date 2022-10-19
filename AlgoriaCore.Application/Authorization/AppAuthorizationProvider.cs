@@ -8,6 +8,7 @@ using AlgoriaCore.Domain.Exceptions;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
+using AlgoriaPersistence.Interfaces.Interfaces;
 using Autofac;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace AlgoriaCore.Application.Authorization
         private readonly IAppLocalizationProvider _appLocalizationProvider;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly ILifetimeScope _lifetimeScope;
+        private IMongoDBContext _context;
 
         private Permission _root { get; set; }
         public Permission Root { get
@@ -35,12 +37,14 @@ namespace AlgoriaCore.Application.Authorization
         public AppAuthorizationProvider(
             IAppLocalizationProvider appLocalizationProvider,
             IMultiTenancyConfig multiTenancyConfig,
-            ILifetimeScope lifetimeScope
+            ILifetimeScope lifetimeScope,
+            IMongoDBContext context
         )
         {
             _appLocalizationProvider = appLocalizationProvider;
             _multiTenancyConfig = multiTenancyConfig;
             _lifetimeScope = lifetimeScope;
+            _context = context;
 
             SetPermissions();
         }
@@ -215,7 +219,7 @@ namespace AlgoriaCore.Application.Authorization
 
                     #region CATALOGS CUSTOM
 
-                    if (session.TenantId.HasValue)
+                    if (session.TenantId.HasValue && _context.IsEnabled && _context.IsActive)
                     {
                         CatalogCustomManager managerCatalogCustom = _lifetimeScope.Resolve<CatalogCustomManager>();
 
