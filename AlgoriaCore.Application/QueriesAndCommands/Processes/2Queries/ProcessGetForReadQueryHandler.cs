@@ -15,17 +15,14 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Processes
     {
         private readonly IMediator _mediator;
         private readonly ProcessManager _manager;
-        private readonly TemplateManager _managerTemplate;
 
         public ProcessGetForReadQueryHandler(
             ICoreServices coreServices,
             IMediator mediator,
-            ProcessManager manager,
-            TemplateManager managerTemplate) : base(coreServices)
+            ProcessManager manager) : base(coreServices)
         {
             _mediator = mediator;
             _manager = manager;
-            _managerTemplate = managerTemplate;
         }
 
         public async Task<ProcessForReadResponse> Handle(ProcessGetForReadQuery request, CancellationToken cancellationToken)

@@ -120,7 +120,6 @@ namespace AlgoriaCore.Application.Managers.Languages
 
         public async Task<LanguageDto> GetLanguageDefaultAsync(bool onlyTenantOrHost = false)
         {
-            //TODO: Este método no debería existir. Los settings ya deberían tener valores default asignados.
             LanguageDto dto = null;
             string stt = null;
 

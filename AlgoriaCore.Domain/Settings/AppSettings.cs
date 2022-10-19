@@ -49,7 +49,7 @@
             public static class GrpcMail
             {
                 public const string TenancyName = "GrpcMailTenancyName";
-                public const string UserName = "GrpcMailUserName";
+                public const string GrpcUserName = "GrpcMailUserName";
                 public const string Password = "GrpcMailPassword";
                 public const string Token = "GrpcMailToken";
             }

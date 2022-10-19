@@ -51,9 +51,6 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMailAttach
 
       private IQueryable<MailServiceMailAttachDto> GetMailServiceMailAttachQuery() 
       {
-             string yesLabel = L("Yes");
-             string noLabel = L("No");
-
              var query = (from entity in _repMailServiceMailAttach.GetAll()
              join mailServiceMailBody in _repMailServiceMailBody.GetAll() on entity.MailServiceMailBody equals mailServiceMailBody.Id into mailServiceMailBodyX
              from mailServiceMailBody in mailServiceMailBodyX.DefaultIfEmpty()

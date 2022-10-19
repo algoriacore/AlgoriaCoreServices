@@ -152,7 +152,7 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
             entity.Questionnarie = dto.Questionnaire;
             entity.FieldNames = dto.FieldNames;
 
-            if (entity.IsCollectionGenerated != true)
+            if (!entity.IsCollectionGenerated)
             {
                 entity.CollectionName = dto.CollectionName;
             }
@@ -201,7 +201,7 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
                             CreationDateTime = entity.CreationDateTime,
                             CollectionName = entity.CollectionName,
                             IsCollectionGenerated = entity.IsCollectionGenerated,
-                            IsCollectionGeneratedDesc = entity.IsCollectionGenerated == true ? yesLabel : noLabel,
+                            IsCollectionGeneratedDesc = entity.IsCollectionGenerated ? yesLabel : noLabel,
                             Description = entity.Description,
                             NamePlural = entity.NamePlural,
                             NameSingular = entity.NameSingular,
@@ -209,7 +209,7 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustom
                             QuestionnaireDesc = Q.Name,
                             UserCreator = entity.UserCreator,
                             IsActive = entity.IsActive,
-                            IsActiveDesc = entity.IsActive == true ? yesLabel : noLabel,
+                            IsActiveDesc = entity.IsActive ? yesLabel : noLabel,
                             FieldNames = entity.FieldNames
                         };
 

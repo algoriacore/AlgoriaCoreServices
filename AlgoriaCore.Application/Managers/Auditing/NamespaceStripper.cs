@@ -8,12 +8,12 @@ namespace AlgoriaCore.Application.Managers.Auditing
     {
         public string StripNameSpace(string serviceName)
         {
-            if (serviceName.IsNullOrEmpty() || !serviceName.Contains("."))
+            if (serviceName.IsNullOrEmpty() || !serviceName.Contains('.'))
             {
                 return serviceName;
             }
 
-            if (serviceName.Contains("["))
+            if (serviceName.Contains('['))
             {
                 return StripGenericNamespace(serviceName);
             }
@@ -36,13 +36,13 @@ namespace AlgoriaCore.Application.Managers.Auditing
             for (var i = 0; i < serviceNameParts.Count; i++)
             {
                 var serviceNamePart = serviceNameParts[i];
-                if (serviceNamePart.Contains("`"))
+                if (serviceNamePart.Contains('`'))
                 {
 					genericServiceName.Append(GetTextAfterLastDot(serviceNamePart.Substring(0, serviceNamePart.IndexOf('`'))) + "<");
                     openBracketCount++;
                 }
 
-                if (serviceNamePart.Contains(","))
+                if (serviceNamePart.Contains(','))
                 {
 					genericServiceName.Append(GetTextAfterLastDot(serviceNamePart.Substring(0, serviceNamePart.IndexOf(','))));
                     if (i + 1 < serviceNameParts.Count && serviceNameParts[i + 1].Contains(","))
@@ -51,7 +51,7 @@ namespace AlgoriaCore.Application.Managers.Auditing
                     }
                     else
                     {
-						genericServiceName.Append(">");
+						genericServiceName.Append('>');
                         openBracketCount--;
                     }
                 }
@@ -59,7 +59,7 @@ namespace AlgoriaCore.Application.Managers.Auditing
 
             for (int i = 0; i < openBracketCount; i++)
             {
-				genericServiceName.Append(">");
+				genericServiceName.Append('>');
             }
 
 			return genericServiceName.ToString();

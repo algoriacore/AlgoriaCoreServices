@@ -97,7 +97,7 @@ namespace AlgoriaInfrastructure.Email
             {
                 SendConfiguration = _emailOptions.Grpc.SendConfiguration,
                 TenancyName = GetSettingManager().GetSettingValueOrHostSettingValue(AppSettings.Mail.GrpcMail.TenancyName),
-                UserName = GetSettingManager().GetSettingValueOrHostSettingValue(AppSettings.Mail.GrpcMail.UserName),
+                UserName = GetSettingManager().GetSettingValueOrHostSettingValue(AppSettings.Mail.GrpcMail.GrpcUserName),
                 Password = GetSettingManager().GetSettingValueOrHostSettingValue(AppSettings.Mail.GrpcMail.Password),
                 Token = GetSettingManager().GetSettingValueOrHostSettingValue(AppSettings.Mail.GrpcMail.Token)
             };

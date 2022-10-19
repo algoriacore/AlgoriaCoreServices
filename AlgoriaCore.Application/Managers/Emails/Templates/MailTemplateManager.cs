@@ -210,7 +210,7 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
             SendEmail(mailTemplateDto, emailAddress, dict);
         }
 
-        public List<string> GetMailTemplateBodyParamList(string mailKey)
+        public static List<string> GetMailTemplateBodyParamList(string mailKey)
         {
             var lista = new List<string>();
 
@@ -329,7 +329,6 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
 
         private IQueryable<MailTemplateDto> GetMailTemplateQuery(bool isIncludeCuerpo = false)
         {
-            //var dicDescriptions = GetEmailDescriptionDictionary();
             var tenantRegistrationDesc = L("MailKey.TenantRegistration");
             var newUserDesc = L("MailKey.NewUser");
             var userResetDesc = L("MailKey.UserReset");
@@ -344,7 +343,6 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
                              TenantId = mt.TenantId,
                              MailGroup = mt.mailgroup,
                              MailKey = mt.mailkey,
-                             // MailKeyDesc = dicDescriptions[mt.Mailkey ?? string.Empty],
                              MailKeyDesc = mt.mailkey == EmailKeys.TenantRegistration ? tenantRegistrationDesc
                              : mt.mailkey == EmailKeys.NewUser ? newUserDesc
                              : mt.mailkey == EmailKeys.UserReset ? userResetDesc
@@ -362,27 +360,6 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
                          });
 
             return query;
-        }
-
-        private Dictionary<string, string> GetEmailDescriptionDictionary()
-        {
-            var tenantRegistrationDesc = L("MailKey.TenantRegistration");
-            var newUserDesc = L("MailKey.NewUser");
-            var userResetDesc = L("MailKey.UserReset");
-            var userUnblockDesc = L("MailKey.UserUnblock");
-            var userModificationDesc = L("MailKey.UserModification");
-            var chatTaggedUserDesc = L("MailKey.ChatTaggedUser");
-
-            var resp = new Dictionary<string, string>();
-            resp.Add(string.Empty, string.Empty);
-            resp.Add(EmailKeys.TenantRegistration, tenantRegistrationDesc);
-            resp.Add(EmailKeys.NewUser, newUserDesc);
-            resp.Add(EmailKeys.UserReset, userResetDesc);
-            resp.Add(EmailKeys.UserUnblock, userUnblockDesc);
-            resp.Add(EmailKeys.UserModification, userModificationDesc);
-            resp.Add(EmailKeys.ChatTaggedUser, chatTaggedUserDesc);
-
-            return resp;
         }
 
         private IQueryable<MailTemplateDto> GetMailTemplateListQuery(MailTemplateListFilterDto input)

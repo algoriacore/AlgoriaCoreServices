@@ -33,8 +33,6 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
 
         public async Task<PagedResultDto<MailServiceMailDto>> GetMailServiceMailPagedListByHostAsync(MailServiceMailListFilterDto dto)
         {
-
-
             List<MailServiceMailDto> lst;
             int tot = 0;
 
@@ -135,17 +133,20 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
                              MailServiceRequest = entity.MailServiceRequest,
                              MailServiceRequestDate = mailServiceRequest.CreationTime,
                              IsLocalConfig = entity.IsLocalConfig,
-                             IsLocalConfigDesc = entity.IsLocalConfig == true ? yesLabel : noLabel,
+                             IsLocalConfigDesc = entity.IsLocalConfig ? yesLabel : noLabel,
                              Sendto = entity.Sendto,
                              CopyTo = entity.CopyTo,
                              BlindCopyTo = entity.BlindCopyTo,
                              Subject = entity.Subject,
                              Status = mailServiceMailStatus.Status,
-
+                             StatusDesc = mailServiceMailStatus.Status == 1 ? status1 :
+                                        (mailServiceMailStatus.Status == 2 ? status2 :
+                                        (mailServiceMailStatus.Status == 3 ? status3 :
+                                        (mailServiceMailStatus.Status == 4 ? status4 : string.Empty)))
                          });
+
             return query;
         }
-
     }
 }
 

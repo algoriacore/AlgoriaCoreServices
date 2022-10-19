@@ -15,17 +15,14 @@ namespace AlgoriaCore.Application.QueriesAndCommands.CatalogsCustomImpl
     {
         private readonly IMediator _mediator;
         private readonly CatalogCustomImplManager _manager;
-        private readonly CatalogCustomManager _managerCatalogCustom;
 
         public CatalogCustomImplGetForReadQueryHandler(
             ICoreServices coreServices,
             IMediator mediator,
-            CatalogCustomImplManager manager,
-            CatalogCustomManager managerCatalogCustom) : base(coreServices)
+            CatalogCustomImplManager manager) : base(coreServices)
         {
             _mediator = mediator;
             _manager = manager;
-            _managerCatalogCustom = managerCatalogCustom;
         }
 
         public async Task<CatalogCustomImplForReadResponse> Handle(CatalogCustomImplGetForReadQuery request, CancellationToken cancellationToken)

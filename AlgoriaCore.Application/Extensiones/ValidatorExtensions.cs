@@ -20,13 +20,11 @@ namespace AlgoriaCore.Application.Extensiones
 
         public static IRuleBuilderOptions<T, string> RFCPhysical<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
-            //return ruleBuilder.Matches(@"^[a-zA-ZÑñ&]{4}[0-9]{2}[0-1][0-9][0-3][0-9][a-zA-Z,0-9]?[a-zA-Z,0-9]?[0-9,a-zA-Z]?$");
             return ruleBuilder.Matches(@"^([A-Z,Ñ,&]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$");
         }
 
         public static IRuleBuilderOptions<T, string> RFCMoral<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
-            //return ruleBuilder.Matches(@"^[a-zA-ZÑñ&]{3}[0-9]{2}[0-1][0-9][0-3][0-9][a-zA-Z,0-9]?[a-zA-Z,0-9]?[0-9,a-zA-Z]?$");
             return ruleBuilder.Matches(@"^([A-Z,Ñ,&]{3}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$");
         }
 

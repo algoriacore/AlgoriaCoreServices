@@ -278,7 +278,7 @@ namespace AlgoriaCore.Application.Managers.Processes
             }
         }
 
-        private Dictionary<string, object> GetParametersForInsert(List<TemplateFieldDto> fields, Dictionary<string, string> data) {
+        private static Dictionary<string, object> GetParametersForInsert(List<TemplateFieldDto> fields, Dictionary<string, string> data) {
             Dictionary<string, object> aParameters = new Dictionary<string, object>();
 
             foreach (TemplateFieldDto field in fields)
@@ -853,7 +853,7 @@ namespace AlgoriaCore.Application.Managers.Processes
 
         public async Task<ToDoTimeSheetDto> GetToDoTimeSheetAsync(long id, bool throwExceptionIfNotFound = true)
         {
-            var query = GetToDoTimeSheetQuery(true);
+            var query = GetToDoTimeSheetQuery();
 
             ToDoTimeSheetDto dto = await query.FirstOrDefaultAsync(p => p.Id == id);
 
@@ -920,7 +920,7 @@ namespace AlgoriaCore.Application.Managers.Processes
 
         #region Private Methods
 
-        private IQueryable<ToDoTimeSheetDto> GetToDoTimeSheetQuery(bool isIncludeCuerpo = false)
+        private IQueryable<ToDoTimeSheetDto> GetToDoTimeSheetQuery()
         {
             var query = (from entity in _repositoryToDoTimeSheet.GetAll()
                          select new ToDoTimeSheetDto
@@ -965,7 +965,24 @@ namespace AlgoriaCore.Application.Managers.Processes
             return await _sqlExecuter.SqlQuery<ProcessSecurityMemberDto>(GetProcessSecurityMemberQuery(parent, type, level));
         }
 
-        public async Task<ProcessSecurityMemberDto> GetProcessSecurityMemberAsync(
+		public async Task<List<ProcessSecurityMemberDto>> GetProcessSecurityMemberListAsync(
+	        long template,
+	        long parent,
+	        long member,
+	        SecurityMemberType type,
+	        SecurityMemberLevel level)
+		{
+			var query = GetProcessSecurityMemberQuery(null, type, level);
+			query = string.Format("SELECT * FROM ({0}) WRAPPER WHERE Parent = @Parent AND Member = @Member", query);
+			Dictionary<string, object> aParameters = new Dictionary<string, object>();
+
+			aParameters.Add("@Parent", parent);
+			aParameters.Add("@Member", member);
+
+			return await _sqlExecuter.SqlQuery<ProcessSecurityMemberDto>(query, aParameters);
+		}
+
+		public async Task<ProcessSecurityMemberDto> GetProcessSecurityMemberAsync(
             long template,
             long id,
             SecurityMemberType type,
@@ -983,33 +1000,12 @@ namespace AlgoriaCore.Application.Managers.Processes
 
             ProcessSecurityMemberDto dto = list.FirstOrDefault();
 
-            if (dto == null)
+            if (dto == null && throwExceptionIfNotFound)
             {
-                if (throwExceptionIfNotFound)
-                {
-                    throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("ProcessSecurityMember.ProcessSecurityMember"), id));
-                }
+                throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("ProcessSecurityMember.ProcessSecurityMember"), id));
             }
 
             return dto;
-        }
-
-        public async Task<List<ProcessSecurityMemberDto>> GetProcessSecurityMemberListAsync(
-            long template,
-            long parent,
-            long member,
-            SecurityMemberType type,
-            SecurityMemberLevel level
-        )
-        {
-            var query = GetProcessSecurityMemberQuery(null, type, level);
-            query = string.Format("SELECT * FROM ({0}) WRAPPER WHERE Parent = @Parent AND Member = @Member", query);
-            Dictionary<string, object> aParameters = new Dictionary<string, object>();
-
-            aParameters.Add("@Parent", parent);
-            aParameters.Add("@Member", member);
-
-            return await _sqlExecuter.SqlQuery<ProcessSecurityMemberDto>(query, aParameters);
         }
 
         public async Task<long> CreateProcessSecurityMemberAsync(ProcessSecurityMemberDto dto, bool validate = true)

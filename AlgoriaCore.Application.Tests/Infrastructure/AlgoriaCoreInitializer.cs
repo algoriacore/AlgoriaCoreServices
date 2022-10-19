@@ -11,11 +11,10 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
     {
         public static void Initialize(AlgoriaCoreDbContext context)
         {
-            var initializer = new AlgoriaCoreInitializer();
-            initializer.SeedEverything(context);
+            SeedEverything(context);
         }
 
-        public void SeedEverything(AlgoriaCoreDbContext context)
+        public static void SeedEverything(AlgoriaCoreDbContext context)
         {
             context.Database.EnsureCreated();
 

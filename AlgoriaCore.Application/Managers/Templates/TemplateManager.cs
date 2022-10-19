@@ -549,7 +549,7 @@ namespace AlgoriaCore.Application.Managers.Templates
             return "UDT_" + (tenantId.HasValue ? tenantId.ToString() + "_" : "") + name.ToVariableName();
         }
 
-        private void AddDbTablesOthersAsNewToDefinition(ScriptBuilder.Structure.ScriptBuilder sb, TemplateDto dto)
+        private static void AddDbTablesOthersAsNewToDefinition(ScriptBuilder.Structure.ScriptBuilder sb, TemplateDto dto)
         {
             TableDefinition tb = sb.AddTableDefinition(dto.TableName + "_OPT").AsNewTable();
 
@@ -1055,12 +1055,9 @@ namespace AlgoriaCore.Application.Managers.Templates
             var query = GetTemplateFieldQuery(true);
             TemplateFieldDto dto = await query.FirstOrDefaultAsync(p => p.Id == id);
 
-            if (dto == null)
+            if (dto == null && throwExceptionIfNotFound)
             {
-                if (throwExceptionIfNotFound)
-                {
-                    throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateFields.TemplateField"), id));
-                }
+                throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("TemplateFields.TemplateField"), id));
             }
 
             return dto;

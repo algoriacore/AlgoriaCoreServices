@@ -53,11 +53,6 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMailBodys
 
         private IQueryable<MailServiceMailBodyDto> GetMailServiceMailBodyQuery()
         {
-            string yesLabel = L("Yes");
-            string noLabel = L("No");
-
-
-
             var query = (from entity in _repMailServiceMailBody.GetAll()
                          join mailServiceMail in _repMailServiceMail.GetAll() on entity.MailServiceMail equals mailServiceMail.Id into mailServiceMailX
                          from mailServiceMail in mailServiceMailX.DefaultIfEmpty()

@@ -62,7 +62,7 @@ namespace AlgoriaCore.Application.Managers.Permissions
                          where U.Id == SessionContext.UserId && entidad.Name == permissionName
                          select entidad);
             
-            return await query.CountAsync() > 0;
+            return await query.AnyAsync();
         }
 
         public async Task<bool> IsGrantedAtLeastOneAsync(string[] permissionNames)
@@ -74,7 +74,7 @@ namespace AlgoriaCore.Application.Managers.Permissions
                          where U.Id == SessionContext.UserId && permissionNames.Contains(entidad.Name)
                          select entidad);
 
-            return await query.CountAsync() > 0;
+            return await query.AnyAsync();
         }
 
         public async Task<List<string>> GetPermissionListByUserAsync()

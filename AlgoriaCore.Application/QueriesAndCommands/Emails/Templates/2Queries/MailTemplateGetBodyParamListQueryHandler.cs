@@ -11,16 +11,13 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Emails.Templates._2Queries
 {
     public class MailTemplateGetBodyParamListQueryHandler : BaseCoreClass, IRequestHandler<MailTemplateGetBodyParamListQuery, List<ComboboxItemDto>>
     {
-        private readonly MailTemplateManager _manager;
-
         public MailTemplateGetBodyParamListQueryHandler(ICoreServices coreServices, MailTemplateManager manager) : base(coreServices)
         {
-            _manager = manager;
         }
 
         public async Task<List<ComboboxItemDto>> Handle(MailTemplateGetBodyParamListQuery request, CancellationToken cancellationToken)
         {
-            var ls = _manager.GetMailTemplateBodyParamList(request.MailKey);
+            var ls = MailTemplateManager.GetMailTemplateBodyParamList(request.MailKey);
             var ll = new List<ComboboxItemDto>();
 
             foreach (var item in ls)

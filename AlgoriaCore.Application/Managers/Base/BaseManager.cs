@@ -80,7 +80,7 @@ namespace AlgoriaCore.Application.Managers.Base
 
 		#region Auxiliar methods for Logging
 
-		protected void LogStringProperty(StringBuilder sb, string previousProp, string newProp, string labelEntry)
+		protected static void LogStringProperty(StringBuilder sb, string previousProp, string newProp, string labelEntry)
 		{
 			if (newProp != previousProp)
 			{
@@ -88,7 +88,7 @@ namespace AlgoriaCore.Application.Managers.Base
 			}
 		}
 
-		protected void LogBoolProperty(StringBuilder sb, bool previousProp, bool newProp, string labelEntry)
+		protected static void LogBoolProperty(StringBuilder sb, bool previousProp, bool newProp, string labelEntry)
 		{
 			if (newProp != previousProp)
 			{
@@ -96,7 +96,7 @@ namespace AlgoriaCore.Application.Managers.Base
 			}
 		}
 
-        protected void LogIntProperty(StringBuilder sb, int? previousProp, int? newProp, string labelEntry, string format = "###,##0")
+        protected static void LogIntProperty(StringBuilder sb, int? previousProp, int? newProp, string labelEntry, string format = "###,##0")
         {
             if (newProp != previousProp)
             {
@@ -106,7 +106,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        protected void LogDecimalProperty(StringBuilder sb, decimal? previousProp, decimal? newProp, string labelEntry, string format = "###,##0.00")
+        protected static void LogDecimalProperty(StringBuilder sb, decimal? previousProp, decimal? newProp, string labelEntry, string format = "###,##0.00")
         {
             if (newProp != previousProp)
             {
@@ -116,7 +116,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        protected void LogDateTimeProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
+        protected static void LogDateTimeProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
         {
             if (newProp != previousProp)
             {
@@ -126,7 +126,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        protected void LogDateProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
+        protected static void LogDateProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
         {
             if (newProp != previousProp)
             {
@@ -136,7 +136,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        protected void LogTimeProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
+        protected static void LogTimeProperty(StringBuilder sb, DateTime? previousProp, DateTime? newProp, string labelEntry)
         {
             if (newProp != previousProp)
             {
@@ -146,7 +146,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        protected void LogTimeProperty(StringBuilder sb, TimeSpan? previousProp, TimeSpan? newProp, string labelEntry)
+        protected static void LogTimeProperty(StringBuilder sb, TimeSpan? previousProp, TimeSpan? newProp, string labelEntry)
         {
             if (newProp != previousProp)
             {
@@ -156,7 +156,7 @@ namespace AlgoriaCore.Application.Managers.Base
             }
         }
 
-        private void SetEmailMessageAddressesInList(List<IEmailAddress> list, string addressesStr)
+        private static void SetEmailMessageAddressesInList(List<IEmailAddress> list, string addressesStr)
         {
             if (!addressesStr.IsNullOrEmpty())
             {

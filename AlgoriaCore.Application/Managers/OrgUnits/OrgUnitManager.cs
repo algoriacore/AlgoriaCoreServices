@@ -166,7 +166,7 @@ namespace AlgoriaCore.Application.Managers.OrgUnits
                              ParentOUDesc = entity.ParentOUNavigation.Name,
                              Name = entity.Name,
                              Level = entity.Level,
-                             HasChildren = entity.InverseParentOUNavigation.Where(p => p.IsDeleted != true).Count() > 0,
+                             HasChildren = entity.InverseParentOUNavigation.Any(p => p.IsDeleted != true),
                              Size = entity.OrgUnitUser.Count
                          });
 
@@ -201,10 +201,9 @@ namespace AlgoriaCore.Application.Managers.OrgUnits
                 throw new EntityDuplicatedException(L("OrgUnits.OrgUnit.DuplicatedName"));
             }
 
-            if (dto.Id == null) {
-                if (dto.Level > 7) {
-                    throw new EntityDuplicatedException(L("OrgUnits.OrgUnit.MaxLevel"));
-                }
+            if (dto.Id == null && dto.Level > 7)
+            {
+                throw new EntityDuplicatedException(L("OrgUnits.OrgUnit.MaxLevel"));
             }
         }
 

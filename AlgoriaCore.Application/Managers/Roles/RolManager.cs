@@ -181,7 +181,7 @@ namespace AlgoriaCore.Application.Managers.Roles
 
         #region Métodos privados
 
-        private RolDto GetRol(Role entity)
+        private static RolDto GetRol(Role entity)
         {
             var dto = new RolDto();
 

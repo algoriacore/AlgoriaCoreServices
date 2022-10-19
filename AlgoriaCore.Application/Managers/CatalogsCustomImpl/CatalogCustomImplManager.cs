@@ -43,7 +43,7 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
 
         private IMongoCollection<BsonDocument> _collection;
 
-        private string PrefixObj = "_obj";
+        private readonly string PrefixObj = "_obj";
 
         public CatalogCustomImplManager(
             CatalogCustomManager managerCatalogCustom,
@@ -65,42 +65,11 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
             _questionnaireDto = await _managerQuestionnaire.GetQuestionnaireAsync(_catalogCustomDto.Questionnaire);
             _collection = _context.Database.GetCollection<BsonDocument>(_catalogCustomDto.CollectionName);
         }
-
-        //public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
-        //{
-        //    var query = GetCatalogCustomImplListQuery(dto);
-        //    var countResult = await query.Count().FirstOrDefaultAsync();
-        //    var count = countResult == null ? 0 : (int)countResult.Count;
-
-        //    var ll = await query
-        //        .OrderBy(dto.Sorting.IsNullOrEmpty() ? "_id" : dto.Sorting)
-        //        .PageBy(dto)
-        //        .ToListAsync();
-
-        //    return new PagedResultDto<BsonDocument>(count, ll);
-        //}
-
-        //public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
-        //{
-        //    BsonDocument filter = BsonDocument.Parse("{ \"$or\" : [{ \"nombre_completo\" : /FER/i }, { \"edad\" : /FER/i }, { \"sexo\" : /FER/i }, { \"estado_civil\" : /FER/i }, { \"fecha_de_nacimiento\" : /FER/i }, { \"rfc\" : /FER/i }, { \"curp\" : /FER/i }, { \"nss\" : /FER/i }] }");
-        //    BsonDocument sorting = BsonDocument.Parse("{ \"_id\": 1 }");
-        //    BsonDocument projection = BsonDocument.Parse("{ \"_id\" : 1, \"nombre_completo\" : 1, \"edad\" : 1, \"sexo\" : 1, \"estado_civil\" : 1, \"fecha_de_nacimiento\" : 1, \"rfc\" : 1, \"curp\" : 1, \"nss\" : 1 } ");
-
-        //    var ll = await _collection
-        //        .Find(filter)
-        //        .OrderBy(dto.Sorting.IsNullOrEmpty() ? "_id" : dto.Sorting)
-        //        .Project(projection)
-        //        .PageBy(dto)
-        //        .ToListAsync();
-
-        //    return new PagedResultDto<BsonDocument>(100002, ll);
-        //}
-
+        
         public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
         {
             var query = GetCatalogCustomImplListQuery(dto);
             var count = await query.CountDocumentsAsync();
-            // long count = 100002;
 
             var ll = await query
                 .PageBy(dto)
@@ -108,75 +77,9 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
 
             return new PagedResultDto<BsonDocument>((int)count, ll);
         }
-
-        //        public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
-        //        {
-        //            BsonDocument filter = BsonDocument.Parse("{ \"$or\" : [{ \"nombre_completo\" : /FER/i }, { \"edad\" : /FER/i }, { \"sexo\" : /FER/i }, { \"estado_civil\" : /FER/i }, { \"fecha_de_nacimiento\" : /FER/i }, { \"rfc\" : /FER/i }, { \"curp\" : /FER/i }, { \"nss\" : /FER/i }] }");
-        //            BsonDocument sorting = BsonDocument.Parse("{ \"_id\": 1 }");
-        //            BsonDocument projection = BsonDocument.Parse("{ \"_id\" : 1, \"nombre_completo\" : 1, \"edad\" : 1, \"sexo\" : 1, \"estado_civil\" : 1, \"fecha_de_nacimiento\" : 1, \"rfc\" : 1, \"curp\" : 1, \"nss\" : 1 } ");
-
-        //            var countFacet = AggregateFacet.Create("count",
-        //    PipelineDefinition<BsonDocument, AggregateCountResult>.Create(new[]
-        //    {
-        //        PipelineStageDefinitionBuilder.Count<BsonDocument>()
-        //    }));
-
-        //            var dataFacet = AggregateFacet.Create("data",
-        //            PipelineDefinition<BsonDocument, BsonDocument>.Create(new[]
-        //            {
-        //        PipelineStageDefinitionBuilder.Skip<BsonDocument>(0),
-        //        PipelineStageDefinitionBuilder.Limit<BsonDocument>(10),
-        //            }));
-
-        //            var aggregation = await _collection.Aggregate()
-        //                .Match(filter)
-        //                .Facet(countFacet, dataFacet)
-        //                .ToListAsync();
-
-        //            var count = aggregation.First()
-        //.Facets.First(x => x.Name == "count")
-        //.Output<AggregateCountResult>()
-        //.First()
-        //.Count;
-
-        //            var ll = aggregation.First()
-        //                .Facets.First(x => x.Name == "data")
-        //                .Output<BsonDocument>()
-        //                .ToList();
-
-        //            return new PagedResultDto<BsonDocument>((int)count, ll);
-        //        }
-
-
-        //public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
-        //{
-        //    BsonDocument filter = BsonDocument.Parse("{ \"$or\" : [{ \"nombre_completo\" : /FER/i }, { \"edad\" : /FER/i }, { \"sexo\" : /FER/i }, { \"estado_civil\" : /FER/i }, { \"fecha_de_nacimiento\" : /FER/i }, { \"rfc\" : /FER/i }, { \"curp\" : /FER/i }, { \"nss\" : /FER/i }] }");
-        //    BsonDocument grouping = BsonDocument.Parse("{ _id: \"$command\", uses: { $sum: 1 } }");
-        //    BsonDocument sorting = BsonDocument.Parse("{ \"uses\": -1 }");
-
-        //    var doc = await _collection.Aggregate()
-        //                .Match(filter)
-        //                .Group(grouping)
-        //                .Sort(sorting)
-        //                .FirstOrDefaultAsync();
-
-        //    return new PagedResultDto<BsonDocument>(0, new List<BsonDocument>());
-        //}
-
-
-        //public async Task<PagedResultDto<BsonDocument>> GetCatalogCustomImplListAsync(CatalogCustomImplListFilterDto dto)
-        //{
-        //    BsonDocument filter = BsonDocument.Parse("{ \"$or\" : [{ \"nombre_completo\" : /FER/i }, { \"edad\" : /FER/i }, { \"sexo\" : /FER/i }, { \"estado_civil\" : /FER/i }, { \"fecha_de_nacimiento\" : /FER/i }, { \"rfc\" : /FER/i }, { \"curp\" : /FER/i }, { \"nss\" : /FER/i }] }");
-        //    BsonDocument projection = BsonDocument.Parse("{ \"uses\": 1 }");
-
-        //    var doc = await _collection.AsQueryable().Where(p => p.GetValue("nombre_completo").AsString.ToUpper().Contains("FER")).CountAsync();
-
-        //    return new PagedResultDto<BsonDocument>(0, new List<BsonDocument>());
-        //}
-
+        
         public async Task<List<ComboboxItemDto>> GetCatalogCustomImplComboAsync(CatalogCustomImplComboFilterDto dto)
         {
-            List<ComboboxItemDto> combo = new List<ComboboxItemDto>();
             CatalogCustomDto catalogCustomDto = await _managerCatalogCustom.GetCatalogCustomAsync(dto.Catalog);
             QuestionnaireDto questionnaireDto = await _managerQuestionnaire.GetQuestionnaireAsync(catalogCustomDto.Questionnaire);
             QuestionnaireFieldDto questionnaireFieldDto = questionnaireDto.Sections.SelectMany(p => p.Fields).First(p => p.FieldName == dto.FieldName);
@@ -301,7 +204,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
         public Dictionary<string, object> ParseToDictionary(BsonDocument bsonDocument)
         {
             BsonDocument bsonDocumentAux = new BsonDocument();
-            Dictionary<string, object> dict = new Dictionary<string, object>();
             List<QuestionnaireFieldDto> fields = _questionnaireDto.Sections.SelectMany(p => p.Fields).ToList();
             bool existsBsonValue;
             BsonValue bsonValue;
@@ -374,9 +276,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
 
                     if (filter != null)
                     {
-                        //filtersJSON.Add(string.Format("{{ \"{0}\": /{1}/i }}", field.FieldName, filter));
-                        //filtersJSON.Add(string.Format("{{ \"{0}\": /^{1}/i }}", field.FieldName, filter));
-                        //filtersJSON.Add(string.Format("{{ \"{0}\": /{1}/ }}", field.FieldName, filter));
                         filtersJSON.Add(string.Format("{{ \"{0}\": \"{1}\" }}", field.FieldName, filter));
                     }
                 }
@@ -385,7 +284,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
             if (filtersJSON.Count > 0)
             {
                 query = _collection.Find(BsonDocument.Parse(string.Format("{{ \"$or\" : [{0}] }}", string.Join(", ", filtersJSON))));
-                //query = _collection.Find(BsonDocument.Parse(string.Format("{{ \"$or\" : [{0}] }}", string.Join(", ", filtersJSON))));
             }
 
             query = query.OrderBy(dto.Sorting.IsNullOrEmpty() ? "_id" : dto.Sorting);
@@ -498,7 +396,6 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
         public object GetSubdocumentFieldValueAsDocument(Binder<CatalogoCustomImplLizzieContext> context, Arguments args)
         {
             object result = null;
-            BsonDocument document = ((BsonDocument)args.Get(0));
             BsonValue bsonValue = _document[args.Get<string>(1)];
 
             if (bsonValue != null)

@@ -138,7 +138,7 @@ namespace AlgoriaCore.Application.Managers.Chat.Friendships
             return UpdateFriendship(dto);
         }
 
-        private FriendshipDto GetFriendship(Friendship entity)
+        private static FriendshipDto GetFriendship(Friendship entity)
         {
             var dto = new FriendshipDto();
 

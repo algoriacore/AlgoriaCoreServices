@@ -27,9 +27,7 @@ namespace AlgoriaCore.Application.Managers.Chat.ChatMessages
         
         public ChatMessageManager(
             IUnitOfWork currentUnitOfWork,
-            IClock clock,
             IAppLocalizationProvider appLocalizationProvider,
-
             FriendshipManager friendshipManager,
             IChatCommunicator chatCommunicator,
             IOnlineClientManager onlineClientManager,
@@ -38,9 +36,7 @@ namespace AlgoriaCore.Application.Managers.Chat.ChatMessages
             )
         {
             CurrentUnitOfWork = currentUnitOfWork;
-            Clock = clock;
             AppLocalizationProvider = appLocalizationProvider;
-
             _friendshipManager = friendshipManager;
             _chatCommunicator = chatCommunicator;
             _onlineClientManager = onlineClientManager;
@@ -236,7 +232,7 @@ namespace AlgoriaCore.Application.Managers.Chat.ChatMessages
             }
         }
 
-        private ChatMessageDto GetChatMessage(ChatMessage entity)
+        private static ChatMessageDto GetChatMessage(ChatMessage entity)
         {
             var dto = new ChatMessageDto();
 

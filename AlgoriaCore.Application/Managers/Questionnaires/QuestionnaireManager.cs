@@ -219,7 +219,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
 
                 catalogoCustomImplLizzieContext.SetDocument(dto);
 
-                var customValidation = LambdaCompiler.Compile(catalogoCustomImplLizzieContext, customCode);                
+                LambdaCompiler.Compile(catalogoCustomImplLizzieContext, customCode);                
             }
 
             if (failures.Count > 0)
@@ -354,7 +354,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
                                     HasKeyFilter = q.HasKeyFilter,
                                     InputMask = q.InputMask,
                                     IsRequired = q.IsRequired,
-                                    IsRequiredDesc = q.IsRequired == true ? yesLabel : noLabel,
+                                    IsRequiredDesc = q.IsRequired ? yesLabel : noLabel,
                                     KeyFilter = q.KeyFilter,
                                     Name = q.Name,
                                     Options = (List<QuestionnaireFieldOptionDto>)q.Options.Select(r => new QuestionnaireFieldOptionDto {
@@ -377,7 +377,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
                                         Locale = q.CustomProperties.Locale,
                                         MaxValue = q.CustomProperties.MaxValue,
                                         MinValue = q.CustomProperties.MinValue,
-                                        UseGrouping = q.CustomProperties.UseGrouping == true
+                                        UseGrouping = q.CustomProperties.UseGrouping
                                     }
                                 })
                             })
@@ -399,7 +399,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
                             Name = entity.Name,
                             UserCreator = entity.UserCreator,
                             IsActive = entity.IsActive,
-                            IsActiveDesc = entity.IsActive == true ? yesLabel : noLabel
+                            IsActiveDesc = entity.IsActive ? yesLabel : noLabel
                         };
 
             string filter = dto.Filter.IsNullOrEmpty() ? null : dto.Filter.ToUpper();
@@ -426,7 +426,7 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
             }
         }
 
-        private void AssignQuestionnaireSection(Questionnaire entity, QuestionnaireDto dto)
+        private static void AssignQuestionnaireSection(Questionnaire entity, QuestionnaireDto dto)
         {
             entity.Sections = dto.Sections.Select(p => new Section
             {

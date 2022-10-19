@@ -28,7 +28,7 @@ namespace AlgoriaCore.Application.Extensions
 
         public static string GetInvalidCharacters(this string value, string expression)
         {
-            string result = string.Empty;
+            StringBuilder result = new StringBuilder();
 
             if (!Regex.IsMatch(value, expression))
             {
@@ -38,12 +38,12 @@ namespace AlgoriaCore.Application.Extensions
 
                     if (!Regex.IsMatch(str, expression))
                     {
-                        result += !result.Contains(str) ? str : string.Empty;
+                        result.Append(!result.ToString().Contains(str) ? str : string.Empty);
                     }
                 }
             }
 
-            return result;
+            return result.ToString().Trim();
         }
 
         public static bool IsMatch(this string value, string pattern)

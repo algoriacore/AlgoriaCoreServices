@@ -51,9 +51,6 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMailStatus
 
         private IQueryable<MailServiceMailStatusDto> GetMailServiceMailStatusQuery()
         {
-            string yesLabel = L("Yes");
-            string noLabel = L("No");
-
             string status1 = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Pending");
             string status2 = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Success");
             string status3 = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Error");

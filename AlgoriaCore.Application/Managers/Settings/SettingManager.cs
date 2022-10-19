@@ -274,7 +274,7 @@ namespace AlgoriaCore.Application.Managers.Settings
                 if (_emailOptions.Value.SendMethod == EmailSendMethod.Grpc && !_emailOptions.Value.Grpc.SendConfiguration)
                 {
                     ChangeSetting(AppSettings.Mail.GrpcMail.TenancyName, dto.GrpcEmail.TenancyName);
-                    ChangeSetting(AppSettings.Mail.GrpcMail.UserName, dto.GrpcEmail.UserName);
+                    ChangeSetting(AppSettings.Mail.GrpcMail.GrpcUserName, dto.GrpcEmail.UserName);
                     ChangeSetting(AppSettings.Mail.GrpcMail.Password, dto.GrpcEmail.Password);
                 }
             }
@@ -410,7 +410,7 @@ namespace AlgoriaCore.Application.Managers.Settings
             {
                 SendConfiguration = _emailOptions.Value.Grpc.SendConfiguration,
                 TenancyName = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.TenancyName),
-                UserName = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.UserName),
+                UserName = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.GrpcUserName),
                 Password = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.Password),
                 Token = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.Token)
             };
@@ -452,7 +452,7 @@ namespace AlgoriaCore.Application.Managers.Settings
             if (_emailOptions.Value.SendMethod == EmailSendMethod.Grpc && !_emailOptions.Value.Grpc.SendConfiguration)
             {
                 ChangeSetting(AppSettings.Mail.GrpcMail.TenancyName, dto.GrpcEmail.TenancyName);
-                ChangeSetting(AppSettings.Mail.GrpcMail.UserName, dto.GrpcEmail.UserName);
+                ChangeSetting(AppSettings.Mail.GrpcMail.GrpcUserName, dto.GrpcEmail.UserName);
                 ChangeSetting(AppSettings.Mail.GrpcMail.Password, dto.GrpcEmail.Password);
             }
         }
