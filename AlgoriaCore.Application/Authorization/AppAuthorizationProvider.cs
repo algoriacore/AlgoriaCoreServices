@@ -1,17 +1,13 @@
 ﻿using AlgoriaCore.Application.Localization;
 using AlgoriaCore.Application.Managers.CatalogsCustom;
 using AlgoriaCore.Application.Managers.CatalogsCustom.Dto;
-using AlgoriaCore.Application.Managers.Templates;
-using AlgoriaCore.Application.Managers.Templates.Dto;
 using AlgoriaCore.Domain.Authorization;
-using AlgoriaCore.Domain.Entities.MongoDb;
 using AlgoriaCore.Domain.Exceptions;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
 using Autofac;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace AlgoriaCore.Application.Authorization
@@ -166,42 +162,6 @@ namespace AlgoriaCore.Application.Authorization
 			{
 				processes.CreateChildPermission(AppPermissions.Pages_Administration_Host_Maintenance, L("Maintenance"), multiTenancySides: MultiTenancySides.Host);
 			}
-
-            if (session != null)
-            {
-                MultiTenancySides multiTenancySides = session.TenantId.HasValue ? MultiTenancySides.Tenant : MultiTenancySides.Host;
-
-                TemplateManager managerTemplate = _lifetimeScope.Resolve<TemplateManager>();
-
-                using (managerTemplate.CurrentUnitOfWork.SetTenantId(session.TenantId))
-                {
-                    List<TemplateDto> templatesListDto = managerTemplate.GetTemplateReadyList();
-                    Permission permissionProcess;
-
-                    foreach (TemplateDto templateDto in templatesListDto)
-                    {
-                        permissionProcess = processes.CreateChildPermission(
-                            AppPermissions.CalculatePermissionNameForProcess(AppPermissions.Pages_Processes_Processes, session.TenantId, templateDto.Id.Value),
-                            templateDto.NamePlural, multiTenancySides: multiTenancySides);
-                        permissionProcess.CreateChildPermission(
-                            AppPermissions.CalculatePermissionNameForProcess(AppPermissions.Pages_Processes_Processes_Create, session.TenantId, templateDto.Id.Value),
-                            L("Create"), multiTenancySides: multiTenancySides);
-                        permissionProcess.CreateChildPermission(
-                            AppPermissions.CalculatePermissionNameForProcess(AppPermissions.Pages_Processes_Processes_Edit, session.TenantId, templateDto.Id.Value),
-                            L("Edit"), multiTenancySides: multiTenancySides);
-                        permissionProcess.CreateChildPermission(
-                            AppPermissions.CalculatePermissionNameForProcess(AppPermissions.Pages_Processes_Processes_Delete, session.TenantId, templateDto.Id.Value),
-                            L("Delete"), multiTenancySides: multiTenancySides);
-
-                        if (templateDto.IsActivity)
-                        {
-                            permissionProcess.CreateChildPermission(
-                                AppPermissions.CalculatePermissionNameForProcess(AppPermissions.Pages_Processes_Processes_TimeSheet_Create, session.TenantId, templateDto.Id.Value),
-                                L("Processes.Process.ToDoTimeSheets.Register"), multiTenancySides: multiTenancySides);
-                        }
-                    }
-                }
-            }
 		}
 
         private void SetQuestionnairesPermissions()
@@ -231,9 +191,7 @@ namespace AlgoriaCore.Application.Authorization
 
 				CatalogCustomManager managerCatalogCustom = _lifetimeScope.Resolve<CatalogCustomManager>();
 
-				TemplateManager managerTemplate = _lifetimeScope.Resolve<TemplateManager>();
-
-				using (managerTemplate.CurrentUnitOfWork.SetTenantId(session.TenantId))
+				using (managerCatalogCustom.CurrentUnitOfWork.SetTenantId(session.TenantId))
 				{
 					List<CatalogCustomDto> catalogsCustomListDto = managerCatalogCustom.GetCatalogCustomActiveListAsync();
 					Permission permissionCatalogCustom;

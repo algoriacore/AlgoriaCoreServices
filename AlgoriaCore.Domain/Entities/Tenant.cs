@@ -26,13 +26,6 @@ namespace AlgoriaCore.Domain.Entities
             SampleDateData = new HashSet<SampleDateData>();
             Setting = new HashSet<Setting>();
             SettingClient = new HashSet<SettingClient>();
-            Template = new HashSet<Template>();
-            TemplateField = new HashSet<TemplateField>();
-            TemplateFieldRelation = new HashSet<TemplateFieldRelation>();
-            TemplateSection = new HashSet<TemplateSection>();
-            TemplateToDoStatus = new HashSet<TemplateToDoStatus>();
-            ToDoActivity = new HashSet<ToDoActivity>();
-            ToDoTimeSheet = new HashSet<ToDoTimeSheet>();
             User = new HashSet<User>();
             help = new HashSet<help>();
             mailgroup = new HashSet<mailgroup>();
@@ -61,13 +54,6 @@ namespace AlgoriaCore.Domain.Entities
         public virtual ICollection<SampleDateData> SampleDateData { get; set; }
         public virtual ICollection<Setting> Setting { get; set; }
         public virtual ICollection<SettingClient> SettingClient { get; set; }
-        public virtual ICollection<Template> Template { get; set; }
-        public virtual ICollection<TemplateField> TemplateField { get; set; }
-        public virtual ICollection<TemplateFieldRelation> TemplateFieldRelation { get; set; }
-        public virtual ICollection<TemplateSection> TemplateSection { get; set; }
-        public virtual ICollection<TemplateToDoStatus> TemplateToDoStatus { get; set; }
-        public virtual ICollection<ToDoActivity> ToDoActivity { get; set; }
-        public virtual ICollection<ToDoTimeSheet> ToDoTimeSheet { get; set; }
         public virtual ICollection<User> User { get; set; }
         public virtual ICollection<help> help { get; set; }
         public virtual ICollection<mailgroup> mailgroup { get; set; }

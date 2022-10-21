@@ -4,7 +4,6 @@ using AlgoriaCore.Application.Managers.UserConfiguration;
 using AlgoriaCore.Application.Managers.UserConfiguration.Dto;
 using AlgoriaCore.Application.QueriesAndCommands.CatalogsCustom;
 using AlgoriaCore.Application.QueriesAndCommands.MultiTenancy;
-using AlgoriaCore.Application.QueriesAndCommands.Templates;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -50,17 +49,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.UserConfiguration
                     Values = dto.Permission.Values
                 },
                 SettingsClient = dto.SettingsClient,
-                Templates = dto.Templates.Select(p => new TemplateResponse()
-                {
-                    Id = p.Id,
-                    RGBColor = p.RGBColor,
-                    NameSingular = p.NameSingular,
-                    NamePlural = p.NamePlural,
-                    Description = p.Description,
-                    Icon = p.Icon,
-                    IsActivity = p.IsActivity,
-                    HasSecurity = p.HasSecurity
-                }).ToList(),
                 CatalogsCustom = dto.CatalogsCustom.Select(p => new CatalogCustomResponse()
                 {
                     Id = p.Id,

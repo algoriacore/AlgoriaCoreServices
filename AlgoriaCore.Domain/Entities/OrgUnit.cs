@@ -11,8 +11,6 @@ namespace AlgoriaCore.Domain.Entities
         {
             InverseParentOUNavigation = new HashSet<OrgUnit>();
             OrgUnitUser = new HashSet<OrgUnitUser>();
-            TemplateDefaultOUEditor = new HashSet<TemplateDefaultOUEditor>();
-            TemplateDefaultOUReader = new HashSet<TemplateDefaultOUReader>();
         }
 
         public int? TenantId { get; set; }
@@ -25,7 +23,5 @@ namespace AlgoriaCore.Domain.Entities
         public virtual Tenant? Tenant { get; set; }
         public virtual ICollection<OrgUnit> InverseParentOUNavigation { get; set; }
         public virtual ICollection<OrgUnitUser> OrgUnitUser { get; set; }
-        public virtual ICollection<TemplateDefaultOUEditor> TemplateDefaultOUEditor { get; set; }
-        public virtual ICollection<TemplateDefaultOUReader> TemplateDefaultOUReader { get; set; }
     }
 }
