@@ -53,6 +53,8 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
                 .PageBy(input)
                 .ToListAsync();
 
+            var sql = query.ToSql();
+
             return new PagedResultDto<MailTemplateDto>(count, ll);
         }
 
@@ -336,7 +338,7 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
             var userModificationDesc = L("MailKey.UserModification");
             var chatTaggedUserDesc = L("MailKey.ChatTaggedUser");
 
-            var query = (from mt in _repMailTemplate.GetAll()
+			var query = (from mt in _repMailTemplate.GetAll()
                          select new MailTemplateDto
                          {
                              Id = mt.Id,

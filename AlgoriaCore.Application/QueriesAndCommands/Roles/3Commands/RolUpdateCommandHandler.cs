@@ -42,7 +42,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
             var permisoDtoList = permisoList.Select(s => new PermissionDto
             {
                 Name = s,
-                DisplayName = pNames.Any(a => a.Name == s) ? pNames.FirstOrDefault(a => a.Name == s).DisplayName : null
+                DisplayName = pNames.Any(a => a.Name == s) ? pNames.FirstOrDefault(a => a.Name == s)?.DisplayName : null
             }).ToList();
 
             await _rolManager.ReplacePermissionAsync(rolDto.Id.Value, permisoDtoList);

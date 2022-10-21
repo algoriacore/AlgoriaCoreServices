@@ -121,11 +121,19 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
             string status3 = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Error");
             string status4 = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Canceled");
 
-            var query = (from entity in _repMailServiceMail.GetAll()
+            List<StatusQueryDto<byte>> lstStatus = new List<StatusQueryDto<byte>>();
+            lstStatus.Add(new StatusQueryDto<byte>() { Id = 1, Description = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Pending") });
+			lstStatus.Add(new StatusQueryDto<byte>() { Id = 2, Description = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Success") });
+			lstStatus.Add(new StatusQueryDto<byte>() { Id = 3, Description = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Error") });
+			lstStatus.Add(new StatusQueryDto<byte>() { Id = 4, Description = L("MailServiceMailStatuss.MailServiceMailStatus.Status.Canceled") });
+
+			var query = (from entity in _repMailServiceMail.GetAll()
                          join mailServiceRequest in _repMailServiceRequest.GetAll() on entity.MailServiceRequest equals mailServiceRequest.Id into mailServiceRequestX
                          from mailServiceRequest in mailServiceRequestX.DefaultIfEmpty()
                          join mailServiceMailStatus in _repMailServiceMailStatus.GetAll() on entity.Id equals mailServiceMailStatus.MailServiceMail into mailServiceMailStatusX
                          from mailServiceMailStatus in mailServiceMailStatusX.DefaultIfEmpty()
+                         join st in lstStatus on mailServiceMailStatus.Status equals st.Id into stX
+                         from st in lstStatus.DefaultIfEmpty()
                          select new MailServiceMailDto
                          {
                              Id = entity.Id,
@@ -139,10 +147,11 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
                              BlindCopyTo = entity.BlindCopyTo,
                              Subject = entity.Subject,
                              Status = mailServiceMailStatus.Status,
-                             StatusDesc = mailServiceMailStatus.Status == 1 ? status1 :
-                                        (mailServiceMailStatus.Status == 2 ? status2 :
-                                        (mailServiceMailStatus.Status == 3 ? status3 :
-                                        (mailServiceMailStatus.Status == 4 ? status4 : string.Empty)))
+                             StatusDesc = st.Description
+                             //StatusDesc = mailServiceMailStatus.Status == 1 ? status1 :
+                             //           (mailServiceMailStatus.Status == 2 ? status2 :
+                             //           (mailServiceMailStatus.Status == 3 ? status3 :
+                             //           (mailServiceMailStatus.Status == 4 ? status4 : string.Empty)))
                          });
 
             return query;

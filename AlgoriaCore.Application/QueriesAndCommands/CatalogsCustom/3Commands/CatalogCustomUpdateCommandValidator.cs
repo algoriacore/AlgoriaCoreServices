@@ -15,7 +15,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.CatalogsCustom
             string labelRequiredField = L("RequiredField");
             string labelInvalidFormat = L("FieldInvalidFormat");
 
-            string labelId = L("Id");
             string labelDescription = L("CatalogsCustom.CatalogCustom.Description");
             string labelNameSingular = L("CatalogsCustom.CatalogCustom.NameSingular");
             string labelNamePlural = L("CatalogsCustom.CatalogCustom.NamePlural");

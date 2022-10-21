@@ -45,7 +45,7 @@ namespace AlgoriaCore.Application.Managers.Auditing
                 if (serviceNamePart.Contains(','))
                 {
 					genericServiceName.Append(GetTextAfterLastDot(serviceNamePart.Substring(0, serviceNamePart.IndexOf(','))));
-                    if (i + 1 < serviceNameParts.Count && serviceNameParts[i + 1].Contains(","))
+                    if (i + 1 < serviceNameParts.Count && serviceNameParts[i + 1].Contains(','))
                     {
 						genericServiceName.Append(", ");
                     }

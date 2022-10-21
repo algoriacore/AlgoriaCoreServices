@@ -61,7 +61,7 @@ namespace AlgoriaCore.WebUI.Filters
 
                     if (context.HttpContext.User.Claims.Any(c => c.Type == "TenantId"))
                     {
-                        tenantId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenantId").Value;
+                        tenantId = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "TenantId")?.Value;
                     }
 
                     if ((multiTenancySideEnum == MultiTenancySides.Host && !tenantId.IsNullOrEmpty())

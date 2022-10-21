@@ -14,12 +14,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRoomChats
 
             string labelGreaterThan = L("FieldGreaterThan");
             string labelRequiredField = L("RequiredField");
-            string labelMaxLength = L("FieldMaxLength");
 
             string labelChatRoom = L("ChatRoomChats.ChatRoomChat.ChatRoom");
             string labelComment = L("ChatRoomChats.ChatRoomChat.Comment");
-            string labelFileName = L("ChatRoomChats.ChatRoomChat.FileName");
-            string labelFileExtension = L("ChatRoomChats.ChatRoomChat.FileExtension");
 
             RuleFor(x => x.ChatRoom).GreaterThan(0).WithMessage(string.Format(labelGreaterThan, labelChatRoom, 0));
             RuleFor(x => x.Comment).NotEmpty().WithMessage(string.Format(labelRequiredField, labelComment));

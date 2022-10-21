@@ -17,7 +17,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRooms
             string labelChatRoomId = L("ChatRooms.ChatRoom.ChatRoomId");
             string labelName = L("ChatRooms.ChatRoom.Name");
             string labelDescription = L("ChatRooms.ChatRoom.Description");
-            string labelRGBColor = L("ChatRooms.ChatRoom.RGBColor");
 
             RuleFor(x => x.ChatRoomId).NotEmpty().WithMessage(string.Format(labelRequiredField, labelChatRoomId));
             RuleFor(x => x.ChatRoomId).MaximumLength(50).WithMessage(string.Format(labelMaxLength, labelChatRoomId, 50));

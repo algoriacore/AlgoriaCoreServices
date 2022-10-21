@@ -25,7 +25,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRooms
         public async Task<ChatRoomForEditResponse> Handle(ChatRoomGetForEditQuery request, CancellationToken cancellationToken)
         {
             ChatRoomForEditResponse response;
-            List<ComboboxItemDto> languageComboDto = await _managerLanguage.GetLanguageCombo();
 
             if (request.Id.HasValue)
             {

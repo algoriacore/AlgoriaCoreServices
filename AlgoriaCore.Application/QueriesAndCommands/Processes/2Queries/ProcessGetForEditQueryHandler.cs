@@ -71,8 +71,8 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Processes
                 response = new ProcessForEditResponse();
             }
 
-            response.Template = await _mediator.Send(new TemplateGetByIdQuery() { Id = request.Template });
-            response.TemplateFields = await _mediator.Send(new TemplateFieldGetListByTemplateQuery() { Template = request.Template, OnlyProcessed = true });
+            response.Template = await _mediator.Send(new TemplateGetByIdQuery() { Id = request.Template }, cancellationToken);
+            response.TemplateFields = await _mediator.Send(new TemplateFieldGetListByTemplateQuery() { Template = request.Template, OnlyProcessed = true }, cancellationToken);
 
             if (response.Template.IsActivity)
             {

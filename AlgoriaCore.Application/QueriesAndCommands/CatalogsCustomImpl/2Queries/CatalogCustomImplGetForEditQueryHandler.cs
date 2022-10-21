@@ -48,8 +48,8 @@ namespace AlgoriaCore.Application.QueriesAndCommands.CatalogsCustomImpl
                 };
             }
 
-            response.CatalogCustom = await _mediator.Send(new CatalogCustomGetByIdQuery() { Id = request.Catalog });
-            response.Questionnaire = await _mediator.Send(new QuestionnaireGetByIdQuery() { Id = response.CatalogCustom.Questionnaire });
+            response.CatalogCustom = await _mediator.Send(new CatalogCustomGetByIdQuery() { Id = request.Catalog }, cancellationToken);
+            response.Questionnaire = await _mediator.Send(new QuestionnaireGetByIdQuery() { Id = response.CatalogCustom.Questionnaire }, cancellationToken);
 
             return response;
         }

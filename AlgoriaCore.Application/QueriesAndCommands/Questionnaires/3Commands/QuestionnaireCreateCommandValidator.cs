@@ -23,11 +23,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Questionnaires
 
             string labelName = L("QuestionnaireFields.QuestionnaireField.Name");
 
-            string labelSection = L("QuestionnaireSections.QuestionnaireSection") + " {CollectionIndex}: ";
             string labelSectionName = L("QuestionnaireSections.QuestionnaireSection.Name");
             string labelSectionOrder = L("QuestionnaireSections.QuestionnaireSection.Order");
 
-            string labelField = L("QuestionnaireFields.QuestionnaireField") + " {CollectionIndex}: ";
             string labelFieldName = L("QuestionnaireFields.QuestionnaireField.Name");
             string labelFieldOrder = L("QuestionnaireFields.QuestionnaireField.Order");
             string labelFieldType = L("QuestionnaireFields.QuestionnaireField.Type");
@@ -77,7 +75,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Questionnaires
                         }
                     }
 
-                    if (!(s.Order > 0))
+                    if (s.Order <= 0)
                     {
                         b.AddFailure(new ValidationFailure(sectionPath, sectionPath + separator + string.Format(labelGreaterThan, labelSectionOrder, 0)));
                     } else if (a.Sections.Count(p => p.Order == s.Order) > 1)
@@ -108,17 +106,17 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Questionnaires
                             }
                         }
 
-                        if (!(f.FieldType > 0))
+                        if (f.FieldType <= 0)
                         {
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + string.Format(labelRequiredField, labelFieldType)));
                         }
 
-                        if (!(f.FieldControl > 0))
+                        if (f.FieldControl <= 0)
                         {
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + string.Format(labelRequiredField, labelFieldControl)));
                         }
 
-                        if (f.FieldSize == null || !(f.FieldSize > 0))
+                        if (f.FieldSize == null || f.FieldSize <= 0)
                         {
                             if (f.FieldType == QuestionnaireFieldType.Text)
                             {
@@ -139,7 +137,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Questionnaires
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + string.Format(labelRequiredField, labelFieldKeyFilter)));
                         }
 
-                        if (!(s.Order > 0))
+                        if (s.Order <= 0)
                         {
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + string.Format(labelGreaterThan, labelFieldOrder, 0)));
                         }
@@ -148,7 +146,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Questionnaires
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + L("QuestionnaireFields.QuestionnaireField.DuplicatedOrder")));
                         }
 
-                        if ((f.Options == null || !(f.Options.Count > 0)) && MustFieldControlHaveOptions(f.FieldControl))
+                        if ((f.Options == null || f.Options.Count <= 0) && MustFieldControlHaveOptions(f.FieldControl))
                         {
                             b.AddFailure(new ValidationFailure(fieldPath, fieldPath + separator + string.Format(labelRequiredField, labelFieldOptions)));
                         }
