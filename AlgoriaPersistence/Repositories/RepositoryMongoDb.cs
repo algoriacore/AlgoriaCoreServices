@@ -148,8 +148,16 @@ namespace AlgoriaPersistence.Repositories
 
         public string GetCollectionName()
         {
-            return (typeof(TEntity).GetCustomAttributes(typeof(BsonCollectionNameAttribute), true).FirstOrDefault()
-                as BsonCollectionNameAttribute).CollectionName;
+            string resp = null;
+
+            var tipo = typeof(TEntity).GetCustomAttributes(typeof(BsonCollectionNameAttribute), true).FirstOrDefault();
+
+            if (tipo != null)
+            {
+                resp = (tipo as BsonCollectionNameAttribute).CollectionName;
+            }
+
+            return resp;
         }
 
         public IMongoCollection<TEntity> GetCollection()

@@ -107,11 +107,11 @@ namespace AlgoriaInfrastructure.FileStorage
                 putRequest2.Metadata.Add("x-amz-meta-title", keyName);
                 await _client.PutObjectAsync(putRequest2);
             }
-            catch (AmazonS3Exception e)
+            catch (AmazonS3Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }
@@ -136,11 +136,11 @@ namespace AlgoriaInfrastructure.FileStorage
                 return fResp;
 
             }
-            catch (AmazonS3Exception e)
+            catch (AmazonS3Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }
@@ -158,11 +158,11 @@ namespace AlgoriaInfrastructure.FileStorage
 
                 await _client.DeleteObjectAsync(deleteObjectRequest);
             }
-            catch (AmazonS3Exception e)
+            catch (AmazonS3Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }

@@ -278,12 +278,13 @@ namespace AlgoriaCore.Application.Managers.Processes
             }
         }
 
-        private static Dictionary<string, object> GetParametersForInsert(List<TemplateFieldDto> fields, Dictionary<string, string> data) {
+        private static Dictionary<string, object> GetParametersForInsert(List<TemplateFieldDto> fields, Dictionary<string, string> data)
+        {
             Dictionary<string, object> aParameters = new Dictionary<string, object>();
 
-            foreach (TemplateFieldDto field in fields)
+            foreach (var field in fields.Select(m => m.FieldName))
             {
-                aParameters.Add("@" + field.FieldName, data[field.FieldName]);
+                aParameters.Add("@" + field, data[field]);
             }
 
             return aParameters;
@@ -523,7 +524,7 @@ namespace AlgoriaCore.Application.Managers.Processes
                 await CreateProcessSecurityMemberAsync(item);
             }
         }
-        
+
         private async Task<List<ProcessSecurityMemberDto>> GetProcessSecurityMemberFromActivityAsync(ToDoActivityDto dto)
         {
             List<ProcessSecurityMemberDto> list = new List<ProcessSecurityMemberDto>();
@@ -542,7 +543,7 @@ namespace AlgoriaCore.Application.Managers.Processes
                     IsExecutor = false
                 };
 
-                switch (statusDto.Type) 
+                switch (statusDto.Type)
                 {
                     case TemplateToDoStatusType.Pending:
                     case TemplateToDoStatusType.Returned:
@@ -561,9 +562,9 @@ namespace AlgoriaCore.Application.Managers.Processes
                 list.Add(processSecurityMemberDto);
             }
 
-            foreach (ToDoActivityUserDto evaluator in dto.Evaluator)
+            foreach (var usr in dto.Evaluator.Select(m => m.User))
             {
-                processSecurityMemberDto = list.FirstOrDefault(p => p.Member == evaluator.User);
+                processSecurityMemberDto = list.FirstOrDefault(p => p.Member == usr);
 
                 if (processSecurityMemberDto == null)
                 {
@@ -571,7 +572,7 @@ namespace AlgoriaCore.Application.Managers.Processes
                     {
                         Parent = parent,
                         Type = SecurityMemberType.User,
-                        Member = evaluator.User,
+                        Member = usr,
                         Level = SecurityMemberLevel.Reader,
                         IsExecutor = false
                     };

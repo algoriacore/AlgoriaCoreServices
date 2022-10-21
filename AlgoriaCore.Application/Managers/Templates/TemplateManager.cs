@@ -718,10 +718,10 @@ namespace AlgoriaCore.Application.Managers.Templates
                     templateDto.TableName, templateField.FieldName, templateField.TemplateFieldRelationTemplateTableName));
             }
 
-            foreach (TemplateFieldDto templateField in templateFields.Where(p => p.FieldType == TemplateFieldType.User))
+            foreach (var fieldName in templateFields.Where(p => p.FieldType == TemplateFieldType.User).Select(m => m.FieldName))
             {
-                userTable = templateField.FieldName + "_User";
-                joins.Add(string.Format("LEFT JOIN [User] {0} ON {1}.{2} = {3}.Id", userTable, templateDto.TableName, templateField.FieldName, userTable));
+                userTable = fieldName + "_User";
+                joins.Add(string.Format("LEFT JOIN [User] {0} ON {1}.{2} = {3}.Id", userTable, templateDto.TableName, fieldName, userTable));
             }
 
             if (templateDto.HasSecurity && !isRead) {

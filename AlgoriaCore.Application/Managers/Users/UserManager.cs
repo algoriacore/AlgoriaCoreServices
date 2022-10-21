@@ -758,9 +758,9 @@ namespace AlgoriaCore.Application.Managers.Users
 		{
 			var ll = await _repUserRole.GetAll().Where(m => m.UserId == userId).ToListAsync();
 
-			foreach (var r in rolList)
+			foreach (var r in rolList.Select(m => m.Id))
 			{
-				var rol = ll.FirstOrDefault(m => m.RoleId == r.Id);
+				var rol = ll.FirstOrDefault(m => m.RoleId == r);
 
 				if (rol != null)
 				{
@@ -768,7 +768,7 @@ namespace AlgoriaCore.Application.Managers.Users
 				}
 				else
 				{
-					_repUserRole.Insert(new UserRole { UserId = userId, RoleId = r.Id });
+					_repUserRole.Insert(new UserRole { UserId = userId, RoleId = r });
 					await CurrentUnitOfWork.SaveChangesAsync();
 				}
 			}
