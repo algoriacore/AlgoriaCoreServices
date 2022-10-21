@@ -123,6 +123,8 @@
     <text name="ExpandAll" value="Expandir todo" />
     <text name="CollapseAll" value="Collapsar todo" />
 
+      <text name="LogoApp" value="Logo aplicación" />
+      
     <text name="UserCreator" value="Usuario creador" />
     <text name="CreationDateTime" value="Fecha y hora de creación" />
 

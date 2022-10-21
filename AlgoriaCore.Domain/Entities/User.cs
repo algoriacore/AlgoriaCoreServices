@@ -24,12 +24,6 @@ namespace AlgoriaCore.Domain.Entities
             OrgUnitUser = new HashSet<OrgUnitUser>();
             Setting = new HashSet<Setting>();
             SettingClient = new HashSet<SettingClient>();
-            TemplateDefaultUserEditor = new HashSet<TemplateDefaultUserEditor>();
-            TemplateDefaultUserReader = new HashSet<TemplateDefaultUserReader>();
-            ToDoActEvaluator = new HashSet<ToDoActEvaluator>();
-            ToDoActExecutor = new HashSet<ToDoActExecutor>();
-            ToDoActivity = new HashSet<ToDoActivity>();
-            ToDoTimeSheet = new HashSet<ToDoTimeSheet>();
             UserPasswordHistory = new HashSet<UserPasswordHistory>();
             UserRole = new HashSet<UserRole>();
         }
@@ -71,12 +65,6 @@ namespace AlgoriaCore.Domain.Entities
         public virtual ICollection<OrgUnitUser> OrgUnitUser { get; set; }
         public virtual ICollection<Setting> Setting { get; set; }
         public virtual ICollection<SettingClient> SettingClient { get; set; }
-        public virtual ICollection<TemplateDefaultUserEditor> TemplateDefaultUserEditor { get; set; }
-        public virtual ICollection<TemplateDefaultUserReader> TemplateDefaultUserReader { get; set; }
-        public virtual ICollection<ToDoActEvaluator> ToDoActEvaluator { get; set; }
-        public virtual ICollection<ToDoActExecutor> ToDoActExecutor { get; set; }
-        public virtual ICollection<ToDoActivity> ToDoActivity { get; set; }
-        public virtual ICollection<ToDoTimeSheet> ToDoTimeSheet { get; set; }
         public virtual ICollection<UserPasswordHistory> UserPasswordHistory { get; set; }
         public virtual ICollection<UserRole> UserRole { get; set; }
     }

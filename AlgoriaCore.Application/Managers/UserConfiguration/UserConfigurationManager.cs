@@ -6,12 +6,10 @@ using AlgoriaCore.Application.Managers.Permissions;
 using AlgoriaCore.Application.Managers.Settings;
 using AlgoriaCore.Application.Managers.SettingsClient;
 using AlgoriaCore.Application.Managers.SettingsClient.Dto;
-using AlgoriaCore.Application.Managers.Templates;
 using AlgoriaCore.Application.Managers.Tenants;
 using AlgoriaCore.Application.Managers.UserConfiguration.Dto;
 using AlgoriaCore.Application.MultiTenancy;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
-using AlgoriaCore.Extensions;
 using AlgoriaPersistence.Interfaces.Interfaces;
 using Autofac;
 using System.Collections.Generic;
@@ -26,7 +24,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
         private readonly PermissionManager _permissionManager;
         private readonly SettingClientManager _settingClientManagerManager;
         private readonly TenantManager _managerTenant;
-        private readonly TemplateManager _managerTemplate;
         private readonly SettingManager _managerSetting;
         
         private readonly IMultiTenancyConfig _multiTenancyConfig;
@@ -38,7 +35,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
             PermissionManager permissionManager,
             SettingClientManager settingClientManagerManager,
             TenantManager managerTenant,
-            TemplateManager managerTemplate,
             SettingManager managerSetting,
             IMultiTenancyConfig multiTenancyConfig,
             IMongoDBContext context,
@@ -49,7 +45,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
             _permissionManager = permissionManager;
             _settingClientManagerManager = settingClientManagerManager;
             _managerTenant = managerTenant;
-            _managerTemplate = managerTemplate;
             _managerSetting = managerSetting;
             _multiTenancyConfig = multiTenancyConfig;
             _context = context;
@@ -97,8 +92,6 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
                     List<SettingClientDto> settingsClientList = await _settingClientManagerManager.GetSettingClientByClientTypeAndUserLogged(filterDto.ClientType);
                     dto.SettingsClient = settingsClientList.ToDictionary(p => p.Name, p => p.Value);
                 }
-
-                dto.Templates = await _managerTemplate.GetTemplateReadyListAsync();
 
                 if (tenantId.HasValue && _context.IsEnabled && _context.IsActive)
                 {
