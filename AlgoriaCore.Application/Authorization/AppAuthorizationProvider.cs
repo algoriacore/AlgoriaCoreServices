@@ -74,8 +74,6 @@ namespace AlgoriaCore.Application.Authorization
 
                 SetAdministrationPermissions();
 
-				SetProcessesPermissions(session);
-
                 SetQuestionnairesPermissions();
 
 				SetCatalogsCustomPermissions(session);
@@ -139,29 +137,6 @@ namespace AlgoriaCore.Application.Authorization
 			}
 
 			administration.CreateChildPermission(AppPermissions.Pages_Administration_Tenant_Settings, L("Tenant.Settings"), multiTenancySides: MultiTenancySides.Tenant);
-		}
-
-		private void SetProcessesPermissions(IAppSession session)
-        {
-			var processes = Root.CreateChildPermission(AppPermissions.Pages_Processes, L("Processes"));
-
-			var templates = processes.CreateChildPermission(AppPermissions.Pages_Processes_Templates, L("Templates"));
-			templates.CreateChildPermission(AppPermissions.Pages_Processes_Templates_Create, L("Create"));
-			templates.CreateChildPermission(AppPermissions.Pages_Processes_Templates_Edit, L("Edit"));
-			templates.CreateChildPermission(AppPermissions.Pages_Processes_Templates_Delete, L("Delete"));
-
-			processes.CreateChildPermission(AppPermissions.Pages_Administration_Host_Settings, L("Host.Settings"), multiTenancySides: MultiTenancySides.Host);
-
-			var tenants = Root.CreateChildPermission(AppPermissions.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
-			tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Create, L("Create"), multiTenancySides: MultiTenancySides.Host);
-			tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Edit, L("Edit"), multiTenancySides: MultiTenancySides.Host);
-			tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Delete, L("Delete"), multiTenancySides: MultiTenancySides.Host);
-			tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Impersonation, L("Impersonate"), multiTenancySides: MultiTenancySides.Host);
-
-			if (_multiTenancyConfig.IsEnabled())
-			{
-				processes.CreateChildPermission(AppPermissions.Pages_Administration_Host_Maintenance, L("Maintenance"), multiTenancySides: MultiTenancySides.Host);
-			}
 		}
 
         private void SetQuestionnairesPermissions()
