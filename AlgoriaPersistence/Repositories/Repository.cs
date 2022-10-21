@@ -403,7 +403,7 @@ namespace AlgoriaPersistence.Repositories
 
         public List<string> GetColumnNames()
         {
-            return Context.Model.FindEntityType(typeof(TEntity))
+			return Context.Model.FindEntityType(typeof(TEntity))
                            .GetProperties().Select(x => x.GetColumnName())
                            .ToList();
         }

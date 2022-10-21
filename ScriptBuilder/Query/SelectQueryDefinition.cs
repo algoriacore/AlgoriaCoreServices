@@ -152,7 +152,7 @@ namespace ScriptBuilder.Query
 
 						if (d < values.Count - 1)
 						{
-							sb.Append(",");
+							sb.Append(',');
 						}
 
 						d++;
@@ -161,7 +161,7 @@ namespace ScriptBuilder.Query
 
 				if (c < allValues.Count - 1)
 				{
-					sb.Append(",");
+					sb.Append(',');
 				}
 
 				c++;

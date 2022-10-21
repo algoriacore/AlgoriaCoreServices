@@ -13,7 +13,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.TemplateToDoStatus
 
             string labelRequiredField = L("RequiredField");
             string labelMaxLength = L("FieldMaxLength");
-            string labelGreaterThan = L("FieldGreaterThan");
 
             string labelTemplate = L("TemplateToDoStatus.TemplateToDoStatus.Template");
             string labelName = L("TemplateToDoStatus.TemplateToDoStatus.Name");

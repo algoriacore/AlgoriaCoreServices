@@ -30,7 +30,7 @@ namespace AlgoriaInfrastructure.FileStorage
             var uid = Guid.NewGuid().ToString();
             string tempFileName = "";
 
-            if (request.FileName.IndexOf('.') >= 0)
+            if (request.FileName.Contains('.'))
             {
                 tempFileName = string.Format("{0}.{1}", uid, request.FileName.Substring(request.FileName.LastIndexOf('.') + 1));
             }

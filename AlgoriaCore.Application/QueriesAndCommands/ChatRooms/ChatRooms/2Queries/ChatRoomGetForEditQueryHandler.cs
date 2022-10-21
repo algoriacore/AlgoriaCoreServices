@@ -14,12 +14,10 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRooms
     public class ChatRoomGetForEditQueryHandler : BaseCoreClass, IRequestHandler<ChatRoomGetForEditQuery, ChatRoomForEditResponse>
     {
         private readonly ChatRoomManager _managerChatRoom;
-        private readonly LanguageManager _managerLanguage;
 
-        public ChatRoomGetForEditQueryHandler(ICoreServices coreServices, ChatRoomManager managerChatRoom, LanguageManager managerLanguage) : base(coreServices)
+        public ChatRoomGetForEditQueryHandler(ICoreServices coreServices, ChatRoomManager managerChatRoom) : base(coreServices)
         {
             _managerChatRoom = managerChatRoom;
-            _managerLanguage = managerLanguage;
         }
 
         public async Task<ChatRoomForEditResponse> Handle(ChatRoomGetForEditQuery request, CancellationToken cancellationToken)

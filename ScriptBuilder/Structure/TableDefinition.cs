@@ -147,7 +147,7 @@ namespace ScriptBuilder.Structure
 
 					if (c < _newFieldsDefinitions.Count)
 					{
-						sbPattern.Append(",");
+						sbPattern.Append(',');
 					}
 
 					sbPattern.AppendLine();

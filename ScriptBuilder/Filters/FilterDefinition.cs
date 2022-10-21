@@ -135,7 +135,7 @@ namespace ScriptBuilder.Filters
 
 			if (_isGrouper)
 			{
-				sb.Append(")");
+				sb.Append(')');
 			}
 
 			return sb.ToString();

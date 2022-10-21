@@ -2,7 +2,8 @@
 
 namespace AlgoriaCore.Domain.Attributes
 {
-    public class MongoTransactionalAttribute : Attribute
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]
+	public class MongoTransactionalAttribute : Attribute
     {
     }
 }

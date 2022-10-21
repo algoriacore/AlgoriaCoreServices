@@ -248,7 +248,7 @@ namespace AlgoriaCore.Application.Managers.Processes
             }
             catch (Exception)
             {
-                throw new EntityHasRelationships(L("Processes.RecordHasRelationshipsMessage"));
+                throw new EntityHasRelationshipsException(L("Processes.RecordHasRelationshipsMessage"));
             }
 
             await LogChangeProcessAsync(null, previousDto, ChangeLogType.Delete, null);

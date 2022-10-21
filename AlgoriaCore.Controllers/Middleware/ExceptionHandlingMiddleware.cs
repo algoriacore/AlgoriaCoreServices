@@ -167,8 +167,7 @@ namespace AlgoriaCore.WebAPI.Middleware
             httpContext.Response.StatusCode = StatusCode;
             httpContext.Response.Headers.Add("Access-Control-Expose-Headers", "errormessage");
             httpContext.Response.Headers.Add("errormessage", base64);
-            await httpContext.Response.Body.WriteAsync(data, 0, data.Length);
+            await httpContext.Response.Body.WriteAsync(data);
         }
-
     }
 }

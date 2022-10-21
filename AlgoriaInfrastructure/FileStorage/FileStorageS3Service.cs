@@ -46,7 +46,7 @@ namespace AlgoriaInfrastructure.FileStorage
             #region GUID AND NAMING
             var uid = Guid.NewGuid().ToString();
             string tempFileName = "";
-            if (request.FileName.IndexOf('.') >= 0)
+            if (request.FileName.Contains('.'))
             {
                 tempFileName = string.Format("{0}.{1}", uid, request.FileName.Substring(request.FileName.LastIndexOf('.') + 1));
             }
@@ -54,7 +54,7 @@ namespace AlgoriaInfrastructure.FileStorage
             {
                 tempFileName = uid;
             }
-            string tempPath = string.Format("{0}\\{1}", path, tempFileName);
+
             #endregion
 
             WritingAnObjectAsync(request.FileArray, tempFileName, request.ContentType).Wait();
@@ -100,21 +100,19 @@ namespace AlgoriaInfrastructure.FileStorage
                 var putRequest2 = new PutObjectRequest
                 {
                     BucketName = _bucketName,
-                    InputStream  = GetStreamFromFile(fileArray),
+                    InputStream = GetStreamFromFile(fileArray),
                     Key = keyName,
                     ContentType = contentType
                 };
                 putRequest2.Metadata.Add("x-amz-meta-title", keyName);
-                PutObjectResponse response2 = await _client.PutObjectAsync(putRequest2);
+                await _client.PutObjectAsync(putRequest2);
             }
             catch (AmazonS3Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
             catch (Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }
         }
@@ -140,12 +138,10 @@ namespace AlgoriaInfrastructure.FileStorage
             }
             catch (AmazonS3Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
             catch (Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }
         }
@@ -164,18 +160,15 @@ namespace AlgoriaInfrastructure.FileStorage
             }
             catch (AmazonS3Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : {message}"));
             }
             catch (Exception e)
             {
-                string message = e.Message;
                 throw new AlgoriaCoreGeneralException(L("UploadingFileToS3Error : Unknown encountered on server: {message}"));
             }
         }
 
         #endregion
-
 
     }
 }

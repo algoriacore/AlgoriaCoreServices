@@ -46,7 +46,7 @@ namespace AlgoriaCore.Domain.Entities.Base
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is Entity<TType>))
+            if (!(obj is Entity<TType>))
             {
                 return false;
             }

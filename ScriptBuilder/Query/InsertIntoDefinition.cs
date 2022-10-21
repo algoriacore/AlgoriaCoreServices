@@ -28,7 +28,7 @@ namespace ScriptBuilder.Query
 
 				if(c != _values.Count)
 				{
-					sb.Append(",");
+					sb.Append(',');
 				}
 				c++;
 			}
@@ -42,7 +42,7 @@ namespace ScriptBuilder.Query
 
 				if (c != _values.Count)
 				{
-					sb.Append(",");
+					sb.Append(',');
 				}
 				c++;
 			}

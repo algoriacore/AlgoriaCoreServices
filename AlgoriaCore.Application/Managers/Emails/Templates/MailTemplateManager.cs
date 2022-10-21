@@ -53,8 +53,6 @@ namespace AlgoriaCore.Application.Managers.Emails.Templates
                 .PageBy(input)
                 .ToListAsync();
 
-            var sql = query.ToSql();
-
             return new PagedResultDto<MailTemplateDto>(count, ll);
         }
 

@@ -342,7 +342,7 @@ namespace AlgoriaCore.WebUI
                 .AllowAnyMethod()
                 .AllowCredentials()
                 //.WithOrigins("http://localhost:4200")
-                .WithOrigins(appSettings.CORSOrigins.IsNullOrWhiteSpace()? new string[0]: appSettings.CORSOrigins.Split(",").Select(p => p.Trim()).ToArray())
+                .WithOrigins(appSettings.CORSOrigins.IsNullOrWhiteSpace()? Array.Empty<string>() : appSettings.CORSOrigins.Split(",").Select(p => p.Trim()).ToArray())
                 .SetIsOriginAllowedToAllowWildcardSubdomains();
             });
 

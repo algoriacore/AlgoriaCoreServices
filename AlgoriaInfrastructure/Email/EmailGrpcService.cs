@@ -106,7 +106,6 @@ namespace AlgoriaInfrastructure.Email
             var smtpSender = _managerSetting.GetSettingValueOrHostSettingValue(AppSettings.Mail.Smtp.SenderDefault);
             var smtpSenderName = _managerSetting.GetSettingValueOrHostSettingValue(AppSettings.Mail.Smtp.SenderDefaultDisplayName);
 
-            
             var useSSL = _managerSetting.GetSettingValueOrHostSettingValue(AppSettings.Mail.EnableSSL);
 
             EmailGrpcConfigRequest conf = new EmailGrpcConfigRequest();
@@ -133,14 +132,12 @@ namespace AlgoriaInfrastructure.Email
             return conf;
         }
 
-        private SettingManager GetSettingManager()
+        private void GetSettingManager()
         {
             if (_managerSetting == null)
             {
                 _managerSetting = _lifeTimeScope.Resolve<SettingManager>();
             }
-
-            return _managerSetting;
         }
     }
 }

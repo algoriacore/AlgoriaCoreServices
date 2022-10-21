@@ -53,7 +53,6 @@ namespace AlgoriaCore.Application.Managers.Settings
 			}
 			else
 			{
-                //TODO: Desarrollar estrategia para buscar configuración default donde aplique
                 return null;
 			}
 		}

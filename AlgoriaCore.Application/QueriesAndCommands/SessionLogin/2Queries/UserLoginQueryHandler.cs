@@ -53,7 +53,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 			// Validar los intentos fallidos contra la configuración de intentos fallidos
 			if (request.TenancyName.IsNullOrEmpty())
 			{
-                try //TODO: Se agrega validación, pero estos settings siempre deben existir.
+                try // Se agrega validación, pero estos settings siempre deben existir.
                 {
                     var s = await _settingManager.GetAllHostSettings();
                     habilitarBloqueo = s.EnableUserBlocking;
@@ -61,7 +61,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
                 }
                 catch
                 {
-                    //No se hace nada. Se toman los valores default
+                    // No se hace nada. Se toman los valores default
                 }
 				
 			}
@@ -76,7 +76,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 
 				using (_settingManager.CurrentUnitOfWork.SetTenantId(userDto.TenantId))
                 {
-                    try //TODO: Se agrega validación, pero estos settins siempre deben existir.
+                    try // Se agrega validación, pero estos settins siempre deben existir.
                     {
                         var s = await _settingManager.GetAllTenantSettings();
 
@@ -88,7 +88,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
                     }
                     catch
                     {
-                        //No se hace nada. Se toman los valores default
+                        // No se hace nada. Se toman los valores default
                     }
 
 					usuarioBloqueado = userDto.UserLocked == true || userDto.AccesFailedCount >= intentosFallidos;
@@ -100,7 +100,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 				await UpdateUserLocked(userDto, tiempoATranscurrir, request.UserName);
 			}
 
-            //Verificar la contraseña
+            // Verificar la contraseña
             return await VerifyPassword(userDto, request, activarVigenciaContrasenia, diasVigenciaContrasenia,
                 habilitarBloqueo, intentosFallidos);
 

@@ -5,14 +5,14 @@ using System.Runtime.Serialization;
 namespace AlgoriaCore.Domain.Exceptions
 {
     [Serializable]
-    public class EntityHasRelationships : AlgoriaErrorException
+    public class EntityHasRelationshipsException : AlgoriaErrorException
     {
-        public EntityHasRelationships(string message)
+        public EntityHasRelationshipsException(string message)
             : base(AlgoriaCoreExceptionErrorCodes.RecordHasRelationships, message)
         {
         }
 
-		protected EntityHasRelationships(SerializationInfo info, StreamingContext context)
+		protected EntityHasRelationshipsException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}

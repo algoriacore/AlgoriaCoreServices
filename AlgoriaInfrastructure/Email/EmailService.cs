@@ -148,7 +148,7 @@ namespace AlgoriaInfrastructure.Email
             return conf;
         }
 
-        private class EmailServiceConfiguration
+        private sealed class EmailServiceConfiguration
         {
             public string SmtpServer { get; set; }
             public int SmtpPort { get; set; }

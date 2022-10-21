@@ -15,7 +15,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.TemplateToDoStatus
             string labelMaxLength = L("FieldMaxLength");
 
             string labelId = L("Id");
-            string labelTemplate = L("TemplateToDoStatus.TemplateToDoStatus.Template");
             string labelName = L("TemplateToDoStatus.TemplateToDoStatus.Name");
             string labelType = L("TemplateToDoStatus.TemplateToDoStatus.Type");
 

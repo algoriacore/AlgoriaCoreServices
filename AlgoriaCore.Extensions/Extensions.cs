@@ -16,12 +16,12 @@ namespace AlgoriaCore.Extensions
         {
             if (str == null)
             {
-                throw new ArgumentNullException("str");
+                throw new ArgumentNullException(nameof(str));
             }
 
             if (str.Length < len)
             {
-                throw new ArgumentOutOfRangeException("str");
+                throw new ArgumentOutOfRangeException(nameof(str));
             }
 
             return str.Substring(0, len);

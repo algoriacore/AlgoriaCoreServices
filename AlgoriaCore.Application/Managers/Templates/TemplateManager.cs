@@ -1868,7 +1868,19 @@ namespace AlgoriaCore.Application.Managers.Templates
             return await _sqlExecuter.SqlQuery<TemplateSecurityMemberDto>(GetTemplateSecurityMemberQueryString(template, type, level));
         }
 
-        public async Task<TemplateSecurityMemberDto> GetTemplateSecurityMemberAsync(
+		public async Task<List<TemplateSecurityMemberDto>> GetTemplateSecurityMemberListAsync(
+			long template,
+			long member,
+			SecurityMemberType type,
+			SecurityMemberLevel level
+		)
+		{
+			var query = GetTemplateSecurityMemberQuery(type, level);
+
+			return await query.Where(p => p.Template == template && p.Member == member).ToListAsync();
+		}
+
+		public async Task<TemplateSecurityMemberDto> GetTemplateSecurityMemberAsync(
             long id, 
             SecurityMemberType type,
             SecurityMemberLevel level,
@@ -1884,18 +1896,6 @@ namespace AlgoriaCore.Application.Managers.Templates
             }
 
             return dto;
-        }
-
-        public async Task<List<TemplateSecurityMemberDto>> GetTemplateSecurityMemberListAsync(
-            long template, 
-            long member,
-            SecurityMemberType type,
-            SecurityMemberLevel level
-        )
-        {
-            var query = GetTemplateSecurityMemberQuery(type, level);
-
-            return await query.Where(p => p.Template == template && p.Member == member).ToListAsync();
         }
 
         public async Task<long> CreateTemplateSecurityMemberAsync(TemplateSecurityMemberDto dto)

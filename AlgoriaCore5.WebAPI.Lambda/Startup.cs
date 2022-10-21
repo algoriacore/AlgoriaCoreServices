@@ -321,12 +321,7 @@ namespace AlgoriaCore5.WebAPI.Lambda
 
             app.UseMiddleware<ExceptionHandlerMiddleware>();
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            var appSettings = appSettingsSection.Get<AppSettings>();
-
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); 
-
-
 
             app.UseStaticFiles();
 
