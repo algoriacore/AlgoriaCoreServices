@@ -407,7 +407,7 @@ namespace AlgoriaCore.Application.Managers.Settings
         {
             return new GrpcEmailDto
             {
-                SendConfiguration = _emailOptions.Value.Grpc.SendConfiguration,
+                SendConfiguration = _emailOptions.Value.Grpc != null ? _emailOptions.Value.Grpc.SendConfiguration : false,
                 TenancyName = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.TenancyName),
                 UserName = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.GrpcUserName),
                 Password = await GetSettingValueAsync(AppSettings.Mail.GrpcMail.Password),

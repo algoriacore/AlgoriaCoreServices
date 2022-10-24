@@ -31,7 +31,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo7@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest07",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
             });
@@ -39,8 +39,8 @@ namespace AlgoriaCore.Application.Tests.Host.Login
             var lResp = await Mediator.Send(new UserLoginQuery()
             {
                 UserName = "usertest07",
-                Password = "contrasenia"
-            });
+                Password = "contrAsen1"
+			});
 
             lResp.ShouldNotBeNull();
         }
@@ -56,7 +56,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo6@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest06",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
             });
@@ -64,7 +64,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
             await Mediator.Send(new UserChangePasswordCommand()
             {
                 UserName = "usertest06",
-                CurrentPassword = "contrasenia",
+                CurrentPassword = "contrAsen1",
                 NewPassword = "123qwe",
                 ConfirmPassword = "123qwe",
                 TenancyName = null
@@ -91,7 +91,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo5@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest05",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 //PasswordRepeat = "contrasenia",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
@@ -136,7 +136,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo4@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest04",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
             });
@@ -161,7 +161,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo3@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest03",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
             });
@@ -170,8 +170,8 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                     await Mediator.Send(new UserLoginQuery()
                     {
                         UserName = "usertest03",
-                        Password = "contraseniaxxx"
-                    })
+                        Password = "contrAsen1aa"
+					})
                 );
         }
 
@@ -186,7 +186,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo2@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "usertest02",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = true,
                 IsActive = true
             });
@@ -195,8 +195,8 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                     await Mediator.Send(new UserLoginQuery()
                     {
                         UserName = "usertest02",
-                        Password = "contrasenia"
-                    })
+                        Password = "contrAsen1"
+					})
                 );
         }
 
@@ -215,7 +215,7 @@ namespace AlgoriaCore.Application.Tests.Host.Login
                 EmailAddress = "correo1@dominio.com",
                 PhoneNumber = "3515345",
                 UserName = "userToLockedTest",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = false,
                 IsActive = true
             });

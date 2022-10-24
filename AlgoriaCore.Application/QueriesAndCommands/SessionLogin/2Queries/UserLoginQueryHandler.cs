@@ -123,7 +123,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
                 // Si está habilitado el bloqueo, entonces se actualiza la información de logueo
                 if (habilitarBloqueo)
                 {
-					using (_userManager.CurrentUnitOfWork.SetTenantId(userDto.TenantId.Value))
+					using (_userManager.CurrentUnitOfWork.SetTenantId(userDto.TenantId))
 					{
 						await UpdateAccesFailedCount(userDto.Id, userDto.AccesFailedCount + 1);
 

@@ -32,7 +32,7 @@ namespace AlgoriaCore.Application.Tests.Host.Users
                 EmailAddress = "correonew@dominio.com",
                 PhoneNumber = "3515345",
                 UserName ="usertest01",
-                Password = "contrasenia",
+                Password = "contrAsen1",
                 ShouldChangePasswordOnNextLogin = true,
                 IsActive = true
             });

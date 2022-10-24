@@ -1,5 +1,6 @@
 using AlgoriaCore.Application.Authorization;
 using AlgoriaCore.Application.BaseClases;
+using AlgoriaCore.Application.Configuration;
 using AlgoriaCore.Application.Date;
 using AlgoriaCore.Application.Exceptions;
 using AlgoriaCore.Application.Folders;
@@ -13,16 +14,20 @@ using AlgoriaCore.Domain.Entities;
 using AlgoriaCore.Domain.Interfaces.Date;
 using AlgoriaCore.Domain.Interfaces.Email;
 using AlgoriaCore.Domain.Interfaces.Exceptions;
+using AlgoriaCore.Domain.Interfaces.FileStorage;
 using AlgoriaCore.Domain.Interfaces.Folder;
 using AlgoriaCore.Domain.Interfaces.Logger;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
 using AlgoriaInfrastructure.Email;
+using AlgoriaInfrastructure.FileStorage;
 using AlgoriaInfrastructure.Logger;
 using AlgoriaPersistence;
 using AlgoriaPersistence.Interfaces.Interfaces;
 using AlgoriaPersistence.Repositories;
+using AlgoriaPersistence.SqlExecuter;
+using AlgoriaPersistence.UOW;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MediatR;
@@ -136,18 +141,32 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
 
             services.AddScoped<IAppSession, SessionContextTest>();
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
-            services.AddScoped(typeof(IClock), typeof(Clock));
+			services.AddScoped(typeof(IMongoUnitOfWork), typeof(MongoUnitOfWork));
+			services.AddScoped(typeof(IClock), typeof(Clock));
+			services.AddScoped(typeof(ISqlExecuter), typeof(SqlExecuter));
 
-            // Agrega DbContext usando el proveedor de SQL Server
-            services.AddDbContext<AlgoriaCoreDbContext>(options => 
+			// Agrega DbContext usando el proveedor de SQL Server
+			services.AddDbContext<AlgoriaCoreDbContext>(options => 
                 options.UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .EnableSensitiveDataLogging()
                 .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             );
-			
-            services.AddTransient<IEmailService, TestEmailService>();
 
-            services.AddTransient<ICoreLogger, CoreNLogger>();
+			services.Configure<MongoDbOptions>(Configuration.GetSection("MongoDbSettings"));
+			services.AddSingleton<IMongoDBContext, MongoDBContext>();
+
+			var emailSettingsSection = Configuration.GetSection("Email");
+			services.Configure<EmailOptions>(emailSettingsSection);
+
+			services.AddTransient<IEmailService, TestEmailService>();
+
+			// Servicios de almacenamiento de archivos
+			var fileStorageSettingsSection = Configuration.GetSection("FileStorage");
+			services.Configure<FileStorageOptions>(fileStorageSettingsSection);
+
+			services.AddScoped<IFileStorageService, FileStorageLocalService>();
+
+			services.AddTransient<ICoreLogger, CoreNLogger>();
 
             //Servicio proveedor de autorización
             services.AddSingleton<IAppAuthorizationProvider, AppAuthorizationProvider>();

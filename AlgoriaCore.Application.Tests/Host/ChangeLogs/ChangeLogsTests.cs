@@ -19,7 +19,7 @@ namespace AlgoriaCore.Application.Tests.Host.ChangeLogs
         public async Task GetChangeLogListTest()
         {
             Language language = Context.Language.FirstOrDefault(p => p.TenantId == SessionContext.TenantId);
-
+            
             language.ShouldNotBeNull();
 
             string table = "Language";

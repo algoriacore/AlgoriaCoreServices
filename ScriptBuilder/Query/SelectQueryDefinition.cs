@@ -122,7 +122,7 @@ namespace ScriptBuilder.Query
 			return sb.ToString();
 		}
 
-		private void RenderValues(ref StringBuilder sb, List<Dictionary<string, string>> allValues, List<string> alias)
+		private static void RenderValues(ref StringBuilder sb, List<Dictionary<string, string>> allValues, List<string> alias)
 		{
 			int c = 0;
 			foreach (var values in allValues)
