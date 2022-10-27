@@ -69,7 +69,13 @@ namespace AlgoriaCore.Application.Managers.Tenants
 
         public async Task<string> CreateTenantRegistrationAsync(TenantRegistrationDto dto, bool sendEmail = true)
         {
-            var tReg = await _tenantManager.GetTenantByTenancyNameAsync(dto.TenancyName);
+			TenantDto tReg = null;
+
+			using (CurrentUnitOfWork.DisableFilter(AlgoriaCoreDataFilters.SoftDelete))
+			{
+				tReg = await _tenantManager.GetTenantByTenancyNameAsync(dto.TenancyName);
+			}
+
             if (tReg != null)
             {
                 _exceptionService.ThrowTenantRegistrationDuplicatedTenancyName(dto.TenancyName);
