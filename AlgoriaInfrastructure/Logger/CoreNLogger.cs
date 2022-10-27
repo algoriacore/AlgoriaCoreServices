@@ -2,6 +2,7 @@
 using AlgoriaCore.Domain.Interfaces.Date;
 using AlgoriaCore.Domain.Interfaces.Logger;
 using AlgoriaCore.Domain.Session;
+using AlgoriaPersistence.Interfaces.Interfaces;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using NLog;
@@ -16,17 +17,19 @@ namespace AlgoriaInfrastructure.Logger
 {
     public class CoreNLogger : ICoreLogger
     {
-
+        private readonly IUnitOfWork _currentUnitOfWork;
         private readonly IAppSession _session;
         private readonly IClock _iclock;
         private readonly FileStorageOptions _logsOptions;
 
         public CoreNLogger(
-            IAppSession session, 
+            IUnitOfWork currentUnitOfWork,
+            IAppSession session,
             IClock iclock,
             IOptions<FileStorageOptions> logsOptions
         )
         {
+            _currentUnitOfWork = currentUnitOfWork;
             _session = session;
             _iclock = iclock;
             _logsOptions = logsOptions.Value;
@@ -129,15 +132,12 @@ namespace AlgoriaInfrastructure.Logger
 
         public virtual void Log(Exception exception, LogLevel logLevel, string message, Dictionary<string, string> args, object parameters = null)
         {
-
-
-
             NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
             NLog.LogEventInfo logEventInfo = new NLog.LogEventInfo(logLevel, "", message);
             logEventInfo.Exception = exception;
 
             #region AWS LOGS
-            if(_logsOptions.StorageMethod == FileStorageMethod.S3)
+            if (_logsOptions.StorageMethod == FileStorageMethod.S3)
             {
                 var config = new LoggingConfiguration();
                 string accessKey = _logsOptions.CloudWatch.Id;
@@ -159,6 +159,7 @@ namespace AlgoriaInfrastructure.Logger
 
             newDict["Parameters"] = parameters == null ? newDict["Parameters"] : JsonConvert.SerializeObject(parameters);
             newDict["CustomData"] = message == null ? newDict["CustomData"] : message;
+            newDict["Exception"] = exception == null ? newDict["Exception"] : exception.ToString();
 
             foreach (var arg in newDict)
             {
@@ -171,7 +172,15 @@ namespace AlgoriaInfrastructure.Logger
         public Dictionary<string, string> GetDictionary(Dictionary<string, string> args)
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("TenantId", _session.TenantId.HasValue ? _session.TenantId.ToString() : null);
+
+            int? tenantId = _currentUnitOfWork.GetTenantId();
+
+            if (!tenantId.HasValue)
+            {
+                tenantId = _session.TenantId;
+            }
+
+            dict.Add("TenantId", tenantId.HasValue ? tenantId.ToString() : null);
             dict.Add("UserName", _session.UserName);
             dict.Add("UserId", _session.UserId.HasValue ? _session.UserId.ToString() : null);
             dict.Add("ImpersonalizerUserId", _session.ImpersonalizerUserId.HasValue ? _session.ImpersonalizerUserId.ToString() : null);
