@@ -1,4 +1,5 @@
-﻿using AlgoriaCore.Application.Localization;
+﻿using AlgoriaCore.Application.Configuration;
+using AlgoriaCore.Application.Localization;
 using AlgoriaCore.Application.Managers.CatalogsCustom;
 using AlgoriaCore.Application.Managers.CatalogsCustom.Dto;
 using AlgoriaCore.Domain.Authorization;
@@ -6,7 +7,9 @@ using AlgoriaCore.Domain.Exceptions;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
+using AlgoriaPersistence.Interfaces.Interfaces;
 using Autofac;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -162,11 +165,18 @@ namespace AlgoriaCore.Application.Authorization
 
 			if (session != null && session.TenantId.HasValue)
 			{
-				MultiTenancySides multiTenancySides = session.TenantId.HasValue ? MultiTenancySides.Tenant : MultiTenancySides.Host;
+                IMongoDBContext mongoDBContext = _lifetimeScope.Resolve<IMongoDBContext>();
+
+                if (!(mongoDBContext.IsEnabled && mongoDBContext.IsActive))
+                {
+                    return;
+                }
+
+                MultiTenancySides multiTenancySides = session.TenantId.HasValue ? MultiTenancySides.Tenant : MultiTenancySides.Host;
 
 				CatalogCustomManager managerCatalogCustom = _lifetimeScope.Resolve<CatalogCustomManager>();
 
-				using (managerCatalogCustom.CurrentUnitOfWork.SetTenantId(session.TenantId))
+                using (managerCatalogCustom.CurrentUnitOfWork.SetTenantId(session.TenantId))
 				{
 					List<CatalogCustomDto> catalogsCustomListDto = managerCatalogCustom.GetCatalogCustomActiveListAsync();
 					Permission permissionCatalogCustom;
