@@ -659,8 +659,9 @@
 
     <text name="Examples.Charts" value="Gráficos" />
     <text name="Examples.Arrobar" value="Arrobar" />
+	  <text name="Examples.PEditor" value="Primeng Editor" />
 
-    <text name="Examples.Chat.ChatLog" value="Chat Log" />
+	  <text name="Examples.Chat.ChatLog" value="Chat Log" />
     <text name="Examples.Chat.ChatLog.Name" value="Ejemplo de chat log" />
     <text name="Examples.Chat.ChatLog.Description" value="Ejemplo de chat log embebido" />
 

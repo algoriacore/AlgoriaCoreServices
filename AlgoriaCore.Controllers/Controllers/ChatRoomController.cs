@@ -1,10 +1,14 @@
 ﻿using AlgoriaCore.Application.BaseClases.Dto;
+using AlgoriaCore.Application.Managers.ChatRooms.Dto;
 using AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats;
 using AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRooms;
 using AlgoriaCore.Domain.Authorization;
 using AlgoriaCore.WebUI.Filters;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AlgoriaCore.WebUI.Controllers
 {
@@ -68,7 +72,13 @@ namespace AlgoriaCore.WebUI.Controllers
             return await Mediator.Send(query);
         }
 
-        [HttpPost]
+		[HttpPost]
+		public async Task<List<ChatRoomChatForListResponse>> GetChatRoomChatForLogList(ChatRoomChatGetForLogListQuery request, CancellationToken cancellationToken)
+		{
+			return await Mediator.Send(request);
+		}
+
+		[HttpPost]
         public async Task<ChatRoomChatResponse> CreateChatRoomChat([FromBody]ChatRoomChatCreateCommand dto)
         {
             return await Mediator.Send(dto);

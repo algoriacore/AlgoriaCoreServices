@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -197,7 +198,19 @@ namespace AlgoriaCore.Application.Managers.ChatRooms
             return new PagedResultDto<ChatRoomChatDto>(count, ll);
         }
 
-        public async Task<ChatRoomChatDto> GetChatRoomChatAsync(long id, bool throwExceptionIfNotFound = true)
+		public async Task<List<ChatRoomChatDto>> GetChatRoomChatListForLogAsync(ChatRoomChatForLogFilterDto dto)
+		{
+            var query = await GetChatRoomChatQuery()
+                        .WhereIf(dto.LastId > 0, p => p.Id < dto.LastId)
+                        .OrderByDescending(m => m.CreationTime)
+                        .Take(10)
+                        .ToListAsync();
+
+            return query;
+		}
+
+
+		public async Task<ChatRoomChatDto> GetChatRoomChatAsync(long id, bool throwExceptionIfNotFound = true)
         {
             var query = GetChatRoomChatQuery();
 
