@@ -277,6 +277,7 @@ namespace AlgoriaCore.Application.Managers.ChatRooms
                              User = entity.User,
                              UserDesc = ((entity.UserNavigation.Name + " " + entity.UserNavigation.Lastname).Trim() + " " +
                                 entity.UserNavigation.SecondLastname).Trim(),
+                             UserLogin = entity.UserNavigation.UserLogin,
                              CreationTime = entity.CreationTime,
                              Comment = entity.Comment,
                              TaggedUsers = entity.ChatRoomChatUserTagged.Select(p => new ChatRoomChatUserTaggedDto()

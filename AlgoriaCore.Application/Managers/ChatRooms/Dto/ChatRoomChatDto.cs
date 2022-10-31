@@ -17,8 +17,9 @@ namespace AlgoriaCore.Application.Managers.ChatRooms.Dto
 
         public List<ChatRoomChatUserTaggedDto> TaggedUsers { get; set; }
         public List<ChatRoomChatFileDto> Files { get; set; }
+		public string UserLogin { get; set; }
 
-        public ChatRoomChatDto() {
+		public ChatRoomChatDto() {
             TaggedUsers = new List<ChatRoomChatUserTaggedDto>();
             Files = new List<ChatRoomChatFileDto>();
         }

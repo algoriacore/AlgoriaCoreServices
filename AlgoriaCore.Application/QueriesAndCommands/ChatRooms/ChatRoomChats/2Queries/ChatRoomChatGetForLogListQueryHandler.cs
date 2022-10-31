@@ -38,6 +38,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats
                     ChatRoom = dto.ChatRoom,
                     User = dto.User,
                     UserDesc = dto.UserDesc,
+                    UserLogin = dto.UserLogin,
                     CreationTime = dto.CreationTime,
                     Comment = dto.Comment,
                     Files = dto.Files.Select(p => new ChatRoomChatFileResponse()
