@@ -13,8 +13,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats
         public string Comment { get; set; }
 
         public List<ChatRoomChatFileResponse> Files { get; set; }
+		public string UserLogin { get; set; }
 
-        public ChatRoomChatResponse() {
+		public ChatRoomChatResponse() {
             Files = new List<ChatRoomChatFileResponse>();
         }
     }
