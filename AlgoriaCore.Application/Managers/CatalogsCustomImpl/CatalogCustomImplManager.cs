@@ -43,7 +43,7 @@ namespace AlgoriaCore.Application.Managers.CatalogsCustomImpl
 
         private IMongoCollection<BsonDocument> _collection;
 
-        private readonly string PrefixObj = "_obj";
+        public static readonly string PrefixObj = "_obj";
 
         public CatalogCustomImplManager(
             CatalogCustomManager managerCatalogCustom,
