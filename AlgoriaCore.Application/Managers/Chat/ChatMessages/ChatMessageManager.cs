@@ -220,7 +220,7 @@ namespace AlgoriaCore.Application.Managers.Chat.ChatMessages
             entity.UserId = dto.UserId;
             entity.FriendTenantId = dto.TargetTenantId;
             entity.FriendUserId = dto.TargetUserId;
-            entity.CreationTime = Clock.Now;
+            entity.CreationTime = DateTime.UtcNow;
             entity.Message = dto.Message;
             entity.State = (byte)dto.ReadState;
             entity.Side = (byte)dto.Side;
