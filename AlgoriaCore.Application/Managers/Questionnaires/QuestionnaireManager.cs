@@ -10,16 +10,12 @@ using AlgoriaCore.Extensions;
 using AlgoriaCore.Extensions.Pagination;
 using AlgoriaPersistence.Interfaces.Interfaces;
 using Autofac;
-using Autofac.Core.Lifetime;
 using FluentValidation.Results;
 using lizzie;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Org.BouncyCastle.Utilities.Collections;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -161,7 +157,10 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
             string labelInvalidFormat = L("FieldInvalidFormat");
             string labelMinimumValue = L("FieldMinimumValue");
             string labelMaximumValue = L("FieldMaximumValue");
+            string labelMinSelecting = L("FieldMinSelecting");
+            string labelMaxSelecting = L("FieldMaxSelecting");
             string fieldData;
+            string fieldName;
 
             foreach (QuestionnaireFieldDto field in fields)
             {
@@ -201,14 +200,16 @@ namespace AlgoriaCore.Application.Managers.Questionnaires
                 }
                 else if (field.FieldType == QuestionnaireFieldType.Multivalue)
                 {
-                    if (field.CustomProperties.MinValue.HasValue && (!dto[field.FieldName].IsBsonArray || dto[field.FieldName].AsBsonArray.Count < field.CustomProperties.MinValue.Value))
+                    fieldName = field.FieldName + CatalogCustomImplManager.PrefixObj;
+
+                    if (field.CustomProperties.MinValue.HasValue && (!dto[fieldName].IsBsonArray || dto[fieldName].AsBsonArray.Count < field.CustomProperties.MinValue.Value))
                     {
-                        failures.Add(new ValidationFailure(field.FieldName, string.Format(labelMinimumValue, field.Name, field.CustomProperties.MinValue.Value)));
+                        failures.Add(new ValidationFailure(field.FieldName, string.Format(labelMinSelecting, field.Name, field.CustomProperties.MinValue.Value)));
                     }
 
-                    if (field.CustomProperties.MaxValue.HasValue && (!dto[field.FieldName].IsBsonArray || dto[field.FieldName].AsBsonArray.Count > field.CustomProperties.MaxValue.Value))
+                    if (field.CustomProperties.MaxValue.HasValue && (!dto[fieldName].IsBsonArray || dto[fieldName].AsBsonArray.Count > field.CustomProperties.MaxValue.Value))
                     {
-                        failures.Add(new ValidationFailure(field.FieldName, string.Format(labelMaximumValue, field.Name, field.CustomProperties.MaxValue.Value)));
+                        failures.Add(new ValidationFailure(field.FieldName, string.Format(labelMaxSelecting, field.Name, field.CustomProperties.MaxValue.Value)));
                     }
                 }
             }

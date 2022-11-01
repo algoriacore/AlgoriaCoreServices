@@ -5,6 +5,7 @@ using AlgoriaCore.Application.Managers.Helps;
 using AlgoriaCore.Application.Managers.Helps.Dto;
 using AlgoriaCore.Application.Managers.Languages;
 using AlgoriaCore.Application.Managers.Languages.Dto;
+using AlgoriaCore.Domain.Entities.MongoDb;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,6 +92,11 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Helps
 
             response.KeyCombo.Add(new ComboboxItemDto("MAILSERVICEMAIL.MAILSERVICEMAIL.FORM", "CATALOGS.MAILSERVICEMAIL.FORM"));
             response.KeyCombo.Add(new ComboboxItemDto("MAILSERVICEMAIL.MAILSERVICEMAIL.VIEW", "CATALOGS.MAILSERVICEMAIL.VIEW"));
+
+            response.KeyCombo.Add(new ComboboxItemDto("QUESTIONNAIRES.QUESTIONNAIRES.VIEW", "QUESTIONNAIRES.QUESTIONNAIRES.VIEW"));
+            response.KeyCombo.Add(new ComboboxItemDto("QUESTIONNAIRES.QUESTIONNAIRES.FORM", "QUESTIONNAIRES.QUESTIONNAIRES.FORM"));
+            response.KeyCombo.Add(new ComboboxItemDto("CATALOGSCUSTOM.CATALOGSCUSTOM.VIEW", "CATALOGSCUSTOM.CATALOGSCUSTOM.VIEW"));
+            response.KeyCombo.Add(new ComboboxItemDto("CATALOGSCUSTOM.CATALOGSCUSTOM.FORM", "CATALOGSCUSTOM.CATALOGSCUSTOM.FORM"));
 
             if (SessionContext.TenantId == null)
             {
