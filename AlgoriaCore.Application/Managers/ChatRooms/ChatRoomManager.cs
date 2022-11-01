@@ -201,6 +201,7 @@ namespace AlgoriaCore.Application.Managers.ChatRooms
 		public async Task<List<ChatRoomChatDto>> GetChatRoomChatListForLogAsync(ChatRoomChatForLogFilterDto dto)
 		{
             var query = await GetChatRoomChatQuery()
+                        .WhereIf(!dto.ChatRoomId.IsNullOrEmpty(), m => m.ChatRoomId == dto.ChatRoomId)
                         .WhereIf(dto.LastId > 0, p => p.Id < dto.LastId)
                         .OrderByDescending(m => m.CreationTime)
                         .Take(10)

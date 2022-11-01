@@ -8,6 +8,7 @@ namespace AlgoriaCore.Application.Managers.ChatRooms.Dto
 {
 	public class ChatRoomChatForLogFilterDto
 	{
+		public string ChatRoomId { get; set; }
 		public long LastId { get; set; }
 	}
 }

@@ -22,8 +22,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats
 
         public async Task<List<ChatRoomChatForListResponse>> Handle(ChatRoomChatGetForLogListQuery request, CancellationToken cancellationToken)
         {
-			ChatRoomChatForLogFilterDto filterDto = new ChatRoomChatForLogFilterDto()
+            ChatRoomChatForLogFilterDto filterDto = new ChatRoomChatForLogFilterDto()
             {
+                ChatRoomId = request.ChatRoomId,
                 LastId = request.LastId ?? 0
             };
 

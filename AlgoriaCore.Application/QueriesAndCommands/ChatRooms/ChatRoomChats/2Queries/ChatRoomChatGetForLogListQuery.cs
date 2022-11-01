@@ -6,6 +6,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats
 {
     public class ChatRoomChatGetForLogListQuery : IRequest<List<ChatRoomChatForListResponse>>
     {
-        public long? LastId { get; set; }
+		public string ChatRoomId { get; set; }
+		public long? LastId { get; set; }
     }
 }
