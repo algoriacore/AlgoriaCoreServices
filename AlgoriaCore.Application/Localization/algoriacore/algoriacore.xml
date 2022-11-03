@@ -665,6 +665,8 @@
     <text name="Examples.Chat.ChatLog.Name" value="Ejemplo de chat log" />
     <text name="Examples.Chat.ChatLog.Description" value="Ejemplo de chat log embebido" />
 
+      <text name="Examples.Diagram" value="Diagrama" />
+      
     <text name="Friendship.AlreadyFriendshipExists" value="Ya agregaste este usuario." />
     <text name="Friendship.YouCannotBeFriendWithYourself" value="No puedes ser amigo de ti mismo." />
     <text name="Friendship.NotFound" value="No se encontró solicitud de amistad." />
