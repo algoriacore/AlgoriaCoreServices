@@ -13,6 +13,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Emails.Templates._3Commands
         public string BlindCopyTo { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

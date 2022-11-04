@@ -204,6 +204,7 @@ namespace AlgoriaPersistence
                     .IsUnique();
 
                 entity.Property(e => e.ChatRoomId)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -214,6 +215,7 @@ namespace AlgoriaPersistence
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -488,16 +490,19 @@ namespace AlgoriaPersistence
                 entity.ToView("OUUsersSecurity");
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<OrgUnit>(entity =>
             {
-                entity.HasIndex(e => new { e.TenantId, e.Name }, "IX_OrgUnit_Name");
                 entity.HasIndex(e => e.IsDeleted, "IX_OrgUnit_IsDeleted");
 
+                entity.HasIndex(e => new { e.TenantId, e.Name }, "IX_OrgUnit_Name");
+
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -800,6 +805,7 @@ namespace AlgoriaPersistence
                     .IsUnicode(false);
 
                 entity.Property(e => e.HelpKey)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

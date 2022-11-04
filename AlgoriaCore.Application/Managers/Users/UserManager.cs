@@ -450,7 +450,7 @@ namespace AlgoriaCore.Application.Managers.Users
 				LogStringProperty(sb, previousDto.EmailAddress, newDto.EmailAddress, "{{Users.EmailAddressForm}}");
 				LogStringProperty(sb, previousDto.PhoneNumber, newDto.PhoneNumber, "{{Users.PhoneNumberForm}}");
 				LogBoolProperty(sb, previousDto.ChangePassword ?? false, newDto.ChangePassword ?? false, "{{Users.ShouldChangePasswordOnNextLoginForm}}");
-				LogBoolProperty(sb, previousDto.IsActive ?? false, newDto.IsActive ?? false, "{{Status}}");
+				LogBoolProperty(sb, previousDto.IsActive, newDto.IsActive, "{{Status}}");
 
 				if (rolesList != null)
 				{

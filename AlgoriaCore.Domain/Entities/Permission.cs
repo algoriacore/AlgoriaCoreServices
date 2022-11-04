@@ -7,7 +7,7 @@ namespace AlgoriaCore.Domain.Entities
     {
         public long? Role { get; set; }
         public string Name { get; set; }
-        public bool? IsGranted { get; set; }
+        public bool IsGranted { get; set; }
 
         public virtual Role RoleNavigation { get; set; }
     }

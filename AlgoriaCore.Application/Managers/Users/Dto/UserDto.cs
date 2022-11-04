@@ -65,9 +65,9 @@ namespace AlgoriaCore.Application.Managers.Users.Dto
         public bool? UserLocked { get; set; }
         public string UserLockedDesc { get; set; }
         public bool? IsLockoutEnabled { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string IsActiveDesc { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public string TenancyName { get; set; }
     }
 }

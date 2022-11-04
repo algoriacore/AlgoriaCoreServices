@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
-#nullable enable
     public partial class User : Entity<long>, IMayHaveTenant, ISoftDelete
     {
         public User()
@@ -29,14 +28,14 @@ namespace AlgoriaCore.Domain.Entities
         }
 
         public int? TenantId { get; set; }
-        public string? UserLogin { get; set; }
-        public string? Password { get; set; }
-        public string? Name { get; set; }
-        public string? Lastname { get; set; }
-        public string? SecondLastname { get; set; }
-        public string? EmailAddress { get; set; }
+        public string UserLogin { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Lastname { get; set; }
+        public string SecondLastname { get; set; }
+        public string EmailAddress { get; set; }
         public bool? IsEmailConfirmed { get; set; }
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public bool? IsPhoneConfirmed { get; set; }
         public DateTime? CreationTime { get; set; }
         public bool? ChangePassword { get; set; }
@@ -45,12 +44,12 @@ namespace AlgoriaCore.Domain.Entities
         public Guid? ProfilePictureId { get; set; }
         public bool? UserLocked { get; set; }
         public bool? IsLockoutEnabled { get; set; }
-        public bool? IsActive { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
-        public virtual Tenant? Tenant { get; set; }
-        public virtual UserARN? UserARN { get; set; }
-        public virtual UserReset? UserReset { get; set; }
+        public virtual Tenant Tenant { get; set; }
+        public virtual UserARN UserARN { get; set; }
+        public virtual UserReset UserReset { get; set; }
         public virtual ICollection<AuditLog> AuditLogImpersonalizerUser { get; set; }
         public virtual ICollection<AuditLog> AuditLogUser { get; set; }
         public virtual ICollection<ChangeLog> ChangeLog { get; set; }

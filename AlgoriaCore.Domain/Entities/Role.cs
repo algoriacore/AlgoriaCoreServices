@@ -12,12 +12,12 @@ namespace AlgoriaCore.Domain.Entities
             Permission = new HashSet<Permission>();
             UserRole = new HashSet<UserRole>();
         }
-		
+
         public int? TenantId { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
-        public bool? IsActive { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual Tenant Tenant { get; set; }
         public virtual ICollection<Permission> Permission { get; set; }

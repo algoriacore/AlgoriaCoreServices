@@ -123,11 +123,7 @@ namespace AlgoriaCore.Application.Managers.Roles
             entity.Name = dto.Name;
             entity.DisplayName = dto.DisplayName;
             entity.IsActive = dto.IsActive;
-
-            if (dto.IsDeleted != null)
-            {
-                entity.IsDeleted = dto.IsDeleted;
-            }
+            entity.IsDeleted = dto.IsDeleted;
 
             await CurrentUnitOfWork.SaveChangesAsync();
 

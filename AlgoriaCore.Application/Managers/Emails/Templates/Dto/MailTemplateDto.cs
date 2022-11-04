@@ -13,7 +13,7 @@
         public string BlindCopyTo { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string IsActiveDesc { get; set; }
 
         public string Header { get; set; }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
-#nullable enable
     public partial class Tenant : Entity<int>, ISoftDelete
     {
         public Tenant()
@@ -32,11 +31,11 @@ namespace AlgoriaCore.Domain.Entities
             mailtemplate = new HashSet<mailtemplate>();
         }
 
-        public string? TenancyName { get; set; }
-        public string? Name { get; set; }
+        public string TenancyName { get; set; }
+        public string Name { get; set; }
         public DateTime? CreationTime { get; set; }
-        public bool? IsActive { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual ICollection<AuditLog> AuditLog { get; set; }
         public virtual ICollection<BinaryObjects> BinaryObjects { get; set; }

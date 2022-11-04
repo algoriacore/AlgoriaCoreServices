@@ -143,8 +143,8 @@ namespace AlgoriaCore.Application.Managers.Tenants
             dto.TenancyName = entity.TenancyName;
             dto.Name = entity.Name;
             dto.CreationTime = entity.CreationTime;
-            dto.IsActive = entity.IsActive ?? true;
-            dto.IsDeleted = entity.IsDeleted ?? false;
+            dto.IsActive = entity.IsActive;
+            dto.IsDeleted = entity.IsDeleted;
 
             return dto;
         }

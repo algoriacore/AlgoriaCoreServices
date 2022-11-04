@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace AlgoriaCore.Domain.Entities
 {
-    #nullable enable
     public partial class Language : Entity<int>, IMayHaveTenant
     {
         public Language()
@@ -14,11 +13,11 @@ namespace AlgoriaCore.Domain.Entities
         }
 
         public int? TenantId { get; set; }
-        public string? Name { get; set; }
-        public string? DisplayName { get; set; }
-        public bool? IsActive { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public bool IsActive { get; set; }
 
-        public virtual Tenant? Tenant { get; set; }
+        public virtual Tenant Tenant { get; set; }
         public virtual ICollection<LanguageText> LanguageText { get; set; }
         public virtual ICollection<help> help { get; set; }
     }

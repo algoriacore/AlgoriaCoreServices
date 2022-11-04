@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[mailtemplate] (
     [BlindCopyTo] VARCHAR (1000) NULL,
     [Subject]     VARCHAR (250)  NULL,
     [Body]        VARCHAR (MAX)  NULL,
-    [IsActive]    BIT            NULL,
+    [IsActive]    BIT            NOT NULL,
     CONSTRAINT [PK_mailtemplate] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UQ_mailtemplate_mailkey] UNIQUE NONCLUSTERED ([mailgroup] ASC, [mailkey] ASC)
 );
@@ -265,7 +265,7 @@ CREATE TABLE [dbo].[Language] (
     [TenantId]    INT           NULL,
     [Name]        VARCHAR (10)  NULL,
     [DisplayName] VARCHAR (100) NULL,
-    [IsActive]    BIT           NULL,
+    [IsActive]    BIT           NOT NULL,
     CONSTRAINT [PK_Language] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
@@ -293,8 +293,8 @@ CREATE TABLE [dbo].[Role] (
     [TenantId]    INT           NULL,
     [Name]        VARCHAR (50)  NULL,
     [DisplayName] VARCHAR (100) NULL,
-    [IsActive]    BIT           NULL,
-    [IsDeleted]   BIT           NULL,
+    [IsActive]    BIT           NOT NULL,
+    [IsDeleted]   BIT           NOT NULL,
     CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
@@ -308,7 +308,7 @@ CREATE TABLE [dbo].[Permission] (
     [Id]        BIGINT        IDENTITY (1, 1) NOT NULL,
     [Role]      BIGINT        NULL,
     [Name]      VARCHAR (150) NULL,
-    [IsGranted] BIT           NULL,
+    [IsGranted] BIT           NOT NULL,
     CONSTRAINT [PK_Permission] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UQ_Permission_RolePermission] UNIQUE NONCLUSTERED ([Role] ASC, [Name] ASC)
 );
@@ -390,8 +390,8 @@ CREATE TABLE [dbo].[User] (
     [ProfilePictureId]  UNIQUEIDENTIFIER NULL,
     [UserLocked]        BIT              NULL,
     [IsLockoutEnabled]  BIT              NULL,
-    [IsActive]          BIT              NULL,
-    [IsDeleted]         BIT              NULL,
+    [IsActive]          BIT              NOT NULL,
+    [IsDeleted]         BIT              NOT NULL,
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UQ_User_UserLogin] UNIQUE NONCLUSTERED ([TenantId] ASC, [UserLogin] ASC)
 );
@@ -428,8 +428,8 @@ CREATE TABLE [dbo].[Tenant] (
     [TenancyName]  VARCHAR (50)  NULL,
     [Name]         VARCHAR (150) NULL,
     [CreationTime] DATETIME      NULL,
-    [IsActive]     BIT           NULL,
-    [IsDeleted]    BIT           NULL,
+    [IsActive]     BIT           NOT NULL,
+    [IsDeleted]    BIT           NOT NULL,
     CONSTRAINT [PK_tenant] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UQ_Tenant_TenancyName] UNIQUE NONCLUSTERED ([TenancyName] ASC)
 );
@@ -601,7 +601,7 @@ CREATE TABLE [dbo].[help] (
     [LanguageId]  INT           NOT NULL,
     [HelpKey]     VARCHAR (50)  NOT NULL,
     [DisplayName] VARCHAR (100) NULL,
-    [IsActive]    BIT           NULL,
+    [IsActive]    BIT           NOT NULL,
     CONSTRAINT [PK_help] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UQ_help_HelpKey] UNIQUE NONCLUSTERED ([LanguageId] ASC, [HelpKey] ASC)
 );
@@ -746,8 +746,8 @@ CREATE TABLE [dbo].[MailServiceMailConfig] (
     [SenderDisplay]        VARCHAR (250) NULL,
     [SMPTHost]             VARCHAR (100) NULL,
     [SMPTPort]             SMALLINT      NULL,
-    [IsSSL]                BIT           NULL,
-    [UseDefaultCredential] BIT           NULL,
+    [IsSSL]                BIT           NOT NULL,
+    [UseDefaultCredential] BIT           NOT NULL,
     [Domain]               VARCHAR (100) NULL,
     [MailUser]             VARCHAR (50)  NULL,
     [MailPassword]         VARCHAR (100) NULL,
@@ -799,7 +799,7 @@ CREATE TABLE [dbo].[OrgUnit] (
     [ParentOU]  BIGINT        NULL,
     [Name]      VARCHAR (100) NOT NULL,
     [Level]     TINYINT       NOT NULL,
-    [IsDeleted] BIT           NULL,
+    [IsDeleted] BIT           NOT NULL,
     CONSTRAINT [PK_OrgUnit] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

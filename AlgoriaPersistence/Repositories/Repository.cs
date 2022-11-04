@@ -224,7 +224,7 @@ namespace AlgoriaPersistence.Repositories
                 var member = Expression.Property(parameter, "IsDeleted");
                 var filter1 =
                         Expression.Constant(
-                            Convert.ChangeType(true, member.Type.GetGenericArguments()[0]));
+                            Convert.ChangeType(true, member.Type));
 
                 Expression typeFilter = Expression.Convert(filter1, member.Type);
                 var body = Expression.NotEqual(member, typeFilter);
@@ -294,6 +294,11 @@ namespace AlgoriaPersistence.Repositories
             else if (MayHaveTenant())
             {
                 ((IMayHaveTenant)entity).TenantId = GetTenantId();
+            }
+
+            if (SoftDelete())
+            {
+                ((ISoftDelete)entity).IsDeleted = false;
             }
 
             var r = Table.Add(entity);
