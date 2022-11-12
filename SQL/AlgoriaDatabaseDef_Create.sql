@@ -1842,11 +1842,11 @@ SET IDENTITY_INSERT [Language] OFF;
 
 SET IDENTITY_INSERT [Role] ON;  
 
-INSERT INTO [Role] ([Id], [TenantId], [Name], [DisplayName], [IsActive])
-VALUES (1, NULL, 'Admin', @admonName, 1);
+INSERT INTO [Role] ([Id], [TenantId], [Name], [DisplayName], [IsActive], [IsDeleted])
+VALUES (1, NULL, 'Admin', @admonName, 1, 0);
 
-INSERT INTO [Role] ([Id], [TenantId], [Name], [DisplayName], [IsActive])
-VALUES (2, 1, 'Admin', @admonName, 1);
+INSERT INTO [Role] ([Id], [TenantId], [Name], [DisplayName], [IsActive], [IsDeleted])
+VALUES (2, 1, 'Admin', @admonName, 1, 0);
 
 SET IDENTITY_INSERT [Role] OFF; 
 
