@@ -28,7 +28,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
             {
                 Name = "ROLNEW",
                 DisplayName = "ROLNEW",
-                IsActive = false
+                IsActive = true
             });
 
             response.ShouldBeGreaterThan(0);
@@ -109,7 +109,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
             {
                 Name = "ROLNEW",
                 DisplayName = "ROLNEW",
-                IsActive = false
+                IsActive = true
             });
 
             ac.Mediator = Mediator;
