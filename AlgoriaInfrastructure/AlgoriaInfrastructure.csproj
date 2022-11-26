@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
 	
 	<!-- SonarCloud needs this -->
 	<ProjectGuid>{D5199E9B-15CB-49E0-B509-81B53176C168}</ProjectGuid>
