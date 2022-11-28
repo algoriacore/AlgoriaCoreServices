@@ -136,10 +136,10 @@ namespace AlgoriaCore.WebUI
             {
                 case DatabaseType.MySql:
                     // Agregar DbContext usando MySQL Server Provider
-                    services.AddDbContext<AlgoriaCoreDbContext>(options =>
-                        options.UseMySql(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase"),
-                        ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase")),
-                        mySqlOptions => mySqlOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
+                    //services.AddDbContext<AlgoriaCoreDbContext>(options =>
+                    //    options.UseMySql(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase"),
+                    //    ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase")),
+                    //    mySqlOptions => mySqlOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
                     break;
                 default:
                     // Agregar DbContext usando SQL Server Provider

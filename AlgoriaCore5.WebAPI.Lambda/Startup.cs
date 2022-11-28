@@ -135,10 +135,10 @@ namespace AlgoriaCore5.WebAPI.Lambda
             {
                 case DatabaseType.MySql:
                     // Add DbContext using MySQL Server Provider
-                    services.AddDbContext<AlgoriaCoreDbContext>(options =>
-                        options.UseMySql(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase"),
-                        ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase")),
-                        mySqlOptions => mySqlOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
+                    //services.AddDbContext<AlgoriaCoreDbContext>(options =>
+                    //    options.UseMySql(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase"),
+                    //    ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase")),
+                    //    mySqlOptions => mySqlOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
                     break;
                 default:
                     // Add DbContext using SQL Server Provider
