@@ -86,7 +86,16 @@ namespace AlgoriaCore.Application.Authorization
         private void SetAdministrationPermissions()
         {
 			var administration = Root.CreateChildPermission(AppPermissions.Pages_Administration, L("Administration"));
-			var roles = administration.CreateChildPermission(AppPermissions.Pages_Administration_Roles, L("Roles"));
+
+            administration.CreateChildPermission(AppPermissions.Pages_Administration_Host_Settings, L("Host.Settings"), multiTenancySides: MultiTenancySides.Host);
+
+            var tenants = Root.CreateChildPermission(AppPermissions.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+            tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Create, L("Create"), multiTenancySides: MultiTenancySides.Host);
+            tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Edit, L("Edit"), multiTenancySides: MultiTenancySides.Host);
+            tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Delete, L("Delete"), multiTenancySides: MultiTenancySides.Host);
+            tenants.CreateChildPermission(AppPermissions.Pages_Tenants_Impersonation, L("Impersonate"), multiTenancySides: MultiTenancySides.Host);
+
+            var roles = administration.CreateChildPermission(AppPermissions.Pages_Administration_Roles, L("Roles"));
 			roles.CreateChildPermission(AppPermissions.Pages_Administration_Roles_Create, L("Create"));
 			roles.CreateChildPermission(AppPermissions.Pages_Administration_Roles_Edit, L("Edit"));
 			roles.CreateChildPermission(AppPermissions.Pages_Administration_Roles_Delete, L("Delete"));
@@ -134,12 +143,16 @@ namespace AlgoriaCore.Application.Authorization
 
 			administration.CreateChildPermission(AppPermissions.Pages_Administration_AuditLogs, L("AuditLogs"));
 
-			if (!_multiTenancyConfig.IsEnabled())
-			{
-				administration.CreateChildPermission(AppPermissions.Pages_Administration_Host_Maintenance, L("Maintenance"));
-			}
+            if (_multiTenancyConfig.IsEnabled())
+            {
+                administration.CreateChildPermission(AppPermissions.Pages_Administration_Host_Maintenance, L("Maintenance"), multiTenancySides: MultiTenancySides.Host);
+            }
+            else
+            {
+                administration.CreateChildPermission(AppPermissions.Pages_Administration_Host_Maintenance, L("Maintenance"));
+            }
 
-			administration.CreateChildPermission(AppPermissions.Pages_Administration_Tenant_Settings, L("Tenant.Settings"), multiTenancySides: MultiTenancySides.Tenant);
+            administration.CreateChildPermission(AppPermissions.Pages_Administration_Tenant_Settings, L("Tenant.Settings"), multiTenancySides: MultiTenancySides.Tenant);
 		}
 
         private void SetQuestionnairesPermissions()
