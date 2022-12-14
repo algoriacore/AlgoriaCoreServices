@@ -17,6 +17,13 @@
       <text name="FieldInvalidEmailAddress" value="Der Bereich {0} hat eine ungültige E-Mail-Addresse" />
       <text name="FieldInvalidFormat" value="Der Bereich {0} hat ein richtig Format" />
       <text name="FieldNotNull" value="Der Bereich {0} soll nich nichtig sind" />
+      <text name="FieldDuplicated" value="El campo {0} está repetido" />
+      <text name="ValidMailRegEx" value="El campo {0} debe ser un correo válido" />
+      <text name="FieldMinSelecting">El campo {0} debe tener una selección de valores mínima de {1}</text>
+      <text name="FieldMaxSelecting">El campo {0} debe tener una selección de valores máxima de {1}</text>
+      <text name="FieldInvalidCharacters">El campo {0} contiene caracteres inválidos</text>
+
+      <text name="AppLogo" value="Logo Aplicación" />
       <text name="Status" value="Status" />
       <text name="IsActive" value="Aktiv" />
       <text name="Active" value="Aktiv" />

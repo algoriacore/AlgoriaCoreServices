@@ -17,6 +17,13 @@
       <text name="FieldInvalidEmailAddress" value="The field {0} has an invalid email address" />
       <text name="FieldInvalidFormat" value="The field {0} has a correct format" />
       <text name="FieldNotNull" value="The field {0} must not be null" />
+      <text name="FieldDuplicated" value="The field {0} is repeated" />
+      <text name="ValidMailRegEx" value="The field {0} must have a valid email format" />
+      <text name="FieldMinSelecting">The field {0} must have a minum of {1} values selected</text>
+      <text name="FieldMaxSelecting">The field {0} must have a maximum of {1} values selected</text>
+      <text name="FieldInvalidCharacters">The field {0} has invalid characters</text>
+
+      <text name="AppLogo" value="Aplicatioin Logo" />
       <text name="Status" value="Status" />
       <text name="IsActive" value="Active" />
       <text name="Active" value="Active" />

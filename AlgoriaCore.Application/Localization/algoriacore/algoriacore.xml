@@ -22,6 +22,7 @@
     <text name="ValidMailRegEx" value="El campo {0} debe ser un correo válido" />
     <text name="FieldMinSelecting">El campo {0} debe tener una selección de valores mínima de {1}</text>
     <text name="FieldMaxSelecting">El campo {0} debe tener una selección de valores máxima de {1}</text>
+    <text name="FieldInvalidCharacters">El campo {0} contiene caracteres inválidos</text>
       
     <text name="AppLogo" value="Logo Aplicación" />
     <text name="Status" value="Estatus" />
