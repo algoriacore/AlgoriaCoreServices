@@ -58,7 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoriaCore.Controllers", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{2AF7EAD0-561F-4154-95DF-E99466939613}"
 	ProjectSection(SolutionItems) = preProject
-		SQL\AlgoriaDatabaseDef_Create.sql = SQL\AlgoriaDatabaseDef_Create.sql
+		SQL\AlgoriaDatabaseDef_Postgres_Create.sql = SQL\AlgoriaDatabaseDef_Postgres_Create.sql
+		SQL\AlgoriaDatabaseDef_SQLServer_Create.sql = SQL\AlgoriaDatabaseDef_SQLServer_Create.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{498E1B47-829F-4707-80A3-EDD77AF757EF}"

@@ -20,6 +20,7 @@
     public enum DatabaseType : byte
     {
         Sql = 0,
-        MySql = 1
+        MySql = 1,
+        Postgres = 2
     }
 }

@@ -26,7 +26,6 @@ using AlgoriaCore.Domain.Interfaces.MultiTenancy;
 using AlgoriaCore.Domain.Interfaces.Token;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
-using AlgoriaCore.Extensions;
 using AlgoriaCore.WebAPI.Middleware;
 using AlgoriaCore.WebUI.Chat.SignalR;
 using AlgoriaCore.WebUI.Controllers;
@@ -141,6 +140,16 @@ namespace AlgoriaCore.WebUI
                     //    ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlAlgoriaCoreDatabase")),
                     //    mySqlOptions => mySqlOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
                     break;
+                case DatabaseType.Postgres:
+					// Agregar DbContext usando SQL Server Provider
+					services.AddDbContext<AlgoriaCoreDbContext>(options =>
+						options.UseNpgsql(Configuration.GetConnectionString("PostgresAlgoriaCoreDatabase"),
+						sqlServerOptions => sqlServerOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
+
+					// La siguiente línea evita el error:
+					// Cannot write DateTime with Kind=UTC to PostgreSQL type 'timestamp without time zone'
+					AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+					break;
                 default:
                     // Agregar DbContext usando SQL Server Provider
                     services.AddDbContext<AlgoriaCoreDbContext>(options =>
@@ -342,7 +351,7 @@ namespace AlgoriaCore.WebUI
                 .AllowAnyMethod()
                 .AllowCredentials()
                 //.WithOrigins("http://localhost:4200")
-                .WithOrigins(appSettings.CORSOrigins.IsNullOrWhiteSpace()? Array.Empty<string>() : appSettings.CORSOrigins.Split(",").Select(p => p.Trim()).ToArray())
+                .WithOrigins(string.IsNullOrWhiteSpace(appSettings.CORSOrigins) ? Array.Empty<string>() : appSettings.CORSOrigins.Split(",").Select(p => p.Trim()).ToArray())
                 .SetIsOriginAllowedToAllowWildcardSubdomains();
             });
 
