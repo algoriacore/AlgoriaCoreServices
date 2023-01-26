@@ -32,7 +32,7 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
+--SET default_table_access_method = heap;
 
 --
 -- TOC entry 287 (class 1259 OID 19573)
@@ -463,7 +463,6 @@ ALTER SEQUENCE public."LanguageText_Id_seq" OWNED BY public."LanguageText"."Id";
 --
 
 CREATE SEQUENCE public."Language_Id_seq"
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1053,7 +1052,6 @@ ALTER TABLE public."TenantRegistration" OWNER TO postgres;
 --
 
 CREATE SEQUENCE public."TenantRegistration_Id_seq"
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1078,7 +1076,6 @@ ALTER SEQUENCE public."TenantRegistration_Id_seq" OWNED BY public."TenantRegistr
 --
 
 CREATE SEQUENCE public."Tenant_Id_seq"
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
