@@ -131,6 +131,12 @@
 
     <text name="ChangePassword.WrongTenancyName" value="No se encontró el tenant" />
 
+    <text name="Views.Export" value="Exportar vista" />
+    <text name="Views.Configurate" value="Configurar vista" />
+    <text name="Views.Columns" value="Columnas" />
+    <text name="Views.Columns.Column" value="Columna" />
+    <text name="Views.Columns.ShowColumn" value="Mostrar" />
+      
     <text name="SettingClient" value="Configuración cliente" />
     <text name="SettingClient.ClientType" value="Tipo de cliente" />
     <text name="SettingClient.Name" value="Nombre" />

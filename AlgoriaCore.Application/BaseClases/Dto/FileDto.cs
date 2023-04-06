@@ -12,6 +12,8 @@ namespace AlgoriaCore.Application.BaseClases.Dto
 
         public byte[] FileArray { get; set; }
 
+        public string FileBase64 { get; set; }
+
         public FileDto()
         {
             FileToken = Guid.NewGuid().ToString("N");

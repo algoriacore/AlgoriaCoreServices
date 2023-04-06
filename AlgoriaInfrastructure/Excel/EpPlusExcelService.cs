@@ -4,14 +4,18 @@ using AlgoriaCore.Application.Localization;
 using AlgoriaCore.Domain.Excel;
 using AlgoriaCore.Domain.Interfaces.Excel;
 using AlgoriaCore.Domain.Interfaces.Excel.Auditing;
+using AlgoriaCore.Domain.Interfaces.Excel.Users;
 using AlgoriaCore.Domain.Interfaces.Folder;
 using AlgoriaCore.Extensions;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Dynamic;
 using System.IO;
+using System.Linq;
 
 namespace AlgoriaInfrastructure.Excel
 {
@@ -36,9 +40,14 @@ namespace AlgoriaInfrastructure.Excel
             return CreateExcelPackage("AuditLogs.xlsx", GetActionCreatorAuditLogs(input, auditLogList), true);
         }
 
-		#region Métodos privados
+        public IFileExcel ExportViewUsersToBinary(IUserFilterExcel input, List<IUserExcel> list, List<IViewColumn> viewColumns)
+        {
+            return CreateExcelPackage("ViewUsers.xlsx", GetActionCreatorViewUsers(input, list, viewColumns), true);
+        }
 
-		private Action<ExcelPackage> GetActionCreatorAuditLogs(IAuditLogFilterExcel input, List<IAuditLogExcel> auditLogList)
+        #region Métodos privados
+
+        private Action<ExcelPackage> GetActionCreatorAuditLogs(IAuditLogFilterExcel input, List<IAuditLogExcel> auditLogList)
 		{
 			return excelPackage =>
 			{
@@ -116,7 +125,56 @@ namespace AlgoriaInfrastructure.Excel
 			};
 		}
 
-		private string GetSeverity(short? severity)
+        private Action<ExcelPackage> GetActionCreatorViewUsers(IUserFilterExcel input, List<IUserExcel> list, List<IViewColumn> viewColumns)
+        {
+            return excelPackage =>
+            {
+                var sheet = excelPackage.Workbook.Worksheets.Add(L("Users"));
+
+                sheet.OutLineApplyStyle = true;
+
+                List<IViewColumn> viewColumnsActive = viewColumns.FindAll(p => p.IsActive);
+                List<Func<IUserExcel, object>> parameters = new List<Func<IUserExcel, object>>();
+
+                foreach(IViewColumn viewColumn in viewColumnsActive)
+                {
+                    switch(viewColumn.Field.ToLower())
+                    {
+                        case "id":
+                            parameters.Add(_ => _.Id);
+                            break;
+                        case "login":
+                            parameters.Add(_ => _.Login);
+                            break;
+                        case "fullname":
+                            parameters.Add(_ => _.FullName);
+                            break;
+                        case "emailaddress":
+                            parameters.Add(_ => _.EmailAddress);
+                            break;
+                        case "isactivedesc":
+                            parameters.Add(_ => _.IsActiveDesc);
+                            break;
+                        case "userlockeddesc":
+                            parameters.Add(_ => _.UserLockedDesc);
+                            break;
+                    }
+                }
+
+                AddObjects(sheet, 5, list, parameters.ToArray());
+
+                AddTitle(sheet, 1, 1, 10, L("Users"));
+                AddFilter(sheet, 2, 1, L("SearchDots"), input.Filter ?? string.Empty);
+                AddHeader(sheet, 4, 1, viewColumnsActive.Select(p => p.Header).ToArray());
+
+                for (var i = 1; i <= viewColumnsActive.Count; i++)
+                {
+                    sheet.Column(i).AutoFit();
+                }
+            };
+        }
+
+        private string GetSeverity(short? severity)
 		{
 			string resp = string.Empty;
 			switch (severity)

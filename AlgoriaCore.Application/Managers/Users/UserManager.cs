@@ -99,7 +99,7 @@ namespace AlgoriaCore.Application.Managers.Users
 
 			var tot = await a.CountAsync();
 			var lst = await a.OrderBy(dto.Sorting)
-							 .PageBy(dto)
+							 .PageByIf(dto.IsPaged, dto)
 							 .ToListAsync();
 
 			return new PagedResultDto<UserDto>(tot, lst);

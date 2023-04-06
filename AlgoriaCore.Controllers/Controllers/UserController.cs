@@ -21,7 +21,13 @@ namespace AlgoriaCore.WebUI.Controllers
             return await Mediator.Send(query);
         }
 
-		[HttpPost]
+        [HttpPost]
+        public async Task<FileDto> ExportUser([FromBody] UserExportQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
 		public async Task<List<UserListResponse>> GetUserAutocompleteList(string term)
 		{
 			UserGetListQuery query = new UserGetListQuery();

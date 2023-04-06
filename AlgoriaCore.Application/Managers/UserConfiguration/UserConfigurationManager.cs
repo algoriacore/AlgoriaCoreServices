@@ -22,7 +22,7 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
     {
         private readonly LanguageManager _managerLanguage;
         private readonly PermissionManager _permissionManager;
-        private readonly SettingClientManager _settingClientManagerManager;
+        private readonly SettingClientManager _settingClientManager;
         private readonly TenantManager _managerTenant;
         private readonly SettingManager _managerSetting;
         
@@ -33,7 +33,7 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
         public UserConfigurationManager(
             LanguageManager managerLanguage,
             PermissionManager permissionManager,
-            SettingClientManager settingClientManagerManager,
+            SettingClientManager settingClientManager,
             TenantManager managerTenant,
             SettingManager managerSetting,
             IMultiTenancyConfig multiTenancyConfig,
@@ -43,7 +43,7 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
         {
             _managerLanguage = managerLanguage;
             _permissionManager = permissionManager;
-            _settingClientManagerManager = settingClientManagerManager;
+            _settingClientManager = settingClientManager;
             _managerTenant = managerTenant;
             _managerSetting = managerSetting;
             _multiTenancyConfig = multiTenancyConfig;
@@ -89,7 +89,7 @@ namespace AlgoriaCore.Application.Managers.UserConfiguration
 
                 if (SessionContext.UserId.HasValue)
                 {
-                    List<SettingClientDto> settingsClientList = await _settingClientManagerManager.GetSettingClientByClientTypeAndUserLogged(filterDto.ClientType);
+                    List<SettingClientDto> settingsClientList = await _settingClientManager.GetSettingClientByClientTypeAndUserLogged(filterDto.ClientType);
                     dto.SettingsClient = settingsClientList.ToDictionary(p => p.Name, p => p.Value);
                 }
 
