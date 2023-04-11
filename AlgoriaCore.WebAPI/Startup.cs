@@ -15,6 +15,7 @@ using AlgoriaCore.Application.Pipeline;
 using AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries;
 using AlgoriaCore.Application.QueriesAndCommands.SessionLogin._1Model;
 using AlgoriaCore.Domain.Authorization;
+using AlgoriaCore.Domain.Interfaces.CSV;
 using AlgoriaCore.Domain.Interfaces.Date;
 using AlgoriaCore.Domain.Interfaces.Email;
 using AlgoriaCore.Domain.Interfaces.Excel;
@@ -195,6 +196,8 @@ namespace AlgoriaCore.WebUI
             services.AddTransient<ICoreLogger, CoreNLogger>();
             //Servicio Excel
             services.AddTransient<IExcelService, EpPlusExcelService>();
+            //Servicio CSV
+            services.AddTransient<ICSVService, EpPlusCSVService>();
 
             //Servicio proveedor de autorización
             services.AddSingleton<IAppAuthorizationProvider, AppAuthorizationProvider>();
@@ -254,7 +257,7 @@ namespace AlgoriaCore.WebUI
             {
                 document.PostProcess = v1 =>
                 {
-                    v1.Info.Title = "Algoria Core 230405";
+                    v1.Info.Title = "Algoria Core 230411";
                     v1.Info.Version = "1.0.0";
                     v1.Info.Description = "DatabaseType: " + (appSettings.DatabaseType == DatabaseType.MySql ? "MySql" : "SQL Server");
                 };

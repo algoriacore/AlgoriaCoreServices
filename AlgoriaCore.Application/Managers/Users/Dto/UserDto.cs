@@ -1,6 +1,5 @@
 ﻿using AlgoriaCore.Extensions;
 using System;
-using System.Security.Permissions;
 using System.Text;
 
 namespace AlgoriaCore.Application.Managers.Users.Dto

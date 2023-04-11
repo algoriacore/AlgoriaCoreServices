@@ -28,6 +28,12 @@ namespace AlgoriaCore.WebUI.Controllers
         }
 
         [HttpPost]
+        public async Task<FileDto> ExportCSVUser([FromBody] UserExportCSVQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
 		public async Task<List<UserListResponse>> GetUserAutocompleteList(string term)
 		{
 			UserGetListQuery query = new UserGetListQuery();
