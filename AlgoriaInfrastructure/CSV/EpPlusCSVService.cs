@@ -43,7 +43,7 @@ namespace AlgoriaInfrastructure.Excel
             AddHeader(sheet, 1, 1, viewColumnsActive.Select(p => p.Header).ToArray());
             AddObjects(sheet, 2, list, parameters.ToArray());
 
-            var range = sheet.Cells[1, 1, list.Count(), viewColumnsActive.Count()];
+            var range = sheet.Cells[1, 1, list.Count() + 1, viewColumnsActive.Count()];
             var stream = new MemoryStream();
 
             range.SaveToText(stream, new ExcelOutputTextFormat { Encoding = Encoding.UTF8 });
