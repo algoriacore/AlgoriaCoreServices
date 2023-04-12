@@ -138,6 +138,7 @@
     <text name="Views.Columns.ShowColumn" value="Mostrar" />
     <text name="Views.Export.Excel" value="Excel" />
     <text name="Views.Export.CSV" value="CSV" />
+    <text name="Views.Export.PDF" value="PDF" />
       
     <text name="SettingClient" value="Configuración cliente" />
     <text name="SettingClient.ClientType" value="Tipo de cliente" />
