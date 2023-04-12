@@ -22,18 +22,18 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._3Commands
     {
         private readonly UserManager _userManager;
         private readonly ILogger _logger;
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
         private readonly MailTemplateManager _mailTemplateManager;
 
         public UserCreateCommandHandler(ICoreServices coreServices,
             UserManager userManager,
             ILogger<UserCreateCommandHandler> logger,
-            RolManager rolManager,
+            RoleManager roleManager,
             MailTemplateManager mailTemplateManager) : base(coreServices)
         {
             _userManager = userManager;
             _logger = logger;
-            _rolManager = rolManager;
+            _roleManager = roleManager;
             _mailTemplateManager = mailTemplateManager;
         }
 
@@ -100,7 +100,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._3Commands
 
             // agregar roles
             request.AssignedRoleNames = request.AssignedRoleNames ?? new List<string>();
-            var rolDtoList = await _rolManager.GetRolesFromNamesByValidating(request.AssignedRoleNames);
+            var rolDtoList = await _roleManager.GetRolesFromNamesByValidating(request.AssignedRoleNames);
 
             dto.Id = await _userManager.CreateUserAsync(dto, rolDtoList);
 

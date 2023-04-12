@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolGetByIdQuery : IRequest<RolResponse>
+    public class RoleGetForEditQuery : IRequest<RoleForEditReponse>
     {
         public long Id { get; set; }
     }

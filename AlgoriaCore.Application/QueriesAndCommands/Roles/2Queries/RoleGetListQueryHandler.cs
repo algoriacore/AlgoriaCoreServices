@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolGetListQueryHandler : BaseCoreClass, IRequestHandler<RolGetListQuery, PagedResultDto<RolForListResponse>>
+    public class RoleGetListQueryHandler : BaseCoreClass, IRequestHandler<RoleGetListQuery, PagedResultDto<RoleForListResponse>>
     {
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
 
-        public RolGetListQueryHandler(ICoreServices coreServices, RolManager rolManager) : base(coreServices)
+        public RoleGetListQueryHandler(ICoreServices coreServices, RoleManager rolManager) : base(coreServices)
         {
-            _rolManager = rolManager;
+            _roleManager = rolManager;
         }
 
-        public async Task<PagedResultDto<RolForListResponse>> Handle(RolGetListQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResultDto<RoleForListResponse>> Handle(RoleGetListQuery request, CancellationToken cancellationToken)
         {
-            RolListFilterDto filterDto = new RolListFilterDto()
+            RoleListFilterDto filterDto = new RoleListFilterDto()
             {
                 Filter = request.Filter,
                 PageNumber = request.PageNumber,
@@ -30,12 +30,12 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
                 Sorting = request.Sorting
             };
 
-            PagedResultDto<RolDto> pagedResultDto = await _rolManager.GetRolesListAsync(filterDto);
-            List<RolForListResponse> ll = new List<RolForListResponse>();
+            PagedResultDto<RoleDto> pagedResultDto = await _roleManager.GetRolesListAsync(filterDto);
+            List<RoleForListResponse> ll = new List<RoleForListResponse>();
 
-            foreach (RolDto dto in pagedResultDto.Items)
+            foreach (RoleDto dto in pagedResultDto.Items)
             {
-                ll.Add(new RolForListResponse()
+                ll.Add(new RoleForListResponse()
                 {
                     Id = dto.Id.Value,
                     Name = dto.Name,
@@ -45,7 +45,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
                 });
             }
 
-            return new PagedResultDto<RolForListResponse>(pagedResultDto.TotalCount, ll);
+            return new PagedResultDto<RoleForListResponse>(pagedResultDto.TotalCount, ll);
         }
 
 

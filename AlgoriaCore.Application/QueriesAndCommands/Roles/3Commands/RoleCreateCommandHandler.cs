@@ -11,20 +11,20 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
 {
-    public class RolCreateCommandHandler : BaseCoreClass, IRequestHandler<RolCreateCommand, long>
+    public class RoleCreateCommandHandler : BaseCoreClass, IRequestHandler<RoleCreateCommand, long>
     {
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
         private readonly IAppAuthorizationProvider _authorizationProvider;
 
-        public RolCreateCommandHandler(ICoreServices coreServices, RolManager rolManager, IAppAuthorizationProvider authorizationProvider) : base(coreServices)
+        public RoleCreateCommandHandler(ICoreServices coreServices, RoleManager roleManager, IAppAuthorizationProvider authorizationProvider) : base(coreServices)
         {
-            _rolManager = rolManager;
+            _roleManager = roleManager;
             _authorizationProvider = authorizationProvider;
         }
 
-        public async Task<long> Handle(RolCreateCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(RoleCreateCommand request, CancellationToken cancellationToken)
         {
-            var rolDto = new RolDto
+            var rolDto = new RoleDto
             {
                 TenantId = SessionContext.TenantId,
                 Name = request.Name,
@@ -35,11 +35,11 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
             var permisoList = request.GrantedPermissionNames ?? new List<string>();
             var pNames = _authorizationProvider.GetPermissionsFromNamesByValidating(permisoList);
 
-            rolDto.Id = await _rolManager.AddRolAsync(rolDto, pNames.Select(m => m.DisplayName).ToList());
+            rolDto.Id = await _roleManager.AddRoleAsync(rolDto, pNames.Select(m => m.DisplayName).ToList());
 
             _authorizationProvider.GetPermissionsFromNamesByValidating(permisoList);
             var permisoDtoList = permisoList.Select(s => new PermissionDto { Name = s }).ToList();
-            await _rolManager.ReplacePermissionAsync(rolDto.Id.Value, permisoDtoList);
+            await _roleManager.ReplacePermissionAsync(rolDto.Id.Value, permisoDtoList);
 
             return rolDto.Id.Value;
         }

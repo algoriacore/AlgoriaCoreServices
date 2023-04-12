@@ -1,5 +1,4 @@
 ﻿using AlgoriaCore.Application.BaseClases.Dto;
-using AlgoriaCore.Application.Managers.ChatRooms.Dto;
 using AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRoomChats;
 using AlgoriaCore.Application.QueriesAndCommands.ChatRooms.ChatRooms;
 using AlgoriaCore.Domain.Authorization;
@@ -8,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AlgoriaCore.WebUI.Controllers
 {

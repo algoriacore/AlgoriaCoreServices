@@ -135,7 +135,7 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            services.AddValidatorsAsTransient(typeof(RolGetByIdValidator).Assembly);
+            services.AddValidatorsAsTransient(typeof(RoleGetByIdValidator).Assembly);
 
             services.AddTransient(typeof(ICoreServices), typeof(CoreServices));
 
@@ -189,7 +189,7 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
             // Crear el constructor del contenedor.
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            builder.RegisterMediatR(typeof(RolGetByIdQuery).GetTypeInfo().Assembly);
+            builder.RegisterMediatR(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly);
             builder.RegisterMediatR(typeof(RequestLogger<>).GetTypeInfo().Assembly);
 
             builder.AddManagers(typeof(IBaseManager).Assembly);

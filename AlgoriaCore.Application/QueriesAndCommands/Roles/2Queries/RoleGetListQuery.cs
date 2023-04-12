@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolGetListQuery : PageListByDto, IRequest<PagedResultDto<RolForListResponse>>
+    public class RoleGetListQuery : PageListByDto, IRequest<PagedResultDto<RoleForListResponse>>
     {
     }
 }

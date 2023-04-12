@@ -1,13 +1,13 @@
 ﻿using AlgoriaCore.Application.Interfaces;
 using FluentValidation;
 
-namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
+namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolDeleteCommandValidator : AbstractValidator<RolDeleteCommand>
+    public class RoleGetByIdValidator : AbstractValidator<RoleGetByIdQuery>
     {
         private readonly ICoreServices _coreServices;
 
-        public RolDeleteCommandValidator(ICoreServices coreServices)
+        public RoleGetByIdValidator(ICoreServices coreServices)
         {
             _coreServices = coreServices;
 
@@ -23,4 +23,5 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
             return _coreServices.AppLocalizationProvider.L(name);
         }
     }
+
 }

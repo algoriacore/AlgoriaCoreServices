@@ -12,8 +12,6 @@ namespace AlgoriaCore.WebUI.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<WeatherForecast>> WeatherForecasts(string id)
         {
-            // Ejemplo para obtener la sesión
-
             return await Mediator.Send(new GetSampleDataQuery { Id = id });
         }
     }

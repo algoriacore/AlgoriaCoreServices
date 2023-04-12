@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolGetForEditQueryHandler : BaseCoreClass, IRequestHandler<RolGetForEditQuery, RolForEditReponse>
+    public class RoleGetForEditQueryHandler : BaseCoreClass, IRequestHandler<RoleGetForEditQuery, RoleForEditReponse>
     {
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
 
-        public RolGetForEditQueryHandler(ICoreServices coreServices, RolManager rolManager) : base(coreServices)
+        public RoleGetForEditQueryHandler(ICoreServices coreServices, RoleManager rolManager) : base(coreServices)
         {
-            _rolManager = rolManager;
+            _roleManager = rolManager;
         }
 
-        public async Task<RolForEditReponse> Handle(RolGetForEditQuery request, CancellationToken cancellationToken)
+        public async Task<RoleForEditReponse> Handle(RoleGetForEditQuery request, CancellationToken cancellationToken)
         {
-            var rolDto = await _rolManager.GetRoleByIdAsync(request.Id);
+            var rolDto = await _roleManager.GetRoleByIdAsync(request.Id);
 
-            var response = new RolForEditReponse
+            var response = new RoleForEditReponse
             {
                 Id = rolDto.Id.Value,
                 DisplayName = rolDto.DisplayName,
@@ -30,9 +30,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
                 IsActive = rolDto.IsActive
             };
 
-            var ll = await _rolManager.GetAllPermissionsByRoleIdAsync(request.Id);
+            var ll = await _roleManager.GetAllPermissionsByRoleIdAsync(request.Id);
 
-            response.PermisoList = ll.Select(entidad => new RolPermisoResponse
+            response.PermissionList = ll.Select(entidad => new RolePermisoResponse
             {
                 Id = entidad.Id,
                 Name = entidad.Name

@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands
 {
-    public class RolUpdateCommandValidator : AbstractValidator<RolUpdateCommand>
+    public class RoleUpdateCommandValidator : AbstractValidator<RoleUpdateCommand>
     {
         private readonly ICoreServices _coreServices;
 
-        public RolUpdateCommandValidator(ICoreServices coreServices)
+        public RoleUpdateCommandValidator(ICoreServices coreServices)
         {
             _coreServices = coreServices;
 

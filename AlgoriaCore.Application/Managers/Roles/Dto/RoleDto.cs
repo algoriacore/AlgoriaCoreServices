@@ -1,6 +1,6 @@
 ﻿namespace AlgoriaCore.Application.Managers.Roles.Dto
 {
-    public class RolDto
+    public class RoleDto
     {
         public long? Id { get; set; }
         public int? TenantId { get; set; }

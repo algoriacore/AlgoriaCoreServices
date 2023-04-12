@@ -105,7 +105,7 @@ namespace AlgoriaCore.Application.Managers.Users
 			return new PagedResultDto<UserDto>(tot, lst);
 		}
 
-		public async Task<long> CreateUserAsync(UserDto dto, List<RolDto> rolesList)
+		public async Task<long> CreateUserAsync(UserDto dto, List<RoleDto> rolesList)
 		{
 			var entity = new User();
 
@@ -136,7 +136,7 @@ namespace AlgoriaCore.Application.Managers.Users
 			return entity.Id;
 		}
 
-		public async Task<long> UpdateUserAsync(UserDto dto, List<RolDto> rolesList)
+		public async Task<long> UpdateUserAsync(UserDto dto, List<RoleDto> rolesList)
 		{
 			var entity = await _repUser.FirstOrDefaultAsync(m => m.Id == dto.Id);
 
@@ -434,7 +434,7 @@ namespace AlgoriaCore.Application.Managers.Users
 			return query;
 		}
 
-		private async Task<long> LogChange(UserDto newDto, UserDto previousDto, List<RolDto> rolesList, ChangeLogType changeLogType)
+		private async Task<long> LogChange(UserDto newDto, UserDto previousDto, List<RoleDto> rolesList, ChangeLogType changeLogType)
 		{
 			if (newDto == null) { newDto = new UserDto(); }
 			if (previousDto == null) { previousDto = new UserDto(); }
@@ -754,7 +754,7 @@ namespace AlgoriaCore.Application.Managers.Users
 			return ll;
 		}
 
-		public async Task ReplaceRolesAsync(long userId, List<RolDto> rolList)
+		public async Task ReplaceRolesAsync(long userId, List<RoleDto> rolList)
 		{
 			var ll = await _repUserRole.GetAll().Where(m => m.UserId == userId).ToListAsync();
 

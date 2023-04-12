@@ -35,7 +35,7 @@ namespace AlgoriaCore.Application.Managers.Tenants
         private readonly IRepository<TenantRegistration, int> _repTenant;
         private readonly TenantManager _tenantManager;
         private readonly UserManager _userManager;
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
         private readonly MailGroupManager _mailGroupManager;
         private readonly MailTemplateManager _mailTemplateManager;
         private readonly SettingManager _settingManager;
@@ -46,7 +46,7 @@ namespace AlgoriaCore.Application.Managers.Tenants
         public TenantRegistrationManager(IRepository<TenantRegistration, int> repTenant,
                                         TenantManager tenantManager,
                                         UserManager userManager,
-                                        RolManager rolManager,
+                                        RoleManager roleManager,
                                         MailGroupManager mailGroupManager,
                                         MailTemplateManager mailTemplateManager,
                                         SettingManager settingManager,
@@ -58,7 +58,7 @@ namespace AlgoriaCore.Application.Managers.Tenants
             _repTenant = repTenant;
             _tenantManager = tenantManager;
             _userManager = userManager;
-            _rolManager = rolManager;
+            _roleManager = roleManager;
             _mailGroupManager = mailGroupManager;
             _mailTemplateManager = mailTemplateManager;
             _settingManager = settingManager;
@@ -260,7 +260,7 @@ namespace AlgoriaCore.Application.Managers.Tenants
 			}
 		}
 
-		private async Task CreateRolSettingsForTenant(List<RolDto> roles, int tenantId, long userId)
+		private async Task CreateRolSettingsForTenant(List<RoleDto> roles, int tenantId, long userId)
 		{
 			if (roles != null)
 			{
@@ -283,13 +283,13 @@ namespace AlgoriaCore.Application.Managers.Tenants
 
 				foreach (var r in roles)
 				{
-					RolDto rol = new RolDto();
+					RoleDto rol = new RoleDto();
 					rol.Name = "admin";
 					rol.DisplayName = "Administrador";
 					rol.IsActive = true;
 					rol.TenantId = tenantId;
 
-					var rolId = await _rolManager.AddRolAsync(rol, pNames.Select(m => m.DisplayName).ToList());
+					var rolId = await _roleManager.AddRoleAsync(rol, pNames.Select(m => m.DisplayName).ToList());
 					rol.Id = rolId;
 
 					var permissions = permisoList.Select(m => new PermissionDto
@@ -299,10 +299,10 @@ namespace AlgoriaCore.Application.Managers.Tenants
 						IsGranted = true
 					}).ToList();
 
-					await _rolManager.ReplacePermissionAsync(rolId, permissions);
+					await _roleManager.ReplacePermissionAsync(rolId, permissions);
 
 					// Asignar los roles al usuario recién generado
-					List<RolDto> rList = new List<RolDto>();
+					List<RoleDto> rList = new List<RoleDto>();
 					rList.Add(rol);
 					await _userManager.ReplaceRolesAsync(userId, rList);
 				}

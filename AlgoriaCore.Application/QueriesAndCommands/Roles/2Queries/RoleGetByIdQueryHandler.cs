@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries
 {
-    public class RolGetByIdQueryHandler : BaseCoreClass, IRequestHandler<RolGetByIdQuery, RolResponse>
+    public class RoleGetByIdQueryHandler : BaseCoreClass, IRequestHandler<RoleGetByIdQuery, RoleResponse>
     {
-        private readonly RolManager _rolManager;
+        private readonly RoleManager _roleManager;
    
-        public RolGetByIdQueryHandler(RolManager rolManager, ICoreServices coreServices) : base(coreServices)
+        public RoleGetByIdQueryHandler(RoleManager rolManager, ICoreServices coreServices) : base(coreServices)
         {
-            _rolManager = rolManager;
+            _roleManager = rolManager;
         }
 
-        public async Task<RolResponse> Handle(RolGetByIdQuery request, CancellationToken cancellationToken)
+        public async Task<RoleResponse> Handle(RoleGetByIdQuery request, CancellationToken cancellationToken)
         {
-            RolResponse rolResponse = new RolResponse();
+            RoleResponse rolResponse = new RoleResponse();
 
-            var rolDto = await _rolManager.GetRoleByIdAsync(request.Id);
+            var rolDto = await _roleManager.GetRoleByIdAsync(request.Id);
 
             rolResponse.Id = rolDto.Id.Value;
             rolResponse.TenantId = SessionContext.TenantId;

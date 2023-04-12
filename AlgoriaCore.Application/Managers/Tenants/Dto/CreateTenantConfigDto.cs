@@ -10,7 +10,7 @@ namespace AlgoriaCore.Application.Managers.Tenants.Dto
         public List<SettingConfig> Settings { get; set; }
         public List<MailTemplateDto> Emails { get; set; }
         public List<LanguageDto> Languages { get; set; }
-        public List<RolDto> Roles { get; set; }
+        public List<RoleDto> Roles { get; set; }
     }
 
     public class SettingConfig

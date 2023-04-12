@@ -11,49 +11,49 @@ using System.Threading.Tasks;
 namespace AlgoriaCore.WebUI.Controllers
 {
     [AlgoriaCoreAuthorizationFilter]
-    public class RolController : BaseController
+    public class RoleController : BaseController
     {
         [HttpPost]
-        public async Task<PagedResultDto<RolForListResponse>> GetRolList([FromBody]RolGetListQuery query)
+        public async Task<PagedResultDto<RoleForListResponse>> GetRoleList([FromBody]RoleGetListQuery query)
         {
             return await Mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<RolResponse> Get([FromBody]RolGetByIdQuery dto)
+        public async Task<RoleResponse> Get([FromBody]RoleGetByIdQuery dto)
         {
             return await Mediator.Send(dto);
         }
 
         [AlgoriaCoreAuthorizationFilter(AppPermissions.Pages_Administration_Roles_Create)]
         [HttpPost]
-        public async Task<long> CreateRol([FromBody]RolCreateCommand dto)
+        public async Task<long> CreateRole([FromBody]RoleCreateCommand dto)
         {
             return await Mediator.Send(dto);
         }
 
         [AlgoriaCoreAuthorizationFilter(AppPermissions.Pages_Administration_Roles_Edit)]
         [HttpPost]
-        public async Task<long> UpdateRol([FromBody]RolUpdateCommand dto)
+        public async Task<long> UpdateRole([FromBody]RoleUpdateCommand dto)
         {
             return await Mediator.Send(dto);
         }
 
         [AlgoriaCoreAuthorizationFilter(AppPermissions.Pages_Administration_Roles_Delete)]
         [HttpPost]
-        public async Task<long> DeleteRol([FromBody]RolDeleteCommand dto)
+        public async Task<long> DeleteRole([FromBody]RoleDeleteCommand dto)
         {
             return await Mediator.Send(dto);
         }
 
         [HttpPost]
-        public async Task<RolForEditReponse> GetRolForEdit([FromBody]RolGetForEditQuery dto)
+        public async Task<RoleForEditReponse> GetRoleForEdit([FromBody]RoleGetForEditQuery dto)
         {
             return await Mediator.Send(dto);
         }
 
         [HttpPost]
-        public async Task<List<RolForListActiveResponse>> GetRolListActive([FromBody]RolGetForListActiveQuery query)
+        public async Task<List<RoleForListActiveResponse>> GetRoleListActive([FromBody]RoleGetForListActiveQuery query)
         {
             return await Mediator.Send(query);
         }

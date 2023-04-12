@@ -15,25 +15,25 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.Managers.Roles
 {
-    public class RolManager : BaseManager
+    public class RoleManager : BaseManager
     {
-        private readonly IRepository<Role, long> _repRol;
+        private readonly IRepository<Role, long> _repRole;
         private readonly IRepository<Permission, long> _repPermission;
 
-        public RolManager(IRepository<Role, long> repRol,
+        public RoleManager(IRepository<Role, long> repRole,
                           IRepository<Permission, long> repPermission)
         {
-            _repRol = repRol;
+            _repRole = repRole;
             _repPermission = repPermission;
         }
 
-        public async Task<PagedResultDto<RolDto>> GetRolesListAsync(RolListFilterDto dto)
+        public async Task<PagedResultDto<RoleDto>> GetRolesListAsync(RoleListFilterDto dto)
         {
             string yesLabel = L("Yes");
             string noLabel = L("No");
 
-            var a = (from r in _repRol.GetAll()
-                     select new RolDto
+            var a = (from r in _repRole.GetAll()
+                     select new RoleDto
                      {
                          Id = r.Id,
                          Name = r.Name,
@@ -53,44 +53,44 @@ namespace AlgoriaCore.Application.Managers.Roles
                      .PageBy(dto)
                      .ToListAsync();
 
-            return new PagedResultDto<RolDto>(tot, lst);
+            return new PagedResultDto<RoleDto>(tot, lst);
         }
 
-        public async Task<List<RolDto>> GetRolListAsync()
+        public async Task<List<RoleDto>> GetRoleListAsync()
         {
-            var ll = await _repRol.GetAll().ToListAsync();
+            var ll = await _repRole.GetAll().ToListAsync();
 
-            var lista = new List<RolDto>();
+            var lista = new List<RoleDto>();
 
-            ll.ForEach(m => lista.Add(GetRol(m)));
+            ll.ForEach(m => lista.Add(GetRole(m)));
 
             return lista;
         }
 
-        public async Task<List<RolDto>> GetRolListActiveAsync()
+        public async Task<List<RoleDto>> GetRolListActiveAsync()
         {
-            var ll = await GetRolListAsync();
+            var ll = await GetRoleListAsync();
 
             ll = ll.Where(m => m.IsActive == true).ToList();
 
             return ll;
         }
 
-        public async Task<RolDto> GetRoleByIdAsync(long id, bool throwExceptionIfNotFound = true)
+        public async Task<RoleDto> GetRoleByIdAsync(long id, bool throwExceptionIfNotFound = true)
         {
-            var r = await _repRol.FirstOrDefaultAsync(id);
+            var r = await _repRole.FirstOrDefaultAsync(id);
 
             if (throwExceptionIfNotFound && r == null)
             {
                 throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("Roles"), id));
             }
 
-            RolDto rolDto = GetRol(r);
+            RoleDto rolDto = GetRole(r);
 
             return rolDto;
         }
 
-        public async Task<long> AddRolAsync(RolDto dto, List<string> permissionNames)
+        public async Task<long> AddRoleAsync(RoleDto dto, List<string> permissionNames)
         {
             var entity = new Role
             {
@@ -101,7 +101,7 @@ namespace AlgoriaCore.Application.Managers.Roles
                 IsDeleted = dto.IsDeleted
             };
 
-            _repRol.Insert(entity);
+            _repRole.Insert(entity);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             await LogChange(await GetRoleByIdAsync(entity.Id), null, permissionNames, ChangeLogType.Create);
@@ -109,9 +109,9 @@ namespace AlgoriaCore.Application.Managers.Roles
             return entity.Id;
         }
 
-        public async Task UpdateRolAsync(RolDto dto, List<string> permissionNames)
+        public async Task UpdateRoleAsync(RoleDto dto, List<string> permissionNames)
         {
-            var entity = await _repRol.FirstOrDefaultAsync(dto.Id ?? 0);
+            var entity = await _repRole.FirstOrDefaultAsync(dto.Id ?? 0);
 
             if (entity == null)
             {
@@ -130,7 +130,7 @@ namespace AlgoriaCore.Application.Managers.Roles
             await LogChange(await GetRoleByIdAsync(entity.Id), previousDto, permissionNames, ChangeLogType.Update);
         }
 
-        public async Task<long> DeleteRolAsync(long id)
+        public async Task<long> DeleteRoleAsync(long id)
         {
             var rolDto = await GetRoleByIdAsync(id);
 
@@ -139,7 +139,7 @@ namespace AlgoriaCore.Application.Managers.Roles
                 throw new EntityNotFoundException(string.Format(L("EntityNotFoundExceptionMessage"), L("Roles"), id));
             }
 
-            await _repRol.DeleteAsync(id);
+            await _repRole.DeleteAsync(id);
 
             await CurrentUnitOfWork.SaveChangesAsync();
 
@@ -148,11 +148,11 @@ namespace AlgoriaCore.Application.Managers.Roles
             return id;
         }
 
-        public async Task<List<RolDto>> GetRolesFromNamesByValidating(List<string> names)
+        public async Task<List<RoleDto>> GetRolesFromNamesByValidating(List<string> names)
         {
-            var ll = new List<RolDto>();
+            var ll = new List<RoleDto>();
             var undefinedNames = new List<string>();
-            var rolList = await GetRolListAsync();
+            var rolList = await GetRoleListAsync();
 
             foreach (var name in names)
             {
@@ -177,9 +177,9 @@ namespace AlgoriaCore.Application.Managers.Roles
 
         #region Métodos privados
 
-        private static RolDto GetRol(Role entity)
+        private static RoleDto GetRole(Role entity)
         {
-            var dto = new RolDto();
+            var dto = new RoleDto();
 
             dto.Id = entity.Id;
             dto.Name = entity.Name;
@@ -190,10 +190,10 @@ namespace AlgoriaCore.Application.Managers.Roles
             return dto;
         }
 
-        private async Task<long> LogChange(RolDto newDto, RolDto previousDto, List<string> newPermissionNames, ChangeLogType changeLogType)
+        private async Task<long> LogChange(RoleDto newDto, RoleDto previousDto, List<string> newPermissionNames, ChangeLogType changeLogType)
         {
-            if (newDto == null) { newDto = new RolDto(); }
-            if (previousDto == null) { previousDto = new RolDto(); }
+            if (newDto == null) { newDto = new RoleDto(); }
+            if (previousDto == null) { previousDto = new RoleDto(); }
 
             StringBuilder sb = new StringBuilder("");
 

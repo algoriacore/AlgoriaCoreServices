@@ -89,7 +89,7 @@ namespace AlgoriaCore.WebUI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            services.AddValidatorsAsTransient(typeof(RolGetByIdValidator).Assembly);
+            services.AddValidatorsAsTransient(typeof(RoleGetByIdValidator).Assembly);
             
             services.AddTransient(typeof(ICoreServices), typeof(CoreServices));
 
@@ -257,7 +257,7 @@ namespace AlgoriaCore.WebUI
             {
                 document.PostProcess = v1 =>
                 {
-                    v1.Info.Title = "Algoria Core 230411";
+                    v1.Info.Title = "Algoria Core 230412";
                     v1.Info.Version = "1.0.0";
                     v1.Info.Description = "DatabaseType: " + (appSettings.DatabaseType == DatabaseType.MySql ? "MySql" : "SQL Server");
                 };
@@ -267,7 +267,7 @@ namespace AlgoriaCore.WebUI
             // Crear el constrctor del contenedor.
             var builder = new ContainerBuilder();
 
-            builder.RegisterMediatR(typeof(RolGetByIdQuery).GetTypeInfo().Assembly);
+            builder.RegisterMediatR(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly);
             builder.RegisterMediatR(typeof(RequestLogger<>).GetTypeInfo().Assembly);
             builder.AddManagers(typeof(IBaseManager).Assembly);
 

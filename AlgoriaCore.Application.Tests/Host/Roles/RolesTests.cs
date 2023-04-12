@@ -24,7 +24,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
         [Fact]
         public async Task CreateRoleTest()
         {
-            long response = await Mediator.Send(new RolCreateCommand()
+            long response = await Mediator.Send(new RoleCreateCommand()
             {
                 Name = "ROLNEW",
                 DisplayName = "ROLNEW",
@@ -44,7 +44,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
             Role entity = Context.Role.FirstOrDefault(p => p.TenantId == SessionContext.TenantId && p.Name.ToUpper() == "UPD");
             string name = entity.Name + " MOD";
 
-            long response = await Mediator.Send(new RolUpdateCommand()
+            long response = await Mediator.Send(new RoleUpdateCommand()
             {
                 Id = entity.Id,
                 Name = name,
@@ -65,7 +65,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
             Role entity = Context.Role.FirstOrDefault(p => p.TenantId == SessionContext.TenantId && p.Name.ToUpper() == "DEL");
             long id = entity.Id;
 
-            long response = await Mediator.Send(new RolDeleteCommand()
+            long response = await Mediator.Send(new RoleDeleteCommand()
             {
                 Id = id
             });
@@ -84,7 +84,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
 
             entity.ShouldNotBeNull();
 
-            RolResponse response = await Mediator.Send(new RolGetByIdQuery() { Id = entity.Id });
+            RoleResponse response = await Mediator.Send(new RoleGetByIdQuery() { Id = entity.Id });
 
             response.ShouldNotBeNull();
         }
@@ -92,7 +92,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
         [Fact]
         public async Task GetRoleListTest()
         {
-            PagedResultDto<RolForListResponse> response = await Mediator.Send(new RolGetListQuery());
+            PagedResultDto<RoleForListResponse> response = await Mediator.Send(new RoleGetListQuery());
 
             response.ShouldNotBeNull();
             response.Items.Count.ShouldBeGreaterThan(0);
@@ -105,7 +105,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
         [Fact]
         public async Task CreateRoleSanitizeTest()
         {
-            var ac = new ASanitizeTest<RolCreateCommand, long>(new RolCreateCommand()
+            var ac = new ASanitizeTest<RoleCreateCommand, long>(new RoleCreateCommand()
             {
                 Name = "ROLNEW",
                 DisplayName = "ROLNEW",
@@ -134,7 +134,7 @@ namespace AlgoriaCore.Application.Tests.Host.Roles
         {
             Role entity = Context.Role.FirstOrDefault(p => p.TenantId == SessionContext.TenantId && p.Name.ToUpper() == "UPDSAN");
 
-            var ac = new ASanitizeTest<RolUpdateCommand, long>(new RolUpdateCommand()
+            var ac = new ASanitizeTest<RoleUpdateCommand, long>(new RoleUpdateCommand()
             {
                 Id = entity.Id,
                 Name = entity.Name,
