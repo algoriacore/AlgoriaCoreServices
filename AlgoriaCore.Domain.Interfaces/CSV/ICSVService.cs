@@ -6,6 +6,6 @@ namespace AlgoriaCore.Domain.Interfaces.CSV
 {
     public interface ICSVService
     {
-        byte[] ExportViewUsersToBinary(List<ExpandoObject> list, List<IViewColumn> viewColumns);
+        byte[] ExportView(List<ExpandoObject> list, List<IViewColumn> viewColumns);
     }
 }

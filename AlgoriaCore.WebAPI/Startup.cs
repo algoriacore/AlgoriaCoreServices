@@ -24,6 +24,7 @@ using AlgoriaCore.Domain.Interfaces.FileStorage;
 using AlgoriaCore.Domain.Interfaces.Folder;
 using AlgoriaCore.Domain.Interfaces.Logger;
 using AlgoriaCore.Domain.Interfaces.MultiTenancy;
+using AlgoriaCore.Domain.Interfaces.PDF;
 using AlgoriaCore.Domain.Interfaces.Token;
 using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Session;
@@ -198,6 +199,8 @@ namespace AlgoriaCore.WebUI
             services.AddTransient<IExcelService, EpPlusExcelService>();
             //Servicio CSV
             services.AddTransient<ICSVService, EpPlusCSVService>();
+            //Servicio PDF
+            services.AddTransient<IPDFService, EpPlusPDFService>();
 
             //Servicio proveedor de autorización
             services.AddSingleton<IAppAuthorizationProvider, AppAuthorizationProvider>();

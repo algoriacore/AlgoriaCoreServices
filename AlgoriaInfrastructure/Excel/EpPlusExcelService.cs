@@ -38,7 +38,7 @@ namespace AlgoriaInfrastructure.Excel
             return CreateExcelPackage("AuditLogs.xlsx", GetActionCreatorAuditLogs(input, auditLogList), true);
         }
 
-        public IFileExcel ExportViewUsersToBinary(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns)
+        public IFileExcel ExportView(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns)
         {
             return CreateExcelPackage("ViewUsers.xlsx", GetActionCreatorViewUsers(filter, list, viewColumns), true);
         }

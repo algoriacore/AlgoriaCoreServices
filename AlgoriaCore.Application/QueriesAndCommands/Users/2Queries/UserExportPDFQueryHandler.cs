@@ -5,6 +5,7 @@ using AlgoriaCore.Application.Managers.Users;
 using AlgoriaCore.Application.Managers.Users.Dto;
 using AlgoriaCore.Domain.Excel;
 using AlgoriaCore.Domain.Interfaces.Excel;
+using AlgoriaCore.Domain.Interfaces.PDF;
 using MediatR;
 using Newtonsoft.Json;
 using System;
@@ -16,20 +17,20 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
 {
-    public class UserExportQueryHandler : BaseCoreClass, IRequestHandler<UserExportQuery, FileDto>
+    public class UserExportPDFQueryHandler : BaseCoreClass, IRequestHandler<UserExportPDFQuery, FileDto>
     {
         private readonly UserManager _userManager;
 
-        private readonly IExcelService _excelService;
+        private readonly IPDFService _pdfService;
 
-        public UserExportQueryHandler(ICoreServices coreServices, UserManager userManager, IExcelService excelService) : base(coreServices)
+        public UserExportPDFQueryHandler(ICoreServices coreServices, UserManager userManager, IPDFService pdfService) : base(coreServices)
         {
             _userManager = userManager;
 
-            _excelService = excelService;
+            _pdfService = pdfService;
         }
 
-        public async Task<FileDto> Handle(UserExportQuery request, CancellationToken cancellationToken)
+        public async Task<FileDto> Handle(UserExportPDFQuery request, CancellationToken cancellationToken)
         {
             var filter = new PageListByDto
             {
@@ -54,7 +55,6 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
                 pagedResultDto = await _userManager.GetUsersAsync(filter);
             }
 
-
             List<ExpandoObject> ll = new List<ExpandoObject>();
             dynamic l;
 
@@ -78,14 +78,13 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
             List<IViewColumn> columns = JsonConvert.DeserializeObject<List<ViewColumn>>(request.ViewColumnsConfigJSON)
                 .Cast<IViewColumn>().ToList();
 
-            var file = _excelService.ExportView(request.Filter, ll, columns);
+            byte[] bytes = _pdfService.ExportView(L("Users"), ll, columns);
 
             return new FileDto
             {
-                FileName = file.FileName,
-                FileToken = file.FileToken,
-                FileType = file.FileType,
-                FileBase64 = Convert.ToBase64String(file.FileArray)
+                FileName = "ViewUsers.pdf",
+                FileType = "PDF",
+                FileBase64 = Convert.ToBase64String(bytes)
             };
         }
     }

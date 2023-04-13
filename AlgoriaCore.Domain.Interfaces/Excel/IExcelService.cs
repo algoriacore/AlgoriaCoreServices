@@ -8,6 +8,6 @@ namespace AlgoriaCore.Domain.Interfaces.Excel
     {
         IFileExcel ExportAuditLogsToFile(IAuditLogFilterExcel input, List<IAuditLogExcel> auditLogList);
         IFileExcel ExportAuditLogsToBinary(IAuditLogFilterExcel input, List<IAuditLogExcel> auditLogList);
-        IFileExcel ExportViewUsersToBinary(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns);
+        IFileExcel ExportView(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns);
     }
 }

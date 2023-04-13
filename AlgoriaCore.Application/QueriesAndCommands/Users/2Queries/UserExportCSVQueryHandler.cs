@@ -78,7 +78,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
             List<IViewColumn> columns = JsonConvert.DeserializeObject<List<ViewColumn>>(request.ViewColumnsConfigJSON)
                 .Cast<IViewColumn>().ToList();
 
-            byte[] bytes = _csvService.ExportViewUsersToBinary(ll, columns);
+            byte[] bytes = _csvService.ExportView(ll, columns);
 
             return new FileDto
             {

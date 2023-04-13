@@ -3,7 +3,6 @@ using AlgoriaCore.Domain.Interfaces.CSV;
 using AlgoriaCore.Domain.Interfaces.Excel;
 using AlgoriaCore.Domain.Interfaces.Folder;
 using AlgoriaCore.Extensions;
-using Amazon.CloudWatchLogs.Model.Internal.MarshallTransformations;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -27,7 +26,7 @@ namespace AlgoriaInfrastructure.Excel
             _appLocalizationProvider = appLocalizationProvider;
         }
 
-        public byte[] ExportViewUsersToBinary(List<ExpandoObject> list, List<IViewColumn> viewColumns)
+        public byte[] ExportView(List<ExpandoObject> list, List<IViewColumn> viewColumns)
         {
             var excelPackage = new ExcelPackage();
             var sheet = excelPackage.Workbook.Worksheets.Add(L("Users"));
