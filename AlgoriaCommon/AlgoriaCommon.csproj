@@ -5,6 +5,7 @@
 	
 	<!-- SonarCloud needs this -->
 	<ProjectGuid>{41167EFE-B752-4891-8EC6-BF09C3678ACA}</ProjectGuid>
+	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
 </Project>
