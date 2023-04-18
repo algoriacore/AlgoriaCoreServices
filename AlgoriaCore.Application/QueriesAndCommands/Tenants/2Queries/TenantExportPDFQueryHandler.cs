@@ -62,6 +62,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Tenants
                 .Cast<IViewColumn>().ToList();
 
             byte[] bytes = await _pdfService.ExportView(L("Tenants"), ll, columns, GetViewFilters(request));
+
+            CoreLogger.LogError("PDF Bytes: " + bytes == null ? "NULL" : bytes.Length.ToString());
+
             return new FileDto
             {
                 FileName = "ViewTenants.pdf",

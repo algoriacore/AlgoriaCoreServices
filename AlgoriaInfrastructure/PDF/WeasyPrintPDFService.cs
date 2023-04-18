@@ -1,11 +1,11 @@
 ﻿using AlgoriaCore.Application.Localization;
 using AlgoriaCore.Domain.Interfaces.Excel;
 using AlgoriaCore.Domain.Interfaces.Folder;
+using AlgoriaCore.Domain.Interfaces.Logger;
 using AlgoriaCore.Domain.Interfaces.PDF;
 using AlgoriaCore.Extensions.Collections;
 using Balbarak.WeasyPrint;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
@@ -18,15 +18,18 @@ namespace AlgoriaInfrastructure.Excel
         private readonly IAppFolders _appFolders;
         private readonly IAppLocalizationProvider _appLocalizationProvider;
 
-        public WeasyPrintPDFService(IAppFolders appFolders, IAppLocalizationProvider appLocalizationProvider)
+        private readonly ICoreLogger _coreLogger;
+
+        public WeasyPrintPDFService(IAppFolders appFolders, IAppLocalizationProvider appLocalizationProvider, ICoreLogger coreLogger)
         {
             _appFolders = appFolders;
             _appLocalizationProvider = appLocalizationProvider;
+
+            _coreLogger = coreLogger;
         }
 
         public async Task<byte[]> ExportView(string title, List<ExpandoObject> list, List<IViewColumn> viewColumns, List<IViewFilter> viewFilters)
         {
-            var sw2 = Stopwatch.StartNew();
             var css = "<style>@page { size: landscape; margin: 1cm; } #tblFilters { width: 100%; } .label { font-weight: 600; }" +
                 "#tblMain { width: 100%; } #tblMain thead tr { background-color: #F4F4F4; } #tblMain th { font-weight: 600; }" +
                 "#tblMain tr { min-height: 0.5cm; } #tblMain tbody tr:nth-child(even) { background-color: #F4F4F4; }</style>";
@@ -100,6 +103,10 @@ namespace AlgoriaInfrastructure.Excel
 
             using (WeasyPrintClient client = new WeasyPrintClient())
             {
+            client.OnDataError += (OutputEventArgs e) => {
+                _coreLogger.LogError("PDF Error: " + e.Data);
+            };
+
                 return await client.GeneratePdfAsync(html);
             }
         }
