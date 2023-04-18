@@ -1,5 +1,6 @@
 ﻿using AlgoriaCore.Application.BaseClases.Dto;
 using AlgoriaCore.Application.QueriesAndCommands.Helps;
+using AlgoriaCore.Application.QueriesAndCommands.Users._2Queries;
 using AlgoriaCore.Domain.Authorization;
 using AlgoriaCore.WebUI.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,24 @@ namespace AlgoriaCore.WebUI.Controllers
         [AlgoriaCoreAuthorizationFilter(AppPermissions.Pages_Administration_Helps)]
         [HttpPost]
         public async Task<PagedResultDto<HelpForListResponse>> GetHelpList([FromBody]HelpGetListQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportHelp([FromBody] HelpExportQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportCSVHelp([FromBody] HelpExportCSVQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportPDFHelp([FromBody] HelpExportPDFQuery query)
         {
             return await Mediator.Send(query);
         }

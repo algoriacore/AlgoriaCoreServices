@@ -1,6 +1,8 @@
 ﻿using AlgoriaCore.Application.BaseClases.Dto;
+using AlgoriaCore.Application.QueriesAndCommands.Languages;
 using AlgoriaCore.Application.QueriesAndCommands.Languages.Languages;
 using AlgoriaCore.Application.QueriesAndCommands.Languages.Texts;
+using AlgoriaCore.Application.QueriesAndCommands.Users._2Queries;
 using AlgoriaCore.Domain.Authorization;
 using AlgoriaCore.WebUI.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,24 @@ namespace AlgoriaCore.WebUI.Controllers
         [AlgoriaCoreAuthorizationFilter(AppPermissions.Pages_Administration_Languages)]
         [HttpPost]
         public async Task<PagedResultDto<LanguageForListResponse>> GetLanguageList([FromBody]LanguageGetListQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportLanguage([FromBody] LanguageExportQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportCSVLanguage([FromBody] LanguageExportCSVQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportPDFLanguage([FromBody] LanguageExportPDFQuery query)
         {
             return await Mediator.Send(query);
         }

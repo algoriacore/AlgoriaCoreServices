@@ -103,7 +103,7 @@ namespace AlgoriaCore.Application.Managers.Tenants
 
             var tot = await a.CountAsync();
             var lst = await a.OrderBy(dto.Sorting)
-                             .PageBy(dto)
+                             .PageByIf(dto.IsPaged, dto)
                              .ToListAsync();
 
             return new PagedResultDto<TenantDto>(tot, lst);

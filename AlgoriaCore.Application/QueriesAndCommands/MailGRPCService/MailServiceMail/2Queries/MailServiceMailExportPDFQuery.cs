@@ -1,11 +1,11 @@
-using AlgoriaCore.Application.BaseClases.Dto;
+﻿using AlgoriaCore.Application.BaseClases.Dto;
 using MediatR;
 using System;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.MailGRPCService.MailServiceMails
 {
-     public class MailServiceMailGetListQuery : PageListByDto, IRequest<PagedResultDto<MailServiceMailListResponse>>
-     {
+    public class MailServiceMailExportPDFQuery : PageListByDto, IRequest<FileDto>
+    {
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
@@ -13,6 +13,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.MailGRPCService.MailService
         public int? TenantId { get; set; }
 
         public bool? OnlyHost { get; set; }
+
+        public string ViewColumnsConfigJSON { get; set; }
     }
 }
-

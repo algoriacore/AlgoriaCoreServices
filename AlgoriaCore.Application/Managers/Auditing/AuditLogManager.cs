@@ -52,7 +52,7 @@ namespace AlgoriaCore.Application.Managers.Auditing
                     results = await query
                         .AsNoTracking()
                         .OrderBy(input.Sorting.IsNullOrWhiteSpace() ? "ExecutionTime DESC" : input.Sorting)
-                        .PageBy(input)
+                        .PageByIf(input.IsPaged, input)
                         .ToListAsync();
                 }
             }
@@ -85,7 +85,7 @@ namespace AlgoriaCore.Application.Managers.Auditing
                     results = await query
                         .AsNoTracking()
                         .OrderBy(input.Sorting.IsNullOrWhiteSpace() ? "ExecutionTime DESC" : input.Sorting)
-                        .PageBy(input)
+                        .PageByIf(input.IsPaged, input)
                         .ToListAsync();
                 }
             }

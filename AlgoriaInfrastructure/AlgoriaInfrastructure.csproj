@@ -11,6 +11,7 @@
     <PackageReference Include="AWS.Logger.NLog" Version="3.1.0" />
     <PackageReference Include="AWSSDK.Core" Version="3.7.100.22" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.101.22" />
+    <PackageReference Include="Balbarak.WeasyPrint" Version="2.0.2" />
     <PackageReference Include="EPPlus" Version="6.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="11.1.0" />
@@ -20,7 +21,6 @@
     <PackageReference Include="NLog" Version="5.0.5" />
     <PackageReference Include="NLog.MailKit" Version="5.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.5" />
-    <PackageReference Include="PdfRpt.Core" Version="1.5.3" />
   </ItemGroup>
 
   <ItemGroup>

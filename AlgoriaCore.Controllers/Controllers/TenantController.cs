@@ -17,6 +17,24 @@ namespace AlgoriaCore.WebUI.Controllers
     [AlgoriaCoreAuthorizationFilter(MultiTenancySide = (byte)MultiTenancySides.Host)]
     public class TenantController : BaseController
     {
+        [HttpPost]
+        public async Task<FileDto> ExportTenant([FromBody] TenantExportQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportCSVTenant([FromBody] TenantExportCSVQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportPDFTenant([FromBody] TenantExportPDFQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
         [HttpGet("{id}")]
         public async Task<TenantResponse> GetTenantById(int id)
         {

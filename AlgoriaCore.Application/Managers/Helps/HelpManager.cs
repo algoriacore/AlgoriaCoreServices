@@ -34,7 +34,7 @@ namespace AlgoriaCore.Application.Managers.Helps
             var count = await query.CountAsync();
             var ll = await query
                 .OrderBy(dto.Sorting.IsNullOrEmpty()? "DisplayName": dto.Sorting)
-                .PageBy(dto)
+                .PageByIf(dto.IsPaged, dto)
                 .ToListAsync();
 
             return new PagedResultDto<HelpDto>(count, ll);

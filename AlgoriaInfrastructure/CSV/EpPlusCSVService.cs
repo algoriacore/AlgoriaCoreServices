@@ -45,7 +45,7 @@ namespace AlgoriaInfrastructure.Excel
             var range = sheet.Cells[1, 1, list.Count() + 1, viewColumnsActive.Count()];
             var stream = new MemoryStream();
 
-            range.SaveToText(stream, new ExcelOutputTextFormat { Encoding = Encoding.UTF8 });
+            range.SaveToText(stream, new ExcelOutputTextFormat { Encoding = Encoding.UTF8, TextQualifier = '"' });
 
             return stream.ToArray();
         }

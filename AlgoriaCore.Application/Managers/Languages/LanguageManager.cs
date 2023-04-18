@@ -70,7 +70,7 @@ namespace AlgoriaCore.Application.Managers.Languages
             var count = await query.CountAsync();
             var ll = await query
                 .OrderBy(dto.Sorting.IsNullOrEmpty() ? "DisplayName" : dto.Sorting)
-                .PageBy(dto)
+                .PageByIf(dto.IsPaged, dto)
                 .ToListAsync();
 
             return new PagedResultDto<LanguageDto>(count, ll);

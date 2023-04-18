@@ -1,7 +1,9 @@
 ﻿using AlgoriaCore.Application.BaseClases.Dto;
+using AlgoriaCore.Application.QueriesAndCommands.Roles;
 using AlgoriaCore.Application.QueriesAndCommands.Roles._1Model;
 using AlgoriaCore.Application.QueriesAndCommands.Roles._2Queries;
 using AlgoriaCore.Application.QueriesAndCommands.Roles._3Commands;
+using AlgoriaCore.Application.QueriesAndCommands.Users._2Queries;
 using AlgoriaCore.Domain.Authorization;
 using AlgoriaCore.WebUI.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +17,24 @@ namespace AlgoriaCore.WebUI.Controllers
     {
         [HttpPost]
         public async Task<PagedResultDto<RoleForListResponse>> GetRoleList([FromBody]RoleGetListQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportRole([FromBody] RoleExportQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportCSVRole([FromBody] RoleExportCSVQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost]
+        public async Task<FileDto> ExportPDFRole([FromBody] RoleExportPDFQuery query)
         {
             return await Mediator.Send(query);
         }

@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
+namespace AlgoriaCore.Application.QueriesAndCommands.Tenants
 {
     public class TenantGetListQueryHandler : IRequestHandler<TenantGetListQuery, PagedResultDto<TenantListResponse>>
     {
         private readonly TenantManager _tenantManager;
 
         public TenantGetListQueryHandler(TenantManager tenantManager,
-                                ILogger<UserGetListQueryHandler> logger)
+                                ILogger<TenantGetListQueryHandler> logger)
         {
             _tenantManager = tenantManager;
         }

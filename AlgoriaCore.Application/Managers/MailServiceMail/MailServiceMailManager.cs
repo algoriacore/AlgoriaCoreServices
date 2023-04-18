@@ -54,7 +54,7 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
                     );
 
                     tot = await a.CountAsync();
-                    lst = await a.OrderBy(dto.Sorting).PageBy(dto).ToListAsync();
+                    lst = await a.OrderBy(dto.Sorting).PageByIf(dto.IsPaged, dto).ToListAsync();
                 }
             }
 
@@ -93,7 +93,7 @@ namespace AlgoriaCore.Application.Managers.MailGRPCService.MailServiceMails
                  f.Subject.ToUpper().Contains(filter)
             );
             var tot = await a.CountAsync();
-            var lst = await a.OrderBy(dto.Sorting).PageBy(dto).ToListAsync();
+            var lst = await a.OrderBy(dto.Sorting).PageByIf(dto.IsPaged, dto).ToListAsync();
             return new PagedResultDto<MailServiceMailDto>(tot, lst);
         }
 

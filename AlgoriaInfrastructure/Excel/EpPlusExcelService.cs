@@ -38,9 +38,9 @@ namespace AlgoriaInfrastructure.Excel
             return CreateExcelPackage("AuditLogs.xlsx", GetActionCreatorAuditLogs(input, auditLogList), true);
         }
 
-        public IFileExcel ExportView(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns)
+        public IFileExcel ExportView(string title, string fileName, List<ExpandoObject> list, List<IViewColumn> viewColumns, List<IViewFilter> viewFilters)
         {
-            return CreateExcelPackage("ViewUsers.xlsx", GetActionCreatorViewUsers(filter, list, viewColumns), true);
+            return CreateExcelPackage(fileName + ".xlsx", GetActionCreatorView(title, list, viewColumns, viewFilters), true);
         }
 
         #region Métodos privados
@@ -123,11 +123,11 @@ namespace AlgoriaInfrastructure.Excel
 			};
 		}
 
-        private Action<ExcelPackage> GetActionCreatorViewUsers(string filter, List<ExpandoObject> list, List<IViewColumn> viewColumns)
+        private Action<ExcelPackage> GetActionCreatorView(string title, List<ExpandoObject> list, List<IViewColumn> viewColumns, List<IViewFilter> viewFilters)
         {
             return excelPackage =>
             {
-                var sheet = excelPackage.Workbook.Worksheets.Add(L("Users"));
+                var sheet = excelPackage.Workbook.Worksheets.Add(title);
 
                 sheet.OutLineApplyStyle = true;
 
@@ -139,11 +139,40 @@ namespace AlgoriaInfrastructure.Excel
                     parameters.Add(_ => _.First(p => p.Key.ToLower() == viewColumn.Field.ToLower()).Value);
                 }
 
-                AddObjects(sheet, 5, list, parameters.ToArray());
+                AddTitle(sheet, 1, 1, 10, title);
 
-                AddTitle(sheet, 1, 1, 10, L("Users"));
-                AddFilter(sheet, 2, 1, L("SearchDots"), filter ?? string.Empty);
-                AddHeader(sheet, 4, 1, viewColumnsActive.Select(p => p.Header).ToArray());
+                int row = 3;
+                int col = 1;
+                List<IViewFilter> viewFiltersAux = viewFilters.FindAll(p => p.Name != "Filter");
+
+                foreach (IViewFilter viewFilter in viewFiltersAux)
+                {
+                    if (col >= 5)
+                    {
+                        row++;
+                        col = 1;
+                    }
+
+                    AddFilter(sheet, row, col, viewFilter.Title, viewFilter.Value);
+
+                    col += 2;
+                }
+
+                IViewFilter viewFilterSearch = viewFilters.FirstOrDefault(p => p.Name == "Filter");
+
+                if (viewFilterSearch != null)
+                {
+                    if (viewFiltersAux.Count > 0) {
+                        row++;
+                    }
+                    
+                    col = 1;
+
+                    AddFilter(sheet, row, col, viewFilterSearch.Title, viewFilterSearch.Value);
+                }
+
+                AddHeader(sheet, row + 2, 1, viewColumnsActive.Select(p => p.Header).ToArray());
+                AddObjects(sheet, row + 3, list, parameters.ToArray());
 
                 for (var i = 1; i <= viewColumnsActive.Count; i++)
                 {

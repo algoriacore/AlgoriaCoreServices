@@ -2,7 +2,7 @@
 using AlgoriaCore.Application.QueriesAndCommands.Tenants._1Model;
 using MediatR;
 
-namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
+namespace AlgoriaCore.Application.QueriesAndCommands.Tenants
 {
     public class TenantGetListQuery : PageListByDto, IRequest<PagedResultDto<TenantListResponse>>
     {

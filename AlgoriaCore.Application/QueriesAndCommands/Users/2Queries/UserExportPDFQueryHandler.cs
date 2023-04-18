@@ -78,7 +78,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
             List<IViewColumn> columns = JsonConvert.DeserializeObject<List<ViewColumn>>(request.ViewColumnsConfigJSON)
                 .Cast<IViewColumn>().ToList();
 
-            byte[] bytes = _pdfService.ExportView(L("Users"), ll, columns);
+            byte[] bytes = await _pdfService.ExportView(L("Users"), ll, columns, GetViewFilters(request));
+            // byte[] bytes = await _pdfService.ExportView(L("Users"), new List<ExpandoObject>(), columns, GetViewFilters(request));
+            //byte[] bytes = await _pdfService.ExportView(L("Users"), GetFakedList(), columns, GetViewFilters(request));
 
             return new FileDto
             {
@@ -86,6 +88,40 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
                 FileType = "PDF",
                 FileBase64 = Convert.ToBase64String(bytes)
             };
+        }
+
+        private List<IViewFilter> GetViewFilters(UserExportPDFQuery query)
+        {
+            List<IViewFilter> filters = new List<IViewFilter>();
+
+            filters.Add(new ViewFilter { Name = nameof(query.Filter), Title = L("SearchDots"), Value = query.Filter });
+
+            return filters;
+        }
+
+        private List<ExpandoObject> GetFakedList()
+        {
+            List<ExpandoObject> ll = new List<ExpandoObject>();
+            dynamic l;
+
+            for(var i = 1; i <= 3500; i++)
+            {
+                l = new ExpandoObject();
+
+                l.Id = i;
+                l.Name = "Fernando " + i;
+                l.LastName = "Castro " + i;
+                l.SecondLastName = "Medina " + i;
+                l.Login = "fcastro" + i;
+                l.FullName = l.Name + " " + l.LastName + " " + l.SecondLastName;
+                l.EmailAddress = "fcastro" + i + "@algoria.com.mx";
+                l.IsActiveDesc = "Sí";
+                l.UserLockedDesc = "No";
+
+                ll.Add(l);
+            }
+
+            return ll;
         }
     }
 }

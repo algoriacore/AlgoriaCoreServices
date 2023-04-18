@@ -200,7 +200,7 @@ namespace AlgoriaCore.WebUI
             //Servicio CSV
             services.AddTransient<ICSVService, EpPlusCSVService>();
             //Servicio PDF
-            services.AddTransient<IPDFService, EpPlusPDFService>();
+            services.AddTransient<IPDFService, WeasyPrintPDFService>();
 
             //Servicio proveedor de autorización
             services.AddSingleton<IAppAuthorizationProvider, AppAuthorizationProvider>();
@@ -260,7 +260,7 @@ namespace AlgoriaCore.WebUI
             {
                 document.PostProcess = v1 =>
                 {
-                    v1.Info.Title = "Algoria Core 230412";
+                    v1.Info.Title = "Algoria Core 230417";
                     v1.Info.Version = "1.0.0";
                     v1.Info.Description = "DatabaseType: " + (appSettings.DatabaseType == DatabaseType.MySql ? "MySql" : "SQL Server");
                 };
