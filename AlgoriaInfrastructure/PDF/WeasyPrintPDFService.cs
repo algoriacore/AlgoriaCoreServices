@@ -98,7 +98,7 @@ namespace AlgoriaInfrastructure.Excel
 
             using (WeasyPrintClient client = new WeasyPrintClient())
             {
-                return await client.GeneratePdfAsync(html);
+                return await Task.FromResult(client.GeneratePdf(html));
             }
         }
 
