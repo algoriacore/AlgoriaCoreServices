@@ -46,6 +46,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using MediatR.Extensions.Autofac.DependencyInjection.Builder;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -270,8 +271,9 @@ namespace AlgoriaCore.WebUI
             // Crear el constrctor del contenedor.
             var builder = new ContainerBuilder();
 
-            builder.RegisterMediatR(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly);
-            builder.RegisterMediatR(typeof(RequestLogger<>).GetTypeInfo().Assembly);
+            builder.RegisterMediatR(MediatRConfigurationBuilder.Create(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly).WithAllOpenGenericHandlerTypesRegistered().Build());
+            builder.RegisterMediatR(MediatRConfigurationBuilder.Create(typeof(RequestLogger<>).GetTypeInfo().Assembly).WithAllOpenGenericHandlerTypesRegistered().Build());
+
             builder.AddManagers(typeof(IBaseManager).Assembly);
 
             builder.Populate(services);

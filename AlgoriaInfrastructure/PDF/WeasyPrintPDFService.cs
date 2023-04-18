@@ -1,7 +1,6 @@
 ﻿using AlgoriaCore.Application.Localization;
 using AlgoriaCore.Domain.Interfaces.Excel;
 using AlgoriaCore.Domain.Interfaces.Folder;
-using AlgoriaCore.Domain.Interfaces.Logger;
 using AlgoriaCore.Domain.Interfaces.PDF;
 using AlgoriaCore.Extensions.Collections;
 using Balbarak.WeasyPrint;
@@ -18,14 +17,10 @@ namespace AlgoriaInfrastructure.Excel
         private readonly IAppFolders _appFolders;
         private readonly IAppLocalizationProvider _appLocalizationProvider;
 
-        private readonly ICoreLogger _coreLogger;
-
-        public WeasyPrintPDFService(IAppFolders appFolders, IAppLocalizationProvider appLocalizationProvider, ICoreLogger coreLogger)
+        public WeasyPrintPDFService(IAppFolders appFolders, IAppLocalizationProvider appLocalizationProvider)
         {
             _appFolders = appFolders;
             _appLocalizationProvider = appLocalizationProvider;
-
-            _coreLogger = coreLogger;
         }
 
         public async Task<byte[]> ExportView(string title, List<ExpandoObject> list, List<IViewColumn> viewColumns, List<IViewFilter> viewFilters)
@@ -103,10 +98,6 @@ namespace AlgoriaInfrastructure.Excel
 
             using (WeasyPrintClient client = new WeasyPrintClient())
             {
-            client.OnDataError += (OutputEventArgs e) => {
-                _coreLogger.LogError("PDF Error: " + e.Data);
-            };
-
                 return await client.GeneratePdfAsync(html);
             }
         }
