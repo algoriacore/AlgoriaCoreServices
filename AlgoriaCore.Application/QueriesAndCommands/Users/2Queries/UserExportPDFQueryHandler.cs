@@ -80,7 +80,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Users._2Queries
 
             byte[] bytes = await _pdfService.ExportView(L("Users"), ll, columns, GetViewFilters(request));
             // byte[] bytes = await _pdfService.ExportView(L("Users"), new List<ExpandoObject>(), columns, GetViewFilters(request));
-            //byte[] bytes = await _pdfService.ExportView(L("Users"), GetFakedList(), columns, GetViewFilters(request));
+            // byte[] bytes = await _pdfService.ExportView(L("Users"), GetFakedList(), columns, GetViewFilters(request));
 
             return new FileDto
             {

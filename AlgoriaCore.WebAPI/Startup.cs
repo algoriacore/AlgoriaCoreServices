@@ -201,7 +201,7 @@ namespace AlgoriaCore.WebUI
             //Servicio CSV
             services.AddTransient<ICSVService, EpPlusCSVService>();
             //Servicio PDF
-            services.AddTransient<IPDFService, WeasyPrintPDFService>();
+            services.AddTransient<IPDFService, QuestPDFService>();
 
             //Servicio proveedor de autorización
             services.AddSingleton<IAppAuthorizationProvider, AppAuthorizationProvider>();
