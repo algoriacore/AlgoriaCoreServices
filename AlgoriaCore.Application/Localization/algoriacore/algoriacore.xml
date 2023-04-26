@@ -667,6 +667,9 @@
     <text name="Examples.Autocomplete.Multiple" value="Multiple" />
     <text name="Examples.Autocomplete.MultipleWithChecks" value="Multiple con checkboxes" />
 
+      <text name="Examples.GoggleMaps" value="Goggle Maps" />
+      <text name="Examples.GoggleMaps.GoogleAddress" value="Dirección Google Maps" />
+      
     <text name="Examples.Charts" value="Gráficos" />
     <text name="Examples.Arrobar" value="Arrobar" />
 	  <text name="Examples.PEditor" value="Primeng Editor" />
