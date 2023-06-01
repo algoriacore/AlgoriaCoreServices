@@ -64,7 +64,8 @@ namespace AlgoriaCore.Application.Managers.Users
 			bool isNullOrEmpty = tenancyName.IsNullOrEmpty();
 
 			var a = GetUserQuery()
-				.Where(m => (m.Login == userName || m.EmailAddress == userName) && (isNullOrEmpty || m.TenancyName == tenancyName));
+				.Where(m => (m.Login == userName || m.EmailAddress == userName) && 
+						(   (isNullOrEmpty && m.TenancyName == null   ) || (!isNullOrEmpty && m.TenancyName == tenancyName)));
 
 			userDto = await a.FirstOrDefaultAsync();
 

@@ -10,7 +10,9 @@ using AlgoriaCore.WebUI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -64,6 +66,37 @@ namespace AlgoriaCore.WebUI.Controllers
         {
             var LoginResult = await Mediator.Send(new UserLoginTokenQuery { TenantId = _sessionContext.TenantId, UserId = _sessionContext.UserId.Value });
             var tokenString = Request.Headers.Authorization[0].Replace("Bearer ", "");
+
+            var LoginResultController = new SessionLoginResponseController
+            {
+                TenantId = LoginResult.TenantId,
+                TenancyName = LoginResult.TenancyName,
+                UserId = LoginResult.UserId,
+                UserName = LoginResult.UserName,
+                FirstName = LoginResult.FirstName,
+                LastName = LoginResult.LastName,
+                SecondLastName = LoginResult.SecondLastName,
+                EMail = LoginResult.EMail,
+                IsImpersonalized = LoginResult.IsImpersonalized,
+                ImpersonalizerUserId = LoginResult.ImpersonalizerUserId,
+                token = tokenString
+            };
+
+            return LoginResultController;
+        }
+
+        [AllowAnonymous]
+        [HttpPost, Route("loginbymicrosoft")]
+        public async Task<SessionLoginResponseController> LoginByMicrosoft(UserLoginMicrosoftQuery query)
+        {
+            // "Abrir" el token para extraer la información del usuario logueado
+            var tkHandler = new JwtSecurityTokenHandler();
+            var token = tkHandler.ReadJwtToken(query.Token);
+
+            query.UserName = token.Payload["email"].ToString();
+
+            var LoginResult = await Mediator.Send(query);
+            var tokenString = createToken(LoginResult);
 
             var LoginResultController = new SessionLoginResponseController
             {

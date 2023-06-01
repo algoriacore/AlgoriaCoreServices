@@ -51,10 +51,16 @@ namespace AlgoriaPersistence
         public virtual DbSet<mailgrouptxt> mailgrouptxt { get; set; } = null!;
         public virtual DbSet<mailtemplate> mailtemplate { get; set; } = null!;
 
+  //      protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+  //      {
+		//	configurationBuilder.Properties<string>().UseCollation("my_collation");
+		//}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuditLog>(entity =>
+			//modelBuilder.HasCollation("my_collation", locale: "en-u-ks-primary", provider: "icu", deterministic: false);
+
+			modelBuilder.Entity<AuditLog>(entity =>
             {
                 entity.HasIndex(e => new { e.TenantId, e.ExecutionDatetime }, "IX_AuditLog_ExecutionDatetime");
 

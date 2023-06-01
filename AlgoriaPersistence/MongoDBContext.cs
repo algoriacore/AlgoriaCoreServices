@@ -47,15 +47,19 @@ namespace AlgoriaPersistence
             }
         }
 
-        public IMongoClient Client {
-            get {
+        public IMongoClient Client
+        {
+            get
+            {
                 ValidateConnection();
                 return _client;
             }
         }
 
-        public IMongoDatabase Database {
-            get {
+        public IMongoDatabase Database
+        {
+            get
+            {
                 ValidateConnection();
                 return _database;
             }
@@ -71,7 +75,7 @@ namespace AlgoriaPersistence
             }
         }
 
-    private void ValidateConnection()
+        private void ValidateConnection()
         {
             if (!_dbOptions.IsEnabled)
             {

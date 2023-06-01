@@ -150,6 +150,7 @@
     <text name="Login.UserName" value="Usuario o correo electrónico" />
     <text name="Login.Password" value="Contraseña" />
     <text name="Login.Login" value="Entrar" />
+	  <text name="Login.LoginMicrosoft" value="Iniciar sesión con Office 365" />
     <text name="Login.ForgotPassword" value="¿Olvidé mi contraseña?" />
     <text name="Login.AreYouNew" value="Crear cuenta" />
     <text name="Login.AreYouNewHere" value="aquí " />

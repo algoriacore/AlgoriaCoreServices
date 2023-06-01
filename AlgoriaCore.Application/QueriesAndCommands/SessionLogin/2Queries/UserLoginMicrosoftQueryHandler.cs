@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 {
-    public class UserLoginQueryHandler : IRequestHandler<UserLoginQuery, SessionLoginResponse>
+    public class UserLoginMicrosoftQueryHandler : IRequestHandler<UserLoginMicrosoftQuery, SessionLoginResponse>
 	{
 		private readonly UserManager _userManager;
 		private readonly SettingManager _settingManager;
@@ -25,7 +25,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 		private readonly IClock Clock;
 		private readonly IAppLocalizationProvider _appLocalizationProvider;
 
-		public UserLoginQueryHandler(UserManager userManager,
+		public UserLoginMicrosoftQueryHandler(UserManager userManager,
 									SettingManager settingManager,
 									TenantManager managerTenant,
 									IClock clock,
@@ -39,108 +39,31 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 			_appLocalizationProvider = appLocalizationProvider;
 		}
 
-		public async Task<SessionLoginResponse> Handle(UserLoginQuery request, CancellationToken cancellationToken)
+		public async Task<SessionLoginResponse> Handle(UserLoginMicrosoftQuery request, CancellationToken cancellationToken)
 		{
 			UserDto userDto = await GetUserDto(request.UserName, request.TenancyName);
 
-			var intentosFallidos = 0;
-			bool habilitarBloqueo = false;
-			bool usuarioBloqueado = false;
-			int tiempoATranscurrir = 0;
-			bool activarVigenciaContrasenia = false;
-			int diasVigenciaContrasenia = 0;
+            // Genera información necesaria para la sesión
+            var validationResult = new SessionLoginResponse();
+            validationResult.TenantId = userDto.TenantId;
+            validationResult.TenancyName = userDto.TenancyName;
+            validationResult.UserId = userDto.Id;
+            validationResult.UserName = request.UserName;
+            validationResult.FirstName = userDto.Name;
+            validationResult.LastName = userDto.LastName;
+            validationResult.SecondLastName = userDto.SecondLastName;
+            validationResult.EMail = userDto.EmailAddress;
 
-			// Validar los intentos fallidos contra la configuración de intentos fallidos
-			if (request.TenancyName.IsNullOrEmpty())
-			{
-                try // Se agrega validación, pero estos settings siempre deben existir.
-                {
-                    var s = await _settingManager.GetAllHostSettings();
-                    habilitarBloqueo = s.EnableUserBlocking;
-                    intentosFallidos = s.FailedAttemptsToBlockUser;
-                }
-                catch
-                {
-                    // No se hace nada. Se toman los valores default
-                }
-				
-			}
-			else
-			{
-				TenantDto tenantDto = await _managerTenant.GetTenantByIdAsync(userDto.TenantId.Value);
-
-				if (!tenantDto.IsActive)
-				{
-					throw new WrongUserNameOrPasswordException(_appLocalizationProvider.L("Login.InactivatedInstance"));
-				}
-
-				using (_settingManager.CurrentUnitOfWork.SetTenantId(userDto.TenantId))
-                {
-                    try // Se agrega validación, pero estos settins siempre deben existir.
-                    {
-                        var s = await _settingManager.GetAllTenantSettings();
-
-                        habilitarBloqueo = s.EnableUserBlocking;
-                        intentosFallidos = s.FailedAttemptsToBlockUser;
-                        tiempoATranscurrir = s.UserBlockingDuration;
-                        activarVigenciaContrasenia = s.EnablePasswordPeriod;
-                        diasVigenciaContrasenia = s.PasswordValidDays;
-                    }
-                    catch
-                    {
-                        // No se hace nada. Se toman los valores default
-                    }
-
-					usuarioBloqueado = userDto.UserLocked == true || userDto.AccesFailedCount >= intentosFallidos;
-				}
-			}
-
-			if (habilitarBloqueo && usuarioBloqueado)
-			{
-				await UpdateUserLocked(userDto, tiempoATranscurrir, request.UserName);
-			}
-
-            // Verificar la contraseña
-            return await VerifyPassword(userDto, request, activarVigenciaContrasenia, diasVigenciaContrasenia,
-                habilitarBloqueo, intentosFallidos);
-
-        }
-
-        private async Task<SessionLoginResponse> VerifyPassword(UserDto userDto, UserLoginQuery request, 
-            bool activarVigenciaContrasenia, int diasVigenciaContrasenia,
-            bool habilitarBloqueo, int intentosFallidos)
-        {
-            PasswordHasher<UserDto> p = new PasswordHasher<UserDto>();
-            var v = p.VerifyHashedPassword(userDto, userDto.Password, request.Password);
-            if (v == PasswordVerificationResult.Success || v == PasswordVerificationResult.SuccessRehashNeeded)
+            // Se actualiza la información de último login
+            using (_userManager.CurrentUnitOfWork.DisableFilter(AlgoriaCoreDataFilters.MayHaveTenant))
             {
-                var validationResult = await DoValidationsOnPasswordSuccess(p, v, userDto, request.UserName,
-                    request.Password, activarVigenciaContrasenia, diasVigenciaContrasenia);
-                return validationResult;
-            }
-            else
-            {
-                // Si está habilitado el bloqueo, entonces se actualiza la información de logueo
-                if (habilitarBloqueo)
+                using (_userManager.CurrentUnitOfWork.DisableFilter(AlgoriaCoreDataFilters.MustHaveTenant))
                 {
-					using (_userManager.CurrentUnitOfWork.SetTenantId(userDto.TenantId))
-					{
-						await UpdateAccesFailedCount(userDto.Id, userDto.AccesFailedCount + 1);
-
-						// Si con este intento fallido se llega al número límite de intentos, 
-						// entonces se muestra el mensaje que el usuario está bloqueado.
-						if (userDto.AccesFailedCount + 1 >= intentosFallidos)
-						{
-							await _userManager.LockUserAsync(userDto.Id);
-							_userManager.CurrentUnitOfWork.Commit();
-
-							throw new UserLockedException(_appLocalizationProvider.L("Login.UserLocked", request.UserName));
-						}
-					}
+                    await _userManager.UpdateLoginInfo(userDto.Id, 0);
                 }
-
-                throw new WrongUserNameOrPasswordException(_appLocalizationProvider.L("Login.FailLoginMessage"));
             }
+
+            return validationResult;
         }
 
         private async Task<UserDto> GetUserDto(string userName, string tenancyName)
@@ -263,7 +186,7 @@ namespace AlgoriaCore.Application.QueriesAndCommands.SessionLogin._2Queries
 				}
 			}
 
-			// Genera información necesaria para la sesión
+			//Genera información necesaria para la sesión
 			validationResult = new SessionLoginResponse();
 			validationResult.TenantId = userDto.TenantId;
 			validationResult.TenancyName = userDto.TenancyName;
