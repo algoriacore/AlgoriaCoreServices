@@ -74,9 +74,9 @@
     <text name="ConfirmationDeleteRecordMessage" value="¿Está seguro de eliminar el registro permanentemente?" />
     <text name="ConfirmationSoftDeleteRecordMessage" value="¿Está seguro de marcar el registro como eliminado?" />
     <text name="ConfirmationDeleteRecordWithNameMessage">
-      <![CDATA[
-        ¿Estás seguro que deseas eliminar {0}?<br/><strong>Esta acción no se puede deshacer.<strong>
-        ]]>
+    <![CDATA[
+    ¿Estás seguro que deseas eliminar {0}?<br/><strong>Esta acción no se puede deshacer.<strong>
+    ]]>
     </text>
     <text name="ShowChangeHistory" value="Ver historial" />
     <text name="SavedSuccessfully" value="Cambio realizado con éxito" />
@@ -124,7 +124,7 @@
     <text name="ExpandAll" value="Expandir todo" />
     <text name="CollapseAll" value="Collapsar todo" />
 
-      <text name="LogoApp" value="Logo aplicación" />
+    <text name="LogoApp" value="Logo aplicación" />
       
     <text name="UserCreator" value="Usuario creador" />
     <text name="CreationDateTime" value="Fecha y hora de creación" />
@@ -168,7 +168,6 @@
     <text name="Impersonalize.UserInactivated" value="La cuenta del usuario está inactiva" />
     <text name="Impersonalize.NotPermited" value="Operación no permitida" />
 
-    
     <text name="PasswordField.PromptLabel" value="Escribe una contraseña" />
     <text name="PasswordField.PasswordWeak" value="Seguridad Débil" />
     <text name="PasswordField.PasswordMedium" value="Seguridad Media" />
@@ -239,10 +238,10 @@
     <text name="ForgotPasswrod.Back" value="Regresar" />
     <text name="ForgotPasswrod.RecoverPassword" value="Recuperar contraseña" />
     <text name="ForgotPasswrod.Successfully">
-      <![CDATA[
-          Enviamos un correo electrónico a la cuenta asociada.<br />
-          <strong>Sigue los pasos para reestablecer tu contraseña.</strong>
-	      ]]>
+    <![CDATA[
+        Enviamos un correo electrónico a la cuenta asociada.<br />
+        <strong>Sigue los pasos para reestablecer tu contraseña.</strong>
+	    ]]>
     </text>
     <text name="ForgotPasswrod.Error" value="Error" />
     <text name="ForgotPasswrod.ErrorMessage" value="No fue posible generar la solicitud de cambio de contaseña" />
@@ -269,12 +268,12 @@
 
     <text name="NewVersion" value="Nueva versión" />
     <text name="NewAppVersionMessage">
-      <![CDATA[
-          Hay una nueva versión de la aplicación.<br />
-          ¿Desea actualizar ahora?<br />
-          <br />
-          Para actualizar dé click en 'Actualizar ahora'. Puede actualizar después en el icono de actualización de la parte superior derecha
-	      ]]>
+    <![CDATA[
+        Hay una nueva versión de la aplicación.<br />
+        ¿Desea actualizar ahora?<br />
+        <br />
+        Para actualizar dé click en 'Actualizar ahora'. Puede actualizar después en el icono de actualización de la parte superior derecha
+	    ]]>
     </text>
 
     <text name="Dashboard" value="Tablero de control" />
@@ -291,7 +290,6 @@
     <text name="Roles.NameForm" value="Nombre" />
     <text name="Roles.DisplayNameForm" value="Nombre Visible" />
     <text name="Roles.NotDefinedFound" value="Se encontraron {0} roles no definidos" />
-
     <text name="Roles.Role.Edit" value="Editar roles y permisos" />
 
     <text name="Languages" value="Lenguajes" />
@@ -381,8 +379,8 @@
     <text name="Users.Preferences.Localization" value="Preferencias de localización" />
     <text name="Users.Preferences.Localization.Language" value="Idioma" />
     <text name="Users.Preferences.Localization.LanguageLegend"><![CDATA[
-      Cambia el idioma de navegación. Esto no afecta a los campos configurables como: nombres de usuarios, correos electrónicos,
-      nombres de temas de correos, etc.
+    Cambia el idioma de navegación. Esto no afecta a los campos configurables como: nombres de usuarios, correos electrónicos,
+    nombres de temas de correos, etc.
     ]]></text>
     <text name="Users.Preferences.Localization.TimeZone" value="Zona horaria" />
     <text name="Users.Preferences.Design" value="Preferencias de diseño" />
@@ -661,24 +659,24 @@
     <text name="Examples.Numbers.Currency" value="Moneda (Prefijo)" />
     <text name="Examples.Numbers.Percentage" value="Porcentaje (Sufijo y rango mínimo y máximo)" />
 
-    <text name="Examples.Autocomplete" value="Autocomplete" />
+    <text name="Examples.Autocomplete" value="Autocompletar" />
     <text name="Examples.Autocomplete.Simple" value="Simple" />
     <text name="Examples.Autocomplete.Itemtemplate" value="Item template" />
     <text name="Examples.Autocomplete.Multiple" value="Multiple" />
     <text name="Examples.Autocomplete.MultipleWithChecks" value="Multiple con checkboxes" />
 
-      <text name="Examples.GoggleMaps" value="Goggle Maps" />
-      <text name="Examples.GoggleMaps.GoogleAddress" value="Dirección Google Maps" />
+    <text name="Examples.GoggleMaps" value="Goggle Maps" />
+    <text name="Examples.GoggleMaps.GoogleAddress" value="Dirección Google Maps" />
       
     <text name="Examples.Charts" value="Gráficos" />
     <text name="Examples.Arrobar" value="Arrobar" />
-	  <text name="Examples.PEditor" value="Primeng Editor" />
+    <text name="Examples.PEditor" value="Primeng Editor" />
 
-	  <text name="Examples.Chat.ChatLog" value="Chat Log" />
+    <text name="Examples.Chat.ChatLog" value="Chat Log" />
     <text name="Examples.Chat.ChatLog.Name" value="Ejemplo de chat log" />
     <text name="Examples.Chat.ChatLog.Description" value="Ejemplo de chat log embebido" />
 
-      <text name="Examples.Diagram" value="Diagrama" />
+    <text name="Examples.Diagram" value="Diagrama" />
       
     <text name="Friendship.AlreadyFriendshipExists" value="Ya agregaste este usuario." />
     <text name="Friendship.YouCannotBeFriendWithYourself" value="No puedes ser amigo de ti mismo." />
@@ -1000,133 +998,133 @@
 
     <text name = "MailServiceMailConfigs.MailServiceMailConfig.Error.NotFound" value="La configuración de correo no fue encontrada" />
 
-      <text name="Questionnaires" value="Cuestionarios" />
-      <text name="Questionnaires.Questionnaire" value="Cuestionario" />
-      <text name="Questionnaires.Questionnaire.Name" value="Nombre" />
-      <text name="Questionnaires.Questionnaire.UserCreator" value="Usuario creador" />
-      <text name="Questionnaires.Questionnaire.CreationDateTime" value="Fecha y hora creación" />
-      <text name="Questionnaires.Questionnaire.SuccessfulCreate" value="El cuestionario se generó exitosamente" />
-      <text name="Questionnaires.Questionnaire.SuccessfulUpdate" value="El cuestionario se actualizó exitosamente" />
+    <text name="Questionnaires" value="Cuestionarios" />
+    <text name="Questionnaires.Questionnaire" value="Cuestionario" />
+    <text name="Questionnaires.Questionnaire.Name" value="Nombre" />
+    <text name="Questionnaires.Questionnaire.UserCreator" value="Usuario creador" />
+    <text name="Questionnaires.Questionnaire.CreationDateTime" value="Fecha y hora creación" />
+    <text name="Questionnaires.Questionnaire.SuccessfulCreate" value="El cuestionario se generó exitosamente" />
+    <text name="Questionnaires.Questionnaire.SuccessfulUpdate" value="El cuestionario se actualizó exitosamente" />
 
-      <text name="QuestionnaireFields" value="Campos de cuestionario" />
-      <text name="QuestionnaireFields.QuestionnaireField" value="Campo de cuestionario" />
-      <text name="QuestionnaireFields.QuestionnaireField.Add" value="Agregar campo" />
-      <text name="QuestionnaireFields.QuestionnaireField.DuplicatedOrder" value="El orden del campo de cuestionario (dentro de la sección) que intenta crear/editar ya se encuentra ocupado" />
-      <text name="QuestionnaireFields.QuestionnaireField.DuplicatedFieldName" value="El nombre del campo de la tabla de la cuestionario que intenta crear/editar ya se encuentra ocupado" />
-      <text name="QuestionnaireFields.QuestionnaireField.IsRelation" value="El campo de cuestionario no se puede eliminar debido a que tiene relaciones con otras cuestionarios" />
-      <text name="QuestionnaireFields.QuestionnaireField.ReservedActivityFieldName" value="El nombre del campo de la tabla de la cuestionario que intenta crear/editar está reservado para los campos de actividad" />
-      <text name="QuestionnaireFields.QuestionnaireField.Template" value="Plantilla" />
-      <text name="QuestionnaireFields.QuestionnaireField.QuestionnaireSection" value="Sección" />
-      <text name="QuestionnaireFields.QuestionnaireField.Name" value="Nombre" />
-      <text name="QuestionnaireFields.QuestionnaireField.FieldName" value="Nombre en tabla" />
-      <text name="QuestionnaireFields.QuestionnaireField.Type" value="Tipo" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeBoolean" value="Booleano" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeText" value="Texto" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeMultivalue" value="Multivalor" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeDate" value="Fecha" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeDateTime" value="Fecha y hora" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeTime" value="Hora" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeInteger" value="Número entero" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeDecimal" value="Número decimal" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeCurrency" value="Moneda" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeGoogleAddress" value="Dirección de Google" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeCatalogCustom" value="Catálogo Custom" />
-      <text name="QuestionnaireFields.QuestionnaireField.TypeUser" value="Usuario" />
-      <text name="QuestionnaireFields.QuestionnaireField.Control" value="Control" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlInputText" value="Cuadro de texto" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlDropDown" value="Lista desplegable" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlListbox" value="Lista" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlRadioButton" value="Radio" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlInputSwitch" value="Interruptor" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlInputMask" value="Máscara" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlInputTextArea" value="Área de texto" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlListboxMultivalue" value="Lista multivalor" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlCheckbox" value="Casilla de verificación" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlMultiselect" value="Multiselección" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarBasic" value="Calendario de fecha" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarTime" value="Calendario de fecha y hora" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarTimeOnly" value="Calendario de hora" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlSpinner" value="Spinner" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlSpinnerFormatInput" value="Spinner con formato" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlTextNumber" value="Cuadro de texto numérico" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlGoogleAddress" value="Dirección de Google" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlAutocomplete" value="Autocompletado" />
-      <text name="QuestionnaireFields.QuestionnaireField.ControlAutocompleteDynamic" value="Autocompletado dinámico" />
-      <text name="QuestionnaireFields.QuestionnaireField.Size" value="Tamaño" />
-      <text name="QuestionnaireFields.QuestionnaireField.DecimalPartSize" value="Número decimales" />
-      <text name="QuestionnaireFields.QuestionnaireField.InputMask" value="Máscara" />
-      <text name="QuestionnaireFields.QuestionnaireField.HasKeyFilter" value="Tiene filtro" />
-      <text name="QuestionnaireFields.QuestionnaireField.KeyFilter" value="Filtro" />
-      <text name="QuestionnaireFields.QuestionnaireField.CatalogCustomFieldRelationCatalogCustom" value="Catálogo Custom" />
-      <text name="QuestionnaireFields.QuestionnaireField.CatalogCustomFieldRelationCatalogCustomField" value="Campo de Catálogo Custom" />
-      <text name="QuestionnaireFields.QuestionnaireField.IsRequired" value="Obligatorio" />
-      <text name="QuestionnaireFields.QuestionnaireField.Order" value="Orden" />
-      <text name="QuestionnaireFields.QuestionnaireField.InheritSecurity" value="Hereda seguridad" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format" value="Formato" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format.Currency" value="Moneda" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format.Locale" value="Localización" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format.MinValue" value="Valor mínimo" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format.MaxValue" value="Valor máximo" />
-      <text name="QuestionnaireFields.QuestionnaireField.Format.UseGrouping" value="Separador de miles" />
-      <text name="QuestionnaireFields.QuestionnaireField.Options" value="Opciones" />
-      <text name="QuestionnaireFields.QuestionnaireField.Options.Option.Value" value="Valor" />
-      <text name="QuestionnaireFields.QuestionnaireField.Options.Option.Description" value="Descripción" />
-      <text name="QuestionnaireFields.QuestionnaireField.OptionsFullyCapturedMessage" value="Verifique que las opciones estén completamente capturadas" />
-      <text name="QuestionnaireFields.QuestionnaireField.Options.MinSelecting" value="Mínimo de selecciones" />
-      <text name="QuestionnaireFields.QuestionnaireField.Options.MaxSelecting" value="Máximo de selecciones" />
-      <text name="QuestionnaireFields.QuestionnaireField.Status" value="Estatus" />
-      <text name="QuestionnaireFields.QuestionnaireField.StatusNew" value="Nuevo" />
-      <text name="QuestionnaireFields.QuestionnaireField.StatusProcessed" value="Procesado" />
-      <text name="QuestionnaireFields.QuestionnaireField.StatusModified" value="Modificado" />
-      <text name="QuestionnaireFields.QuestionnaireField.StatusDeleted" value="Eliminado" />
-      <text name="QuestionnaireFields.QuestionnaireField.SuccessfulCreate" value="El campo se generó exitosamente" />
-      <text name="QuestionnaireFields.QuestionnaireField.SuccessfulUpdate" value="El campo se actualizó exitosamente" />
+    <text name="QuestionnaireFields" value="Campos de cuestionario" />
+    <text name="QuestionnaireFields.QuestionnaireField" value="Campo de cuestionario" />
+    <text name="QuestionnaireFields.QuestionnaireField.Add" value="Agregar campo" />
+    <text name="QuestionnaireFields.QuestionnaireField.DuplicatedOrder" value="El orden del campo de cuestionario (dentro de la sección) que intenta crear/editar ya se encuentra ocupado" />
+    <text name="QuestionnaireFields.QuestionnaireField.DuplicatedFieldName" value="El nombre del campo de la tabla de la cuestionario que intenta crear/editar ya se encuentra ocupado" />
+    <text name="QuestionnaireFields.QuestionnaireField.IsRelation" value="El campo de cuestionario no se puede eliminar debido a que tiene relaciones con otras cuestionarios" />
+    <text name="QuestionnaireFields.QuestionnaireField.ReservedActivityFieldName" value="El nombre del campo de la tabla de la cuestionario que intenta crear/editar está reservado para los campos de actividad" />
+    <text name="QuestionnaireFields.QuestionnaireField.Template" value="Plantilla" />
+    <text name="QuestionnaireFields.QuestionnaireField.QuestionnaireSection" value="Sección" />
+    <text name="QuestionnaireFields.QuestionnaireField.Name" value="Nombre" />
+    <text name="QuestionnaireFields.QuestionnaireField.FieldName" value="Nombre en tabla" />
+    <text name="QuestionnaireFields.QuestionnaireField.Type" value="Tipo" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeBoolean" value="Booleano" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeText" value="Texto" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeMultivalue" value="Multivalor" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeDate" value="Fecha" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeDateTime" value="Fecha y hora" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeTime" value="Hora" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeInteger" value="Número entero" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeDecimal" value="Número decimal" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeCurrency" value="Moneda" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeGoogleAddress" value="Dirección de Google" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeCatalogCustom" value="Catálogo Custom" />
+    <text name="QuestionnaireFields.QuestionnaireField.TypeUser" value="Usuario" />
+    <text name="QuestionnaireFields.QuestionnaireField.Control" value="Control" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlInputText" value="Cuadro de texto" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlDropDown" value="Lista desplegable" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlListbox" value="Lista" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlRadioButton" value="Radio" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlInputSwitch" value="Interruptor" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlInputMask" value="Máscara" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlInputTextArea" value="Área de texto" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlListboxMultivalue" value="Lista multivalor" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlCheckbox" value="Casilla de verificación" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlMultiselect" value="Multiselección" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarBasic" value="Calendario de fecha" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarTime" value="Calendario de fecha y hora" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlCalendarTimeOnly" value="Calendario de hora" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlSpinner" value="Spinner" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlSpinnerFormatInput" value="Spinner con formato" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlTextNumber" value="Cuadro de texto numérico" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlGoogleAddress" value="Dirección de Google" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlAutocomplete" value="Autocompletado" />
+    <text name="QuestionnaireFields.QuestionnaireField.ControlAutocompleteDynamic" value="Autocompletado dinámico" />
+    <text name="QuestionnaireFields.QuestionnaireField.Size" value="Tamaño" />
+    <text name="QuestionnaireFields.QuestionnaireField.DecimalPartSize" value="Número decimales" />
+    <text name="QuestionnaireFields.QuestionnaireField.InputMask" value="Máscara" />
+    <text name="QuestionnaireFields.QuestionnaireField.HasKeyFilter" value="Tiene filtro" />
+    <text name="QuestionnaireFields.QuestionnaireField.KeyFilter" value="Filtro" />
+    <text name="QuestionnaireFields.QuestionnaireField.CatalogCustomFieldRelationCatalogCustom" value="Catálogo Custom" />
+    <text name="QuestionnaireFields.QuestionnaireField.CatalogCustomFieldRelationCatalogCustomField" value="Campo de Catálogo Custom" />
+    <text name="QuestionnaireFields.QuestionnaireField.IsRequired" value="Obligatorio" />
+    <text name="QuestionnaireFields.QuestionnaireField.Order" value="Orden" />
+    <text name="QuestionnaireFields.QuestionnaireField.InheritSecurity" value="Hereda seguridad" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format" value="Formato" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format.Currency" value="Moneda" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format.Locale" value="Localización" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format.MinValue" value="Valor mínimo" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format.MaxValue" value="Valor máximo" />
+    <text name="QuestionnaireFields.QuestionnaireField.Format.UseGrouping" value="Separador de miles" />
+    <text name="QuestionnaireFields.QuestionnaireField.Options" value="Opciones" />
+    <text name="QuestionnaireFields.QuestionnaireField.Options.Option.Value" value="Valor" />
+    <text name="QuestionnaireFields.QuestionnaireField.Options.Option.Description" value="Descripción" />
+    <text name="QuestionnaireFields.QuestionnaireField.OptionsFullyCapturedMessage" value="Verifique que las opciones estén completamente capturadas" />
+    <text name="QuestionnaireFields.QuestionnaireField.Options.MinSelecting" value="Mínimo de selecciones" />
+    <text name="QuestionnaireFields.QuestionnaireField.Options.MaxSelecting" value="Máximo de selecciones" />
+    <text name="QuestionnaireFields.QuestionnaireField.Status" value="Estatus" />
+    <text name="QuestionnaireFields.QuestionnaireField.StatusNew" value="Nuevo" />
+    <text name="QuestionnaireFields.QuestionnaireField.StatusProcessed" value="Procesado" />
+    <text name="QuestionnaireFields.QuestionnaireField.StatusModified" value="Modificado" />
+    <text name="QuestionnaireFields.QuestionnaireField.StatusDeleted" value="Eliminado" />
+    <text name="QuestionnaireFields.QuestionnaireField.SuccessfulCreate" value="El campo se generó exitosamente" />
+    <text name="QuestionnaireFields.QuestionnaireField.SuccessfulUpdate" value="El campo se actualizó exitosamente" />
 
-      <text name="QuestionnaireSections" value="Secciones de cuestionario" />
-      <text name="QuestionnaireSections.QuestionnaireSection" value="Sección de cuestionario" />
-      <text name="QuestionnaireSections.AddSection" value="Agregar sección" />
-      <text name="QuestionnaireSections.SectionTitle" value="Sección: {0}" />
-      <text name="QuestionnaireSections.QuestionnaireSection.DuplicatedName" value="El nombre de la sección del cuestionario que intenta crear/editar ya se encuentra ocupado" />
-      <text name="QuestionnaireSections.QuestionnaireSection.DuplicatedOrder" value="El orden de la sección del cuestionario que intenta crear/editar ya se encuentra ocupado" />
-      <text name="QuestionnaireSections.QuestionnaireSection.Name" value="Nombre" />
-      <text name="QuestionnaireSections.QuestionnaireSection.Order" value="Orden" />
-      <text name="QuestionnaireSections.QuestionnaireSection.IconAF" value="Ícono Awesome Font" />
-      <text name="QuestionnaireSections.QuestionnaireSection.SuccessfulCreate" value="La sección de cuestionario se generó exitosamente" />
-      <text name="QuestionnaireSections.QuestionnaireSection.SuccessfulUpdate" value="La sección de cuestionario se actualizó exitosamente" />
+    <text name="QuestionnaireSections" value="Secciones de cuestionario" />
+    <text name="QuestionnaireSections.QuestionnaireSection" value="Sección de cuestionario" />
+    <text name="QuestionnaireSections.AddSection" value="Agregar sección" />
+    <text name="QuestionnaireSections.SectionTitle" value="Sección: {0}" />
+    <text name="QuestionnaireSections.QuestionnaireSection.DuplicatedName" value="El nombre de la sección del cuestionario que intenta crear/editar ya se encuentra ocupado" />
+    <text name="QuestionnaireSections.QuestionnaireSection.DuplicatedOrder" value="El orden de la sección del cuestionario que intenta crear/editar ya se encuentra ocupado" />
+    <text name="QuestionnaireSections.QuestionnaireSection.Name" value="Nombre" />
+    <text name="QuestionnaireSections.QuestionnaireSection.Order" value="Orden" />
+    <text name="QuestionnaireSections.QuestionnaireSection.IconAF" value="Ícono Awesome Font" />
+    <text name="QuestionnaireSections.QuestionnaireSection.SuccessfulCreate" value="La sección de cuestionario se generó exitosamente" />
+    <text name="QuestionnaireSections.QuestionnaireSection.SuccessfulUpdate" value="La sección de cuestionario se actualizó exitosamente" />
 
-      <text name="CatalogsCustom" value="Catálogos Personalizados" />
-      <text name="CatalogsCustom.Configuration" value="Configuración" />
-      <text name="CatalogsCustom.CatalogCustom" value="Catálogo Personalizado" />
-      <text name="CatalogsCustom.CatalogCustom.CollectionName" value="Nombre de la colleción" />
-      <text name="CatalogsCustom.CatalogCustom.Description" value="Descripción" />
-      <text name="CatalogsCustom.CatalogCustom.NameSingular" value="Nombre en singular" />
-      <text name="CatalogsCustom.CatalogCustom.NamePlural" value="Nombre en plural" />
-      <text name="CatalogsCustom.CatalogCustom.IsCollectionGenerated" value="Está generada la colección?" />
-      <text name="CatalogsCustom.CatalogCustom.UserCreator" value="Usuario creador" />
-      <text name="CatalogsCustom.CatalogCustom.CreationDateTime" value="Fecha y hora creación" />
-      <text name="CatalogsCustom.CatalogCustom.Questionnaire" value="Cuestionario" />
-      <text name="CatalogsCustom.CatalogCustom.SuccessfulCreate" value="El catálogo custom se generó exitosamente" />
-      <text name="CatalogsCustom.CatalogCustom.SuccessfulUpdate" value="El catálogo custom se actualizó exitosamente" />
-      <text name="CatalogsCustom.CatalogCustom.Fields" value="Campos de la vista" />
-      <text name="CatalogsCustom.CatalogCustom.FieldsInfo" value="Seleccione los campos que se van a mostrar en la vista" />
-      <text name="CatalogsCustom.CatalogCustom.GenerateCollection" value="Generar collección" />
-      <text name="CatalogsCustom.CatalogCustom.RegenerateCollection" value="Regenerar collección" />
-      <text name="CatalogsCustom.CatalogCustom.GenerateCollectionConfirmation" value="Esta acción hará modificaciones a la base de datos. ¿Seguro desea continuar?" />
-      <text name="CatalogsCustom.CatalogCustom.SuccessfulGeneratedCollection" value="La colección se generó exitosamente" />
-      <text name="CatalogsCustom.CatalogCustom.DuplicatedName" value="El nombre del catálogo ya se encuentra registrado" />
+    <text name="CatalogsCustom" value="Catálogos Personalizados" />
+    <text name="CatalogsCustom.Configuration" value="Configuración" />
+    <text name="CatalogsCustom.CatalogCustom" value="Catálogo Personalizado" />
+    <text name="CatalogsCustom.CatalogCustom.CollectionName" value="Nombre de la colleción" />
+    <text name="CatalogsCustom.CatalogCustom.Description" value="Descripción" />
+    <text name="CatalogsCustom.CatalogCustom.NameSingular" value="Nombre en singular" />
+    <text name="CatalogsCustom.CatalogCustom.NamePlural" value="Nombre en plural" />
+    <text name="CatalogsCustom.CatalogCustom.IsCollectionGenerated" value="Está generada la colección?" />
+    <text name="CatalogsCustom.CatalogCustom.UserCreator" value="Usuario creador" />
+    <text name="CatalogsCustom.CatalogCustom.CreationDateTime" value="Fecha y hora creación" />
+    <text name="CatalogsCustom.CatalogCustom.Questionnaire" value="Cuestionario" />
+    <text name="CatalogsCustom.CatalogCustom.SuccessfulCreate" value="El catálogo custom se generó exitosamente" />
+    <text name="CatalogsCustom.CatalogCustom.SuccessfulUpdate" value="El catálogo custom se actualizó exitosamente" />
+    <text name="CatalogsCustom.CatalogCustom.Fields" value="Campos de la vista" />
+    <text name="CatalogsCustom.CatalogCustom.FieldsInfo" value="Seleccione los campos que se van a mostrar en la vista" />
+    <text name="CatalogsCustom.CatalogCustom.GenerateCollection" value="Generar collección" />
+    <text name="CatalogsCustom.CatalogCustom.RegenerateCollection" value="Regenerar collección" />
+    <text name="CatalogsCustom.CatalogCustom.GenerateCollectionConfirmation" value="Esta acción hará modificaciones a la base de datos. ¿Seguro desea continuar?" />
+    <text name="CatalogsCustom.CatalogCustom.SuccessfulGeneratedCollection" value="La colección se generó exitosamente" />
+    <text name="CatalogsCustom.CatalogCustom.DuplicatedName" value="El nombre del catálogo ya se encuentra registrado" />
 
-      <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MinSelectingMessage">Seleccione mínimo {0} opciones/valores</text>
-      <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MaxSelectingMessage">Seleccione máximo {0} opciones/valores</text>
-      <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MinMaxSelectingMessage">Seleccione de {0} a {1} opciones/valores</text>
-      <text name="CatalogsCustomImpl.CatalogCustomImpl.SuccessfulCreate" value="El registro se generó exitosamente" />
-      <text name="CatalogsCustomImpl.CatalogCustomImpl.SuccessfulUpdate" value="El registro se actualizó exitosamente" />
-      <text name="CatalogsCustomImpl.FailedValidationMessage" value="Documento inválido: La validación personalizada no fué pasada satisfactoriamente" />
+    <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MinSelectingMessage">Seleccione mínimo {0} opciones/valores</text>
+    <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MaxSelectingMessage">Seleccione máximo {0} opciones/valores</text>
+    <text name="CatalogsCustomImpl.CatalogCustomImpl.Multivalue.MinMaxSelectingMessage">Seleccione de {0} a {1} opciones/valores</text>
+    <text name="CatalogsCustomImpl.CatalogCustomImpl.SuccessfulCreate" value="El registro se generó exitosamente" />
+    <text name="CatalogsCustomImpl.CatalogCustomImpl.SuccessfulUpdate" value="El registro se actualizó exitosamente" />
+    <text name="CatalogsCustomImpl.FailedValidationMessage" value="Documento inválido: La validación personalizada no fué pasada satisfactoriamente" />
       
-      <text name="CustomCode" value="Código Personalizado" />
-      <text name="CustomCode.Input" value="Código" />
+    <text name="CustomCode" value="Código Personalizado" />
+    <text name="CustomCode.Input" value="Código" />
 
-      <text name="MongoDb.ConnectionIsNotEnabled" value="La conexión a MongoDb no está disponible" />
-      <text name="MongoDb.ConnectionIsNotActive" value="No hay conexión a MongoDb, el servidor no responde" />
+    <text name="MongoDb.ConnectionIsNotEnabled" value="La conexión a MongoDb no está disponible" />
+    <text name="MongoDb.ConnectionIsNotActive" value="No hay conexión a MongoDb, el servidor no responde" />
       
   </texts>
 </localizationDictionary>
