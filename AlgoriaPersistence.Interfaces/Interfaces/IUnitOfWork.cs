@@ -7,6 +7,8 @@ namespace AlgoriaPersistence.Interfaces.Interfaces
     {
         IDisposable SetTenantId(int? tenantId);
         int? GetTenantId();
+        IDisposable SetUserId(long? userId);
+        long? GetUserId();
         IDisposeBeginAction Begin();
         void Commit();
         void Rollback();

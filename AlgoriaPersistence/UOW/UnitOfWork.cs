@@ -1,8 +1,6 @@
 ﻿using AlgoriaCore.Domain.Disposable;
-using AlgoriaCore.Domain.Entities;
 using AlgoriaCore.Domain.Session;
 using AlgoriaPersistence.Interfaces.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -20,7 +18,10 @@ namespace AlgoriaPersistence.UOW
 
         private int? tenantId;
         private readonly List<int?> beforeTenantId;
-		
+
+        private long? userId;
+        private readonly List<long?> beforeUserId;
+
         private readonly List<string> EnabledFilters = null;
         private readonly List<string> _filterDisabilizations = null;
         private DisposeBeginAction _disposeBeginAction = null;
@@ -33,12 +34,13 @@ namespace AlgoriaPersistence.UOW
             this._sessionContext = sessionContext;
 
             this.beforeTenantId = new List<int?>();
+            this.beforeUserId = new List<long?>();
             this._filterDisabilizations = new List<string>();
 
-			EnabledFilters = new List<string>();
-			EnabledFilters.Add(AlgoriaCoreDataFilters.MayHaveTenant);
-			EnabledFilters.Add(AlgoriaCoreDataFilters.MustHaveTenant);
-			EnabledFilters.Add(AlgoriaCoreDataFilters.SoftDelete);
+            EnabledFilters = new List<string>();
+            EnabledFilters.Add(AlgoriaCoreDataFilters.MayHaveTenant);
+            EnabledFilters.Add(AlgoriaCoreDataFilters.MustHaveTenant);
+            EnabledFilters.Add(AlgoriaCoreDataFilters.SoftDelete);
         }
 
         public IDisposeBeginAction Begin()
@@ -123,6 +125,45 @@ namespace AlgoriaPersistence.UOW
             }
         }
 
+        public IDisposable SetUserId(long? userId)
+        {
+            // Saves before user ID
+            if (beforeUserId.Count <= 0)
+            {
+                this.userId = _sessionContext.UserId;
+            }
+
+            beforeUserId.Add(this.userId);
+
+            this.userId = userId;
+
+            return new DisposeAction(() =>
+            {
+                // Se recupera el último tenantId encolado y después se elimina de la lista
+                if (beforeUserId.Count > 0)
+                {
+                    this.userId = beforeUserId[beforeUserId.Count - 1];
+                    beforeUserId.RemoveAt(beforeUserId.Count - 1);
+                }
+                else
+                {
+                    this.userId = _sessionContext.UserId;
+                }
+            });
+        }
+
+        public long? GetUserId()
+        {
+            if (beforeUserId.Count > 0)
+            {
+                return userId;
+            }
+            else
+            {
+                return userId.HasValue ? userId : _sessionContext.UserId;
+            }
+        }
+
         public IDisposable DisableFilter(string filter)
         {
             // Se agrega el filtro indicado a la lista de filtros deshabilitados
@@ -156,15 +197,15 @@ namespace AlgoriaPersistence.UOW
             return EnabledFilters.IndexOf(filter) >= 0;
         }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			// Implementación del patrón IDisposable
-		}
+        protected virtual void Dispose(bool disposing)
+        {
+            // Implementación del patrón IDisposable
+        }
 
         public void Dispose()
         {
-			Dispose(true);
-			GC.SuppressFinalize(this);
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
