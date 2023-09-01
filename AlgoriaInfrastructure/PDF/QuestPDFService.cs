@@ -72,6 +72,8 @@ namespace AlgoriaInfrastructure.Excel
 
                                         i++;
                                     }
+
+                                    j++;
                                 }
 
                                 IViewFilter viewFilterSearch = viewFilters.FirstOrDefault(p => p.Name == "Filter");
