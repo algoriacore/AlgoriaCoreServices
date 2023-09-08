@@ -32,6 +32,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using MediatR.Extensions.Autofac.DependencyInjection.Builder;
 using MediatR.Pipeline;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -189,8 +190,8 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
             // Crear el constructor del contenedor.
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            builder.RegisterMediatR(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly);
-            builder.RegisterMediatR(typeof(RequestLogger<>).GetTypeInfo().Assembly);
+            builder.RegisterMediatR(MediatRConfigurationBuilder.Create(typeof(RoleGetByIdQuery).GetTypeInfo().Assembly).WithAllOpenGenericHandlerTypesRegistered().Build());
+            builder.RegisterMediatR(MediatRConfigurationBuilder.Create(typeof(RequestLogger<>).GetTypeInfo().Assembly).WithAllOpenGenericHandlerTypesRegistered().Build());
 
             builder.AddManagers(typeof(IBaseManager).Assembly);
 
