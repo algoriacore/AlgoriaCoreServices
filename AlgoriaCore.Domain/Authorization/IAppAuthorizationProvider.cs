@@ -13,7 +13,6 @@ namespace AlgoriaCore.Domain.Authorization
         List<Permission> GetPermissionsFromNamesByValidating(List<string> permissionNames);
 
         Permission GetPermissionByName(string name);
-
-        List<string> GetPermissionNamesList();
+        List<string> GetPermissionNamesList(MultiTenancySides multiTenancySides = MultiTenancySides.Host | MultiTenancySides.Tenant);
     }
 }

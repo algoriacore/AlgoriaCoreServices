@@ -64,6 +64,17 @@ namespace AlgoriaCore.Application.Authorization
             return _root;
         }
 
+        public Permission GetPermissions(MultiTenancySides side)
+        {
+            _root = null;
+
+            SetPermissions();
+
+            FilterPermissions(side);
+
+            return _root;
+        }
+
         private void SetPermissions()
         {
             SetPermissions(null);
@@ -244,11 +255,11 @@ namespace AlgoriaCore.Application.Authorization
             var ll = GetPermissionList();
 
             return ll.FirstOrDefault(m => m.Name == name);
-        }        
+        }
 
-        public List<string> GetPermissionNamesList()
+        public List<string> GetPermissionNamesList(MultiTenancySides multiTenancySides = MultiTenancySides.Host | MultiTenancySides.Tenant)
         {
-            var treeNode = GetPermissions();
+            var treeNode = GetPermissions(multiTenancySides);
 
             List<string> resp = new List<string>();
             resp.Add(treeNode.Name);

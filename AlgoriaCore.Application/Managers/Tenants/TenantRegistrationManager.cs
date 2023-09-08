@@ -16,6 +16,7 @@ using AlgoriaCore.Domain.Email;
 using AlgoriaCore.Domain.Entities;
 using AlgoriaCore.Domain.Exceptions;
 using AlgoriaCore.Domain.Interfaces.Exceptions;
+using AlgoriaCore.Domain.MultiTenancy;
 using AlgoriaCore.Domain.Settings;
 using AlgoriaCore.Extensions;
 using AlgoriaPersistence.Interfaces.Interfaces;
@@ -264,22 +265,8 @@ namespace AlgoriaCore.Application.Managers.Tenants
 		{
 			if (roles != null)
 			{
-				var permisoList = _appAuthorizationProvider.GetPermissionNamesList() ?? new List<string>();
-				var pNames = _appAuthorizationProvider.GetPermissionsFromNamesByValidating(permisoList);
-
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Tenants);
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Tenants_Create);
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Tenants_Delete);
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Tenants_Edit);
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Tenants_Impersonation);
-				permisoList.RemoveAll(m => m == AppPermissions.Pages_Administration_Host_Settings);
-
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Tenants);
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Tenants_Create);
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Tenants_Delete);
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Tenants_Edit);
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Tenants_Impersonation);
-				pNames.RemoveAll(m => m.Name == AppPermissions.Pages_Administration_Host_Settings);
+                var permisoList = _appAuthorizationProvider.GetPermissionNamesList(MultiTenancySides.Tenant) ?? new List<string>();
+                var pNames = _appAuthorizationProvider.GetPermissionsFromNamesByValidating(permisoList);
 
 				foreach (var r in roles)
 				{
