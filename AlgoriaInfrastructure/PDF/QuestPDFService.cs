@@ -61,11 +61,13 @@ namespace AlgoriaInfrastructure.Excel
                             if (viewFilters.Count > 0)
                             {
                                 List<IViewFilter> viewFiltersAux = viewFilters.FindAll(p => p.Name != "Filter");
-                                uint i = 1;
+                                uint i;
 
                                 foreach (var chunk in viewFiltersAux.Chunk(3))
                                 {
-                                    foreach(var p in chunk)
+                                    i = 1;
+
+                                    foreach (var p in chunk)
                                     {
                                         table.Cell().Row(j).Column(i).DefaultTextStyle(TextStyle.Default.Weight(FontWeight.Medium)).Text(p.Title);
                                         table.Cell().Row(j).Column(++i).Text(p.Value == null ? "" : p.Value.ToString());
@@ -136,7 +138,7 @@ namespace AlgoriaInfrastructure.Excel
                                         propertyName = propertyNames.GetOrDefault(viewColumn.Field);
                                         value = item.GetOrDefault(propertyName);
 
-                                        bg = j % 2 == 0 ? "#FFFFFF": "#F4F4F4";
+                                        bg = j % 2 == 0 ? "#FFFFFF" : "#F4F4F4";
 
                                         table.Cell().Row(j).Column(i).BorderBottom(0.5f, Unit.Point).BorderColor("#E9ECEF").Background(bg)
                                         .Text(value == null ? "" : value.ToString());
