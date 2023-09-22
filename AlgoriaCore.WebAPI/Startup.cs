@@ -53,6 +53,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -156,8 +157,11 @@ namespace AlgoriaCore.WebUI
                 default:
                     // Agregar DbContext usando SQL Server Provider
                     services.AddDbContext<AlgoriaCoreDbContext>(options =>
+                    {
                         options.UseSqlServer(Configuration.GetConnectionString("AlgoriaCoreDatabase"),
-                        sqlServerOptions => sqlServerOptions.CommandTimeout(appSettings.DatabaseCommandTimeout)));
+                        sqlServerOptions => sqlServerOptions.CommandTimeout(appSettings.DatabaseCommandTimeout));
+                        options.ConfigureWarnings(w => w.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS));
+                    });
                     break;
             }
 
