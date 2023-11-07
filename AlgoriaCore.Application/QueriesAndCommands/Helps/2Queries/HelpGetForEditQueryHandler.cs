@@ -85,6 +85,9 @@ namespace AlgoriaCore.Application.QueriesAndCommands.Helps
             response.KeyCombo.Add(new ComboboxItemDto("ADMINISTRATION.EMAILTEMPLATE.FORM", "ADMINISTRATION.EMAILTEMPLATE.FORM"));
             response.KeyCombo.Add(new ComboboxItemDto("ADMINISTRATION.HELP.VIEW", "ADMINISTRATION.HELP.VIEW"));
             response.KeyCombo.Add(new ComboboxItemDto("ADMINISTRATION.HELP.FORM", "ADMINISTRATION.HELP.FORM"));
+            response.KeyCombo.Add(new ComboboxItemDto("ADMINISTRATION.ORGUNIT.VIEW", "ADMINISTRATION.ORGUNIT.VIEW"));
+            response.KeyCombo.Add(new ComboboxItemDto("ADMINISTRATION.ORGUNIT.FORM", "ADMINISTRATION.ORGUNIT.FORM"));
+
             response.KeyCombo.Add(new ComboboxItemDto("EXAMPLES.DATETIME.VIEW", "EXAMPLES.DATETIME.VIEW"));
             response.KeyCombo.Add(new ComboboxItemDto("EXAMPLES.DATETIME.FORM", "EXAMPLES.DATETIME.FORM"));
             response.KeyCombo.Add(new ComboboxItemDto("EXAMPLES.CHAT.FORM", "EXAMPLES.CHAT.FORM"));
