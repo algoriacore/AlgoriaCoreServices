@@ -265,7 +265,7 @@ namespace AlgoriaCore.WebUI
             {
                 document.PostProcess = v1 =>
                 {
-                    v1.Info.Title = "Algoria Core 231031";
+                    v1.Info.Title = "Algoria Core 231205";
                     v1.Info.Version = "1.0.0";
                     v1.Info.Description = "DatabaseType: " + (appSettings.DatabaseType == DatabaseType.MySql ? "MySql" : "SQL Server");
                 };
@@ -371,7 +371,7 @@ namespace AlgoriaCore.WebUI
             app.UseOpenApi();
 
             // Para un correcto funcionamiento en la aplicación virtual de IIS 
-            app.UseSwaggerUi3(config => config.TransformToExternalPath = (internalUiRoute, request) =>
+            app.UseSwaggerUi(config => config.TransformToExternalPath = (internalUiRoute, request) =>
             {
                 if (internalUiRoute.StartsWith("/") && !internalUiRoute.StartsWith(request.PathBase))
                 {
