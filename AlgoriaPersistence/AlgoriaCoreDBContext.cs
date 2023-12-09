@@ -14,6 +14,13 @@ namespace AlgoriaPersistence
 
         public virtual DbSet<AuditLog> AuditLog { get; set; } = null!;
         public virtual DbSet<BinaryObjects> BinaryObjects { get; set; } = null!;
+        public virtual DbSet<CatalogoDinamico> CatalogoDinamico { get; set; }
+
+        public virtual DbSet<CatalogoDinamicoDefinicion> CatalogoDinamicoDefinicion { get; set; }
+
+        public virtual DbSet<CatalogoDinamicoRelacion> CatalogoDinamicoRelacion { get; set; }
+
+        public virtual DbSet<CatalogoDinamicoValidacion> CatalogoDinamicoValidacion { get; set; }
         public virtual DbSet<ChangeLog> ChangeLog { get; set; } = null!;
         public virtual DbSet<ChangeLogDetail> ChangeLogDetail { get; set; } = null!;
         public virtual DbSet<ChatMessage> ChatMessage { get; set; } = null!;
@@ -124,6 +131,69 @@ namespace AlgoriaPersistence
                     .WithMany(p => p.BinaryObjects)
                     .HasForeignKey(d => d.TenantId)
                     .HasConstraintName("FK_BinaryObjects_Tenant");
+            });
+
+            modelBuilder.Entity<CatalogoDinamico>(entity =>
+            {
+                entity.HasIndex(e => e.Tabla, "UQ_CatalogoDinamico_Tabla").IsUnique();
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+                entity.Property(e => e.Tabla)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<CatalogoDinamicoDefinicion>(entity =>
+            {
+                entity.Property(e => e.Campo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.Tipo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CatalogoDinamico).WithMany(p => p.CatalogoDinamicoDefinicion)
+                    .HasForeignKey(d => d.CatalogoDinamicoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CatalogoDinamicoDefinicion_CatalogoDinamico");
+            });
+
+            modelBuilder.Entity<CatalogoDinamicoRelacion>(entity =>
+            {
+                entity.Property(e => e.CampoDescReferenciado)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.CampoReferenciado)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.CampoRelacion)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.TablaReferenciada)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CatalogoDinamico).WithMany(p => p.CatalogoDinamicoRelacion)
+                    .HasForeignKey(d => d.CatalogoDinamicoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CatalogoDinamicoRelacion_CatalogoDinamico");
+            });
+
+            modelBuilder.Entity<CatalogoDinamicoValidacion>(entity =>
+            {
+                entity.Property(e => e.Campo)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+                entity.Property(e => e.ValorReferencia)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CatalogoDinamico).WithMany(p => p.CatalogoDinamicoValidacion)
+                    .HasForeignKey(d => d.CatalogoDinamicoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CatalogoDinamicoValidacion_CatalogoDinamico");
             });
 
             modelBuilder.Entity<ChangeLog>(entity =>
