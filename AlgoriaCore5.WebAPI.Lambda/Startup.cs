@@ -333,7 +333,7 @@ namespace AlgoriaCore5.WebAPI.Lambda
             chatUserStateWatcher.Initialize();
 
             // For correct functionality in IIS virtual application
-            app.UseSwaggerUi3(config => config.TransformToExternalPath = (internalUiRoute, request) =>
+            app.UseSwaggerUi(config => config.TransformToExternalPath = (internalUiRoute, request) =>
             {
                 if (internalUiRoute.StartsWith("/") && !internalUiRoute.StartsWith(request.PathBase))
                 {
