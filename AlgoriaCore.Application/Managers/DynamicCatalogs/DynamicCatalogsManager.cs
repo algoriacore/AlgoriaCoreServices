@@ -2,12 +2,14 @@
 using AlgoriaCore.Application.Managers.Base;
 using AlgoriaCore.Application.Managers.Catalogos.CatalogosDinamicos.Dto;
 using AlgoriaCore.Domain.Entities;
+using AlgoriaCore.Domain.Exceptions;
 using AlgoriaCore.Extensions;
 using AlgoriaPersistence.Interfaces.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AlgoriaCore.Application.Managers.Catalogos.CatalogosDinamicos
@@ -112,6 +114,9 @@ namespace AlgoriaCore.Application.Managers.Catalogos.CatalogosDinamicos
 
         public async Task CreateRegistroAsync(string nombreTabla, Dictionary<string, object> pars)
         {
+            // Antes de cualquier cosa, se deben validar los datos introducidos de acuerdo a las reglas definidas
+            await ValidateRegistroAsync(nombreTabla, pars, false);
+
             var d = GetCatalogoDinamicoMetadatos(nombreTabla);
 
             var sql = GetConsultaParaInsert(d);
@@ -143,6 +148,9 @@ namespace AlgoriaCore.Application.Managers.Catalogos.CatalogosDinamicos
 
         public async Task UpdateRegistroAsync(string nombreTabla, Dictionary<string, object> pars)
         {
+            // Antes de cualquier cosa, se deben validar los datos introducidos de acuerdo a las reglas definidas
+            await ValidateRegistroAsync(nombreTabla, pars, true);
+
             var d = GetCatalogoDinamicoMetadatos(nombreTabla);
 
             var sql = GetConsultaParaUpdate(d, pars["Id"].ToString());
@@ -173,6 +181,183 @@ namespace AlgoriaCore.Application.Managers.Catalogos.CatalogosDinamicos
             var sql = GetConsultaParaDelete(d, id);
 
             var resp = await _sqlExecuter.ExecuteSqlCommandAsync(sql, new Dictionary<string, object>());
+        }
+
+        private async Task ValidateRegistroAsync(string nombreTabla, Dictionary<string, object> pars, bool esEdicion)
+        {
+            string labelRequerido = "RequiredField";
+            string labelMaxLength = "FieldMaxLength";
+            string labelMinimunValue = "FieldMinimumValue";
+            string labelMaxValue = "FieldMaximumValue";
+            string labelRangeValue = "FieldRangeValue";
+
+            List<string> erroresList = new List<string>();
+
+            string[] numeros = new string[] { "int", "tinyint", "smallint", "bigint", "decimal", "float", "money" };
+            string[] fechas = new string[] { "date", "datetime" };
+            string[] booleanos = new string[] { "bit" };
+
+            var d = GetCatalogoDinamicoMetadatos(nombreTabla);
+            var validaciones = GetCatalogoDinamicoMetadatosValidaciones(d.Id);
+            var definiciones = GetCatalogoDinamicoMetadatosDefiniciones(d.Id);
+
+            foreach (var v in validaciones)
+            {
+                string etiquetaCampo = L(string.Format("Catalogo.{0}.{1}.Form", nombreTabla, v.Campo));
+
+                // Si el campo es capturable en pantalla, entonces se valida
+                var definicion = definiciones.FirstOrDefault(m => m.Campo == v.Campo);
+
+                if (definicion.CapturarEnPantalla)
+                {
+                    // El diccionario "pars" tiene los valores registrados para cada campo..
+                    // hay que recuperar ese valor y aplicar la validación correspondiente
+                    var valor = pars[v.Campo];
+
+                    if (booleanos.Contains(definicion.Tipo) && (valor == null || valor.ToString() == string.Empty))
+                    {
+                        valor = "false";
+                    }
+
+                    // Validar requerido
+                    if (v.Regla == 1)
+                    {
+                        if (valor == null || valor.ToString().IsNullOrEmpty())
+                        {
+                            erroresList.Add(L(labelRequerido, etiquetaCampo));
+                        }
+                    }
+
+                    // Validar longitud máxima
+                    if (v.Regla == 2)
+                    {
+                        var vRef = decimal.Parse(v.ValorReferencia ?? "0");
+                        if (valor != null && valor.ToString().Length > vRef)
+                        {
+                            erroresList.Add(L(labelMaxLength, etiquetaCampo, v.ValorReferencia));
+                        }
+                    }
+
+                    // Validar único
+                    if (v.Regla == 3)
+                    {
+
+                    }
+
+                    // Validar valor mínimo.. en teoría aplica solo para valores numéricos y fechas
+                    if (v.Regla == 4)
+                    {
+                        if (valor == null)
+                        {
+                            erroresList.Add(L(labelMinimunValue, etiquetaCampo, v.ValorReferencia));
+                        }
+                        else
+                        {
+                            if (numeros.Contains(definicion.Tipo))
+                            {
+                                var vRef = decimal.Parse(v.ValorReferencia ?? "0");
+                                var valorCapturado = decimal.Parse(valor.ToString() ?? "0");
+
+                                if (valorCapturado < vRef)
+                                {
+                                    erroresList.Add(L(labelMinimunValue, etiquetaCampo, v.ValorReferencia));
+                                }
+                            }
+
+                            if (fechas.Contains(definicion.Tipo))
+                            {
+                                var vRef = DateTime.Parse(v.ValorReferencia ?? "1900-01-01");
+                                var valorCapturado = DateTime.Parse(valor.ToString() ?? "1900-01-01");
+
+                                if (valorCapturado < vRef)
+                                {
+                                    erroresList.Add(L(labelMinimunValue, etiquetaCampo, v.ValorReferencia));
+                                }
+                            }
+                        }
+                    }
+
+                    // Validar valor máximo.. en teoría aplica solo para valores numéricos y fechas
+                    if (v.Regla == 5)
+                    {
+                        if (valor == null)
+                        {
+                            erroresList.Add(L(labelMaxValue, etiquetaCampo, v.ValorReferencia));
+                        }
+                        else
+                        {
+                            if (numeros.Contains(definicion.Tipo))
+                            {
+                                var vRef = decimal.Parse(v.ValorReferencia ?? "0");
+                                var valorCapturado = decimal.Parse(valor.ToString() ?? "0");
+
+                                if (valorCapturado > vRef)
+                                {
+                                    erroresList.Add(L(labelMaxValue, etiquetaCampo, v.ValorReferencia));
+                                }
+                            }
+
+                            if (fechas.Contains(definicion.Tipo))
+                            {
+                                var vRef = DateTime.Parse(v.ValorReferencia ?? "1900-01-01");
+                                var valorCapturado = DateTime.Parse(valor.ToString() ?? "1900-01-01");
+
+                                if (valorCapturado > vRef)
+                                {
+                                    erroresList.Add(L(labelMaxValue, etiquetaCampo, v.ValorReferencia));
+                                }
+                            }
+                        }
+                    }
+
+                    // Validar valor dentro de un rango.. en teoría aplica solo para valores numéricos y fechas
+                    if (v.Regla == 6)
+                    {
+                        var splits = v.ValorReferencia.Split(',');
+                        var vMinRef = splits[0];
+                        var vMaxRef = splits[1];
+
+                        if (valor == null)
+                        {
+                            erroresList.Add(L(labelRangeValue, etiquetaCampo, vMinRef, vMaxRef));
+                        }
+                        else
+                        {
+                            if (numeros.Contains(definicion.Tipo))
+                            {
+                                var vRef1 = decimal.Parse(vMinRef ?? "0");
+                                var vRef2 = decimal.Parse(vMaxRef ?? "0");
+                                var valorCapturado = decimal.Parse(valor.ToString() ?? "0");
+
+                                if (valorCapturado < vRef1 || valorCapturado > vRef2)
+                                {
+                                    erroresList.Add(L(labelMaxValue, etiquetaCampo, vMinRef, vMaxRef));
+                                }
+                            }
+
+                            if (fechas.Contains(definicion.Tipo))
+                            {
+                                var vRef1 = DateTime.Parse(vMinRef ?? "1900-01-01");
+                                var vRef2 = DateTime.Parse(vMaxRef ?? "1900-01-01");
+                                var valorCapturado = DateTime.Parse(valor.ToString() ?? "1900-01-01");
+
+                                if (valorCapturado < vRef1 || valorCapturado > vRef2)
+                                {
+                                    erroresList.Add(L(labelMaxValue, etiquetaCampo, vMinRef, vMaxRef));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (erroresList.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Join("<br/>", erroresList));
+
+                throw new AlgoriaCoreGeneralException(sb.ToString());
+            }
         }
 
         #region Métodos privados

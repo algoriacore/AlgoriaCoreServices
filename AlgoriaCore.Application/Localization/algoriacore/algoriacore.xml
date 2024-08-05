@@ -9,11 +9,12 @@
     <text name="RequiredTrueField" value="El campo {0} debe estar habilitado" />
     <text name="FieldMaxLength">El campo {0} debe tener una longitud máxima de {1}</text>
     <text name="FieldMinLength">El campo {0} debe tener una longitud mínima de {1}</text>
-    <text name="FieldMinimumValue">El campo {0} debe tener una valor mínimo de {1}</text>
-    <text name="FieldMaximumValue">El campo {0} debe tener una valor máximo de {1}</text>
+    <text name="FieldMinimumValue">El campo {0} debe tener un valor mínimo de {1}</text>
+    <text name="FieldMaximumValue">El campo {0} debe tener un valor máximo de {1}</text>
     <text name="FieldGreaterThan">El campo {0} debe ser mayor que {1}</text>
     <text name="FieldGreaterOrEqualThan">El campo {0} debe ser mayor o igual a {1}</text>
     <text name="FieldGreaterOrEqualThanOrEmpty">El campo {0} debe ser mayor o igual a {1} o vacío</text>
+    <text name="FieldRangeValue">El campo {0} debe tener valores entre {1} y {2}</text>
     <text name="FieldInvalidEmailAddress" value="El campo {0} tiene una dirección de correo inválida" />
     <text name="FieldNoSpaces" value="El campo {0} no debe tener espacios en blanco" />
     <text name="FieldInvalidFormat" value="El campo {0} debe cumplir con el formato &quot;{1}&quot;" />
@@ -1126,6 +1127,18 @@
 
     <text name="MongoDb.ConnectionIsNotEnabled" value="La conexión a MongoDb no está disponible" />
     <text name="MongoDb.ConnectionIsNotActive" value="No hay conexión a MongoDb, el servidor no responde" />
-      
+
+    <text name="Catalogo.Role.Titulo" value="Catálogo de roles" />
+    <text name="Catalogo.Role.Id.Col" value="Id" />
+    <text name="Catalogo.Role.Name.Col" value="Nombre" />
+    <text name="Catalogo.Role.DisplayName.Col" value="Nombre a mostrar" />
+    <text name="Catalogo.Role.IsActive.Col" value="Activo" />
+    <text name="Catalogo.Role.Nuevo.Titulo" value="Nuevo rol" />
+    <text name="Catalogo.Role.Edicion.Titulo" value="Editando rol" />
+    <text name="Catalogo.Role.Name.Form" value="Nombre" />
+    <text name="Catalogo.Role.DisplayName.Form" value="Nombre a mostrar" />
+    <text name="Catalogo.Role.IsActive.Form" value="Activo" />
+
+
   </texts>
 </localizationDictionary>

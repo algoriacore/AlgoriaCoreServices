@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Samaria.WebUI.Controllers
+namespace AlgoriaCore.WebUI.Controllers
 {
     [AlgoriaCoreAuthorizationFilter]
     public class DynamicCatalogController : BaseController

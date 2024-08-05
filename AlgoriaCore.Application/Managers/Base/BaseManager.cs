@@ -35,7 +35,12 @@ namespace AlgoriaCore.Application.Managers.Base
 			return AppLocalizationProvider.L(key);
 		}
 
-		public async Task<long> LogChange(ChangeLogType changeLogType, string key, string table, string detail)
+        public string L(string key, params string[] parameters)
+        {
+            return AppLocalizationProvider.L(key, parameters);
+        }
+
+        public async Task<long> LogChange(ChangeLogType changeLogType, string key, string table, string detail)
 		{
 			return await ChangeLogService.LogChange(changeLogType, key, table, detail);
 		}
