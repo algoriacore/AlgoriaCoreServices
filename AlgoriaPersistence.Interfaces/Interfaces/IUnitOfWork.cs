@@ -12,6 +12,7 @@ namespace AlgoriaPersistence.Interfaces.Interfaces
         IDisposeBeginAction Begin();
         void Commit();
         void Rollback();
+        void Close();
 
         IDisposable DisableFilter(string filter);
         bool HasFilter(string filter);

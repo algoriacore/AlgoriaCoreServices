@@ -3,6 +3,7 @@ using AlgoriaCore.Domain.Session;
 using AlgoriaPersistence;
 using AlgoriaPersistence.Interfaces.Interfaces;
 using AlgoriaPersistence.UOW;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,11 @@ namespace AlgoriaCore.Application.Tests.Infrastructure
                 dbTransaction.Rollback();
                 dbTransaction = null;
             }
+        }
+
+        public void Close()
+        {
+            Context.Database.CloseConnection();
         }
 
         public int SaveChanges()

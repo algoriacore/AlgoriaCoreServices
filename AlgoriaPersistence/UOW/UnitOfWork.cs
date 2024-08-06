@@ -1,6 +1,7 @@
 ﻿using AlgoriaCore.Domain.Disposable;
 using AlgoriaCore.Domain.Session;
 using AlgoriaPersistence.Interfaces.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,11 @@ namespace AlgoriaPersistence.UOW
                 dbTransaction.Rollback();
                 dbTransaction = null;
             }
+        }
+
+        public void Close()
+        {
+            Context.Database.CloseConnection();
         }
 
         public int SaveChanges()

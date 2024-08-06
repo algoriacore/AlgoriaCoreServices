@@ -30,7 +30,7 @@ namespace AlgoriaCore.Application.Pipeline
 
         private readonly MongoDbOptions _mongoDbOptions;
 
-        public RequestPerformanceBehaviour(IAppSession session, 
+        public RequestPerformanceBehaviour(IAppSession session,
             IUnitOfWork unitOfWork,
             ICoreLogger coreLogger,
             IMongoUnitOfWork mongoUnitOfWork,
@@ -54,10 +54,10 @@ namespace AlgoriaCore.Application.Pipeline
 
             var name = typeof(TRequest).Name;
             var auditableAttribute = typeof(TRequest).GetCustomAttributes(typeof(AuditableAttribute), true).Select(t => ((AuditableAttribute)t)).FirstOrDefault();
-            
+
             var isMongoTransactional = _mongoDbOptions.IsEnabled && _context.IsActive && _mongoDbOptions.IsTransactional
             && typeof(TRequest).GetCustomAttributes(typeof(MongoTransactionalAttribute), true).Select(t => ((MongoTransactionalAttribute)t)).Any();
-            
+
             var dict = new Dictionary<string, string>();
             dict.Add("ServiceName", typeof(TRequest).FullName);
             dict.Add("MethodName", typeof(TRequest).Name);
@@ -66,81 +66,87 @@ namespace AlgoriaCore.Application.Pipeline
             dict.Add("Exception", null);
             dict.Add("Severity", ((int)LogLevel.Information).ToString()); // Trace = 0, Debug = 1, Information = 2, Warning = 3, Error = 4, Critical = 5
 
-            try
+            using (var uow = _unitOfWork.Begin())
             {
-                // Inicia la transacción
-                _unitOfWork.Begin();
-
-                if (isMongoTransactional)
+                try
                 {
-                    _mongoUnitOfWork.Begin();
+                    // Inicia la transacción
+                    // _unitOfWork.Begin();
+
+                    if (isMongoTransactional)
+                    {
+                        _mongoUnitOfWork.Begin();
+                    }
+
+                    response = await next();
+
+                    if (isMongoTransactional)
+                    {
+                        _mongoUnitOfWork.Commit();
+                    }
+
+                    // Se confirma la transacción
+                    // _unitOfWork.Commit();
+                    uow.Complete();
                 }
-
-                response = await next();
-
-                if (isMongoTransactional)
+                catch (AlgoriaCoreException ae)
                 {
-                    _mongoUnitOfWork.Commit();
-                }
+                    if (isMongoTransactional)
+                    {
+                        _mongoUnitOfWork.Rollback();
+                    }
 
-                // Se confirma la transacción
-                _unitOfWork.Commit();
-            }
-            catch (AlgoriaCoreException ae)
-            {
-                if (isMongoTransactional)
-                {
-                    _mongoUnitOfWork.Rollback();
-                }
+                    // Ocurrió un error. Se deshace la transacción.
+                    //_unitOfWork.Rollback();
+                    uow.Rollback();
 
-                // Ocurrió un error. Se deshace la transacción.
-                _unitOfWork.Rollback();
-
-                dict["ExecutionDuration"] = _timer.ElapsedMilliseconds.ToString();
-                dict["Exception"] = ae.ToString();
-                dict["Severity"] = ((int)LogLevel.Error).ToString();
-
-                if (ae is AlgoriaWarningException)
-                {
-                    dict["Severity"] = ((int)LogLevel.Warning).ToString();
-                    _coreLogger.LogWarning(ae, ae.Message, dict);
-                }
-                else if (ae is AlgoriaErrorException)
-                {
+                    dict["ExecutionDuration"] = _timer.ElapsedMilliseconds.ToString();
+                    dict["Exception"] = ae.ToString();
                     dict["Severity"] = ((int)LogLevel.Error).ToString();
-                    _coreLogger.LogError(ae, ae.Message, dict);
+
+                    if (ae is AlgoriaWarningException)
+                    {
+                        dict["Severity"] = ((int)LogLevel.Warning).ToString();
+                        _coreLogger.LogWarning(ae, ae.Message, dict);
+                    }
+                    else if (ae is AlgoriaErrorException)
+                    {
+                        dict["Severity"] = ((int)LogLevel.Error).ToString();
+                        _coreLogger.LogError(ae, ae.Message, dict);
+                    }
+                    else if (ae is AlgoriaCriticalException)
+                    {
+                        dict["Severity"] = ((int)LogLevel.Critical).ToString();
+                        dict["EmailTo"] = "fbeltran@algoria.com.mx";
+                        dict["EmailBody"] = "Administrador ha ocurrido un error grave. " + ae.Message;
+                        _coreLogger.LogCritical(ae, ae.Message, dict);
+                    }
+                    else
+                    {
+                        _coreLogger.LogError(ae, string.Format("LOG: ERROR: {0} ({1} milliseconds) user {2}", name, _timer.ElapsedMilliseconds, _session.UserName), dict);
+                    }
+
+                    throw;
                 }
-                else if (ae is AlgoriaCriticalException)
+                catch (Exception e)
                 {
-                    dict["Severity"] = ((int)LogLevel.Critical).ToString();
-                    dict["EmailTo"] = "fbeltran@algoria.com.mx";
-                    dict["EmailBody"] = "Administrador ha ocurrido un error grave. " + ae.Message;
-                    _coreLogger.LogCritical(ae, ae.Message, dict);
+                    if (isMongoTransactional)
+                    {
+                        _mongoUnitOfWork.Rollback();
+                    }
+
+                    // Ocurrió un error. Se deshace la transacción.
+                    //_unitOfWork.Rollback();
+                    uow.Rollback();
+
+                    dict["ExecutionDuration"] = _timer.ElapsedMilliseconds.ToString();
+                    dict["Exception"] = e.ToString();
+                    dict["Severity"] = ((int)LogLevel.Error).ToString();
+
+                    _coreLogger.LogError(e, string.Format("LOG: ERROR: {0} ({1} milliseconds) user {2}", name, _timer.ElapsedMilliseconds, _session.UserName), dict);
+
+                    throw;
                 }
-                else
-                {
-                    _coreLogger.LogError(ae, string.Format("LOG: ERROR: {0} ({1} milliseconds) user {2}", name, _timer.ElapsedMilliseconds, _session.UserName), dict);
-                }
-
-                throw;
-            }
-            catch (Exception e)
-            {
-                if (isMongoTransactional)
-                {
-                    _mongoUnitOfWork.Rollback();
-                }
-
-                // Ocurrió un error. Se deshace la transacción.
-                _unitOfWork.Rollback();
-
-                dict["ExecutionDuration"] = _timer.ElapsedMilliseconds.ToString();
-                dict["Exception"] = e.ToString();
-                dict["Severity"] = ((int)LogLevel.Error).ToString();
-
-                _coreLogger.LogError(e, string.Format("LOG: ERROR: {0} ({1} milliseconds) user {2}", name, _timer.ElapsedMilliseconds, _session.UserName), dict);
-
-                throw;
             }
 
             _timer.Stop();

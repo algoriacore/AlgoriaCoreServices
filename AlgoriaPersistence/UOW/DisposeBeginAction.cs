@@ -30,14 +30,18 @@ namespace AlgoriaPersistence.UOW
             return completed;
         }
 
-		protected virtual void Dispose(bool disposing)
-		{
-			// Implementación del patrón IDisposable
-			if (!completed)
-				Rollback();
-		}
+        protected virtual void Dispose(bool disposing)
+        {
+            // Implementación del patrón IDisposable
+            if (!completed)
+            {
+                Rollback();
+            }
 
-		public void Dispose()
+            _parentUnitOfWork.Close();
+        }
+
+        public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
